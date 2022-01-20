@@ -1,0 +1,36 @@
+.infobox {
+  height: 200px;
+  border-radius: 10px;
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  justify-content: space-around;
+  transition: 0.3s;
+  color: darkgray;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+.infobox:hover {
+  background-color: #ffffff;
+  transform: translateY(-10px);
+  cursor: pointer;
+  color: grey;
+}
+.infobox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px;
+}
+
+.infobox-header > p {
+  font-family: "Bebas Neue", cursive;
+  font-size: 35px;
+  font-weight: 400;
+}
+.infobox-text {
+  color: grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

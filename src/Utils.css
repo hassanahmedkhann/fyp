@@ -1,0 +1,51 @@
+.btn-animated {
+  color: black;
+  padding: 5px 15px;
+  border: none;
+  outline: none;
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: white;
+  border: none;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  z-index: 1;
+  transition: 300ms ease-out;
+  overflow-x: hidden;
+  border-radius: 10px;
+  text-align: center;
+}
+.animate-btn {
+  border: none;
+  outline: none;
+  position: relative;
+  cursor: pointer;
+  border: none;
+  z-index: 1;
+  transition: 300ms ease-out;
+  border-radius: 10px;
+}
+
+.btn-animated-pop::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  z-index: -1;
+  background-color: #033a7d;
+  transform: scaleX(0);
+  transition: transform 300ms ease-in-out;
+  transform-origin: center;
+  border-radius: 10px;
+}
+.btn-animated-pop:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-animated:hover {
+  color: white;
+  background-color: transparent;
+}

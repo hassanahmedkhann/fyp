@@ -1,0 +1,32 @@
+.mainUI {
+  width: 100%;
+  background-color: #f1f3f3;
+  /* background-image: url("../../Images/sampleBack5.png");
+  background-position: center;
+  background-repeat: space;
+  background-size: cover; */
+}
+.sidebar-hidden {
+  /* margin-left: -360px; */
+  opacity: 0;
+  transition: 0.3s;
+  margin-left: 0;
+  transition: 0.3s;
+}
+
+.main-container {
+  display: flex;
+}
+.main-sidebar {
+  position: absolute;
+  z-index: 99;
+}
+.main-page {
+  transition: 0.3s;
+  flex: 1;
+  margin-top: 70px;
+}
+.blur {
+  filter: blur(8px);
+  pointer-events: none;
+}

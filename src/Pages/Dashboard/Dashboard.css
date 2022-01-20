@@ -1,0 +1,52 @@
+.dashboard{
+display: flex;
+width: 100%;
+flex: 1;
+}
+.dashboard-sidebar{
+    margin: 0px 10px;
+    margin-left: -260px;
+    opacity: 0;
+    transition: 0.3s;
+}
+.sidebar-hide{
+    display: none;
+}
+
+.sidebar-show{
+    margin-left: 10px;
+    opacity: 1;
+    display: block;
+}
+
+.dashboard-ui{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 0px 10px;
+
+}
+.dashboard-navbar{
+    width: 100%;
+}
+.dashboard-ui-container{
+    display: flex;
+}
+/* .dashboard-ui-1{
+    flex: 0.7;
+    padding: 20px;
+    background-color: white;
+}
+.dashboard-ui-1 > img {
+    width: 100%;
+}
+.dashboard-ui-2{
+    flex: 0.3;
+    display: flex;
+    flex-direction: column;
+
+}
+.dashboard-infobox{
+    display: flex;
+    justify-content: space-evenly;
+} */

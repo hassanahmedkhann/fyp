@@ -1,0 +1,59 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  height: max-content;
+  color: gray;
+  transition: 0.3s;
+  overflow-y: hidden;
+  background-color: white;
+  /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+}
+.nav-menubtn:hover {
+  color: #02397c;
+}
+.nav-menubtn {
+  color: grey;
+}
+.navbar-avatar {
+  height: 50px;
+}
+.smallIcon {
+  animation: round 3s linear infinite;
+}
+@keyframes round {
+  to {
+    transform: rotate(360deg);
+  }
+  from {
+    transform: rotate(0deg);
+  }
+}
+.navbar-name {
+  margin-top: 2px;
+}
+.nav-menubtn {
+  cursor: pointer;
+}
+.navbar-search {
+  display: flex;
+  align-items: center;
+  background-color: whitesmoke;
+  border-radius: 12px;
+  padding: 3px;
+}
+
+.navbar-searchbox {
+  outline: none;
+  border: none;
+  padding: 5px;
+  font-size: 20px;
+  background-color: whitesmoke;
+}
