@@ -5,7 +5,7 @@
   outline: none;
   position: relative;
   cursor: pointer;
-  font-size: 20px;
+  /* font-size: 20px; */
   background-color: white;
   border: none;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
@@ -48,4 +48,46 @@
 .btn-animated:hover {
   color: white;
   background-color: transparent;
+}
+
+.fadeUp {
+  animation: fadeUp 0.6s alternate;
+}
+@keyframes fadeUp {
+  from {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.fadeDown {
+  animation: fadeDown 1.5s alternate;
+}
+
+@keyframes fadeDown {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 0.5s alternate;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

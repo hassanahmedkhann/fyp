@@ -2,8 +2,24 @@ import React, { useEffect, useState } from "react";
 import "./Products.css";
 import searchIcon from "../../Images/searchicon.png";
 import ProductBox from "./ProductBox";
+import gif from "../../Images/loading.gif";
+import productHeaderImage from "../../Images/productsPageHead.PNG";
 const Products = () => {
+  const [scrollData, setScrollData] = useState(0);
   const [productItems, setProductItems] = useState([]);
+  const [topDiv, setTopDiv] = useState("");
+
+  useEffect(() => {
+    setTopDiv(document.querySelector(".app"));
+    window.addEventListener("scroll", () => {
+      setScrollData(window.scrollY);
+    });
+  }, [scrollData]);
+
+  const handleBackTop = (e) => {
+    e.preventDefault();
+    topDiv.scrollIntoView();
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -20,13 +36,22 @@ const Products = () => {
       return text.substr(0, 20).toUpperCase();
     } else return text.toUpperCase();
   };
-  console.log(productItems[0]);
   return (
     <div className="products-main">
       {productItems.length > 0 && (
         <>
-          <div className="my-4 w-100 d-flex justify-content-center">
-            <h1 className="text-heading btn-animated-pop btn-animated">
+          <div className="d-flex justify-content-center mt-4">
+            <h1 className="display-2 mt-3" style={{ color: "#033A7D" }}>
+              Products
+            </h1>
+            <img
+              style={{ width: "100px" }}
+              src={productHeaderImage}
+              alt="img"
+            />
+          </div>
+          <div className="my-4 w-100 d-flex justify-content-center productTopText">
+            <h1 className=" mt-3 w-50 text-heading text-center">
               Top Products
             </h1>
           </div>
@@ -46,16 +71,20 @@ const Products = () => {
               />
             </div>
           </div>
-          <div className="my-4 w-100 d-flex justify-content-center">
-            <h1 className="text-heading btn-animated-pop btn-animated">
+          {/* <div className="my-4 w-100 d-flex justify-content-center">
+            <h1 className="w-50 text-heading btn-animated-pop btn-animated">
               All Products
             </h1>
-          </div>
+          </div> */}
           <div className="products-container">
             <div className="searchbar-container">
               <div className="searchbar">
                 <img alt="search-icon" src={searchIcon} />
-                <input type="text" placeholder="Search Product" />
+                <input
+                  type="text"
+                  placeholder="Search Product"
+                  className="w-100"
+                />
               </div>
             </div>
 
@@ -97,8 +126,47 @@ const Products = () => {
         </>
       )}
       {productItems.length < 1 && (
-        <h1 style={{ height: "100vh" }}>Loading Products..</h1>
+        <div className="vh-100 d-flex justify-content-center align-items-center">
+          <img
+            style={{ width: "200px", height: "200px" }}
+            src={gif}
+            alt="gif"
+          />
+        </div>
       )}
+      <span
+        onClick={handleBackTop}
+        className={`col-12 back-top ${scrollData < 900 && "d-none"} `}
+      >
+        <svg
+          id="Iconly_Bulk_Arrow_-_Right_Circle"
+          data-name="Iconly/Bulk/Arrow - Right Circle"
+          xmlns="http://www.w3.org/2000/svg"
+          width="60"
+          height="60"
+          viewBox="0 0 24 24"
+        >
+          <g
+            id="Arrow_-_Right_Circle"
+            data-name="Arrow - Right Circle"
+            transform="translate(2 22) rotate(-90)"
+          >
+            <path
+              id="Fill_1"
+              data-name="Fill 1"
+              d="M20,10A10,10,0,1,1,10,0,10.011,10.011,0,0,1,20,10"
+              transform="translate(0 0)"
+              opacity="0.4"
+            />
+            <path
+              id="Fill_4"
+              data-name="Fill 4"
+              d="M8.443.749a.747.747,0,0,1-.219.529L4.754,4.765a.752.752,0,0,1-1.063,0L.219,1.278A.75.75,0,0,1,1.282.22l2.94,2.953L7.162.22A.75.75,0,0,1,8.443.749"
+              transform="translate(5.778 7.808)"
+            />
+          </g>
+        </svg>
+      </span>
     </div>
   );
 };

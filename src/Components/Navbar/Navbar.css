@@ -13,17 +13,28 @@
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   position: fixed;
-  z-index: 999;
+  z-index: 99;
   width: 100%;
-}
-.nav-menubtn:hover {
-  color: #02397c;
+  height: 50px;
 }
 .nav-menubtn {
   color: grey;
+  transition: 0.3s;
 }
+
+.nav-menubtn:hover {
+  color: #02397c;
+}
+
+.navmenu-btn {
+  transition: 0.3s;
+}
+.navmenu-btn:hover {
+  transform: rotate(180deg);
+}
+
 .navbar-avatar {
-  height: 50px;
+  height: 40px;
 }
 .smallIcon {
   animation: round 3s linear infinite;
@@ -54,6 +65,6 @@
   outline: none;
   border: none;
   padding: 5px;
-  font-size: 20px;
+  font-size: 16px;
   background-color: whitesmoke;
 }

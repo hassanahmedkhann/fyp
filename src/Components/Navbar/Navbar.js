@@ -7,28 +7,32 @@ import { Avatar } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 const Navbar = (props) => {
   return (
-    <div className={`navbar ${props.flag && "d-none"}`}>
+    <div className={`navbar fadeIn ${props.flag && "d-none"}`}>
       <div
+        className="navmenu-btn mb-1"
         onClick={() => {
           props.setFlag(!props.flag);
         }}
       >
         <MenuOpenIcon fontSize="large" className="nav-menubtn" />
-        <img
-          className="smallIcon"
-          style={{ width: "40px", marginLeft: "10px" }}
-          alt="Icon"
-          src={smallIcon}
-        />
       </div>
-      <div className="navbar-search d-none d-md-flex">
+      <img
+        className="smallIcon mb-1"
+        style={{ width: "35px" }}
+        alt="Icon"
+        src={smallIcon}
+      />
+      <div className="navbar-search d-none d-md-flex mb-1">
         <SearchIcon style={{ color: "gray" }} fontSize="large" />
         <input type="text" className="navbar-searchbox" />
       </div>
-      <h3 className="d-none d-lg-block">
+      <h5 className="d-none d-lg-block">
         Hey, Welcome!<strong>&#160;Hassan Ahmed Khan</strong>
-      </h3>
-      <Avatar sx={{ width: 50, height: 50, cursor: "pointer" }} src={sample} />
+      </h5>
+      <Avatar
+        sx={{ width: 45, height: 47, cursor: "pointer", marginTop: "-5px" }}
+        src={sample}
+      />
     </div>
   );
 };

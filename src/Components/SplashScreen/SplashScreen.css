@@ -1,0 +1,23 @@
+.animateRight {
+  animation: animateRight 0.5s alternate;
+}
+.animateLeft {
+  animation: animateLeft 0.5s alternate;
+}
+
+@keyframes animateLeft {
+  to {
+    transform: translateX(0px);
+  }
+  from {
+    transform: translateX(-130px);
+  }
+}
+@keyframes animateRight {
+  to {
+    transform: translateX(0px);
+  }
+  from {
+    transform: translateX(130px);
+  }
+}

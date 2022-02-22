@@ -5,28 +5,32 @@
   background-position: center;
   background-repeat: space;
   background-size: cover; */
+  /* background-image: url("../../Images/sampleBack.PNG"); */
 }
 .sidebar-hidden {
-  /* margin-left: -360px; */
+  margin-left: -360px;
   opacity: 0;
-  transition: 0.3s;
-  margin-left: 0;
-  transition: 0.3s;
+  transition: 0.4s;
 }
-
+.sidebar-show {
+  opacity: 1;
+  margin-left: 0;
+}
 .main-container {
   display: flex;
 }
 .main-sidebar {
   position: absolute;
-  z-index: 99;
+  z-index: 100;
 }
 .main-page {
   transition: 0.3s;
   flex: 1;
-  margin-top: 70px;
+  margin-top: 0px;
+  padding-top: 60px;
 }
 .blur {
-  filter: blur(8px);
+  /* filter: blur(8px); */
+  opacity: 0.2;
   pointer-events: none;
 }

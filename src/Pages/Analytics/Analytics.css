@@ -6,6 +6,11 @@
   padding: 20px;
 }
 
+.analyticsMain {
+  margin-top: -10px;
+  background-repeat: no-repeat;
+  background-image: url("../../Images/sampleBack.PNG");
+}
 .analytics-graph {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;

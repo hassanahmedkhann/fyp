@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import video from "../../Videos/full.mp4";
-import mapImage from "../../Pipeline Images/map.png";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import mapImage from "../../Pipeline Images/map1.png";
+import headerImg from "../../Pipeline Images/headerImg.jpg";
 import videoIcon from "../../Images/video.png";
 import "../../Utils.css";
 import mapIcon from "../../Images/map.png";
@@ -20,6 +20,26 @@ const Pipeline = () => {
   const [nextDiv, setNextDiv] = useState();
   const [scrollData, setScrollData] = useState(0);
 
+  const pipelineImages = [
+    {
+      src: img1,
+    },
+    {
+      src: img2,
+    },
+    {
+      src: img3,
+    },
+    {
+      src: img4,
+    },
+    {
+      src: img5,
+    },
+    {
+      src: img6,
+    },
+  ];
   useEffect(() => {
     window.addEventListener("scroll", () => {
       setScrollData(window.scrollY);
@@ -42,13 +62,16 @@ const Pipeline = () => {
   };
 
   return (
-    <div className="pipeline">
-      <p style={{ color: "#033A7D" }} className="text-center my-3">
-        Get to know how ORIGIN8 Works.
-      </p>
+    <div className="pipeline fadeUp">
+      <div className="headerImg d-flex align-items-center">
+        <p style={{ color: "#033A7D" }} className=" text-center my-3">
+          Get to know how ORIGIN8 Works.
+        </p>
+        {/* <img src={headerImg} alt="header" /> */}
+      </div>
       <div className="container-fluid">
         <div className="row video-pipeline">
-          <div className="col-12 upper-pipeline video-pipeline2">
+          <div className="col-12 upper-pipeline video-pipeline2 w-100">
             <div className="pipeline-text mb-3 w-100">
               <p className="h1 my-3 mx-4">Watch Our AV!</p>
               <img className="me-3" src={videoIcon} alt="video-icon" />
@@ -62,19 +85,19 @@ const Pipeline = () => {
               <source src={video} type="video/mp4" />
             </video>
           </div>
-          <div className="col-12 upper-pipeline upper-below my-4">
-            <div className="pipeline-text mt-4 text-start">
-              <p className="mx-4 my-3 w-100 text-start">Follow the ROADMAP!</p>
-              <img className="me-3" alt="map-Icon" src={mapIcon} />
+          <div className="col-12 upper-pipeline upper-below">
+            <div className="pipeline-text mt-4 d-flex justify-content-start">
+              <p className="mx-4 my-3">Follow the ROADMAP!</p>
+              <img alt="map-Icon" src={mapIcon} />
             </div>
             <div className="pipeline-map-img">
               <img src={mapImage} alt="map-image" />
-              <p
+              <span style={{fontSize:'18px' }}
                 onClickCapture={handleLetsSee}
                 className="btn-animated btn-animated-pop"
               >
                 View Roadmap
-              </p>
+              </span>
             </div>
           </div>
           <span
@@ -111,24 +134,11 @@ const Pipeline = () => {
             </svg>
           </span>
 
-          <div className="col-12 pipeline-pages page-1">
-            <img src={img1} alt="page-1" />
-          </div>
-          <div className="col-12 pipeline-pages">
-            <img src={img2} alt="pipeline-pages" />
-          </div>
-          <div className="col-12 pipeline-pages">
-            <img src={img3} alt="pipeline-pages" />
-          </div>
-          <div className="col-12 pipeline-pages">
-            <img src={img4} alt="pipeline-pages" />
-          </div>
-          <div className="col-12 pipeline-pages">
-            <img src={img5} alt="pipeline-pages" />
-          </div>
-          <div className="col-12 pipeline-pages">
-            <img src={img6} alt="pipeline-pages" />
-          </div>
+          {pipelineImages.map((image, index) => (
+            <div key={index} className="col-12 pipeline-pages page-1 p-0">
+              <img src={image.src} alt="page-1" />
+            </div>
+          ))}
         </div>
       </div>
 

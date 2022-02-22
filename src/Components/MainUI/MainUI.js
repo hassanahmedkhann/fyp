@@ -8,13 +8,18 @@ import Pipeline from "../../Pages/Pipeline/Pipeline";
 import Products from "../../Pages/Products/Products";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
+import SplashScreen from "../SplashScreen/SplashScreen";
 import "./MainUI.css";
 const MainUI = () => {
   const [flag, setFlag] = useState(false);
-  const [mainUI, setMainUi] = useState();
-
   const [option, setOption] = useState(1);
+  const [splashFlag, setSplashFlag] = useState(true);
 
+  setTimeout(() => {
+    setSplashFlag(false);
+  }, 500);
+
+  console.log(splashFlag);
   useEffect(() => {
     // setMainUi(document.querySelector(".main-page"));
     const mainDiv = document.querySelector(".mainUI");
@@ -31,9 +36,12 @@ const MainUI = () => {
   }, []);
 
   return (
-    <div className="mainUI">
-      <Navbar flag={flag} setFlag={setFlag} />
-      {/* <div className="container-fluid mt-3">
+    <>
+      {splashFlag === true && <SplashScreen />}
+      {splashFlag === false && (
+        <div className="mainUI">
+          <Navbar flag={flag} setFlag={setFlag} />
+          {/* <div className="container-fluid mt-3">
         <div className="row">
           <div className={`col-3 ${!flag && "sidebar-show"} sidebar-hidden`}>
             <Sidebar />
@@ -43,28 +51,32 @@ const MainUI = () => {
           </div>
         </div>
       </div> */}
-      <div className="main-container">
-        <div
-          className={`main-sidebar sidebar-hidden ${flag && "sidebar-show"}`}
-        >
-          <Sidebar
-            option={option}
-            setOption={setOption}
-            flag={flag}
-            setFlag={setFlag}
-          />
+          <div className="main-container">
+            <div
+              className={`main-sidebar sidebar-hidden ${
+                flag && "sidebar-show"
+              }`}
+            >
+              <Sidebar
+                option={option}
+                setOption={setOption}
+                flag={flag}
+                setFlag={setFlag}
+              />
+            </div>
+            <div className={`main-page ${flag && "blur"}`}>
+              {option === 0 && <Account />}
+              {option === 1 && <Dashboard />}
+              {option === 2 && <Analytics />}
+              {option === 3 && <Pipeline />}
+              {option === 4 && <Feedback />}
+              {option === 5 && <Products />}
+              {option === 6 && <Campaigns />}
+            </div>
+          </div>
         </div>
-        <div className={`main-page ${flag && "blur"} bor`}>
-          {option === 0 && <Account />}
-          {option === 1 && <Dashboard />}
-          {option === 2 && <Analytics className="here" />}
-          {option === 3 && <Pipeline className="here" />}
-          {option === 4 && <Feedback className="here" />}
-          {option === 5 && <Products className="here" />}
-          {option === 6 && <Campaigns className="here" />}
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

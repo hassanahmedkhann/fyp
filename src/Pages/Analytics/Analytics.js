@@ -17,7 +17,7 @@ const Analytics = () => {
   ];
 
   return (
-    <>
+    <div className="analyticsMain fadeUp">
       <h1 className="text-center">Overall Analytics</h1>
       <div className="analytics">
         <div className="analytics-graph container-fluid">
@@ -57,7 +57,7 @@ const Analytics = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
