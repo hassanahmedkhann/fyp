@@ -1,0 +1,20 @@
+import "./App.css";
+import Login from "./Components/Authentication/Login";
+import Dashboard from "./Pages/Dashboard/Dashboard";
+import Signup from "./Components/Authentication/Signup";
+import MainUI from "./Components/MainUI/MainUI";
+import Analytics from "./Pages/Analytics/Analytics";
+import Routing from "./Routing/Routing";
+function App() {
+  return (
+    <div className="app">
+      {/* <Analytics /> */}
+      {/* <MainUI /> */}
+      {/* <Login/> */}
+      {/* <Signup/> */}
+      <Routing/>
+    </div>
+  );
+}
+
+export default App;

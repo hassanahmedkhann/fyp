@@ -1,0 +1,106 @@
+.login{
+    background-color: white;
+    box-sizing: border-box;
+    display: flex;
+    height: max-content;
+    background-size: cover;
+    height: 100vh;
+
+}
+.login-box{
+    outline: none;
+    background-color: white;
+    display: flex;
+    min-width: 350px;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    height: 100vh;
+    flex: 0.4;
+
+}
+.login-box > input {
+    margin: 20px 0px;
+    padding: 5px 15px;
+    min-width: 350px;
+    border: none;
+    border-bottom: 1px solid gray;
+    outline: none;
+    text-align: left;
+}
+
+.login-box > p {
+    text-align: left;
+}
+
+.login-box > img {
+    width: 200px;
+}
+.login-link {
+    text-align: center;
+    width: 100%;
+    border: none;
+    border-radius: 25px;
+    padding: 5px;
+    transition: all 0.2s;
+    color: #FADA5F;
+    color:   #2D2D2D;
+    text-decoration: none;
+    background-color: white;
+    border: 1px solid #F04D41;
+    margin: 20px 0px;
+    display: flex;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.login-link:hover {
+color: #FFFFE0;
+border: 1px solid transparent;
+cursor: pointer;
+background-image: linear-gradient(to right,#F04D41,#F5793B,#FAA640);
+}
+.login-link p{
+    transition: 0.2s;
+    /* font-size: 22px; */
+    margin: 0;
+}
+.login-link:hover p {
+    transform: translateX(10px);
+}
+.background{
+    padding-top: 20px;
+    text-align: center;
+    background-position-x: left;
+    height: 100vh;
+    flex: 0.6;
+    background-color: #F15238;
+    background-image: linear-gradient(to left,#F15238,#F5793B,#FAA640);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.background > p {
+    margin-top: 10px;
+    font-size: 20px;
+    color: white;
+}
+.background > img {
+    width: 360px;
+}
+
+.login-label{
+    margin-bottom: -10px;
+}
+
+@media only screen and (max-width: 1000) {
+    .background{
+        display: none
+    }
+    .login-box{
+        flex: 1
+    }
+}

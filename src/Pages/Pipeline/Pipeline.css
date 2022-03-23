@@ -1,0 +1,130 @@
+.headerImg > p {
+  font-size: 40px;
+  margin: 0px 10px;
+}
+.headerImg {
+  background-color: white;
+  margin-top: -10px;
+}
+.headerImg > img {
+  padding: 5px;
+  max-width: 10vw;
+}
+
+.pipeline-button:hover {
+  color: white;
+  background-color: #03c9da;
+}
+.upper-pipeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+.upper-below {
+  background-color: white;
+  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset; */
+}
+
+.back-top {
+  top: 80vh;
+  right: 20px;
+  position: fixed;
+  width: max-content;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.back-top {
+  transform: rotate(270deg);
+  border-radius: 50%;
+}
+
+.pipeline-text {
+  color: #033a7d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  background-color: whitesmoke;
+  width: 100%;
+  background-image: url('../../Images/sampleBack.PNG');
+  border-radius: 30px;
+}
+/* .pipeline-text:hover {
+  color: white;
+  background-color: #03c9da;
+  border-color: transparent;
+} */
+.pipeline-text > p {
+  font-size: 35px;
+  /* border-bottom: 2px solid #033A7D; */
+}
+.pipeline-text > img {
+  width: 35px;
+}
+.upper-pipeline > video {
+  width: 80vw;
+  border-radius: 5px;
+  height: 100%;
+}
+
+.video-pipeline {
+  display: flex;
+  justify-content: center;
+}
+
+.video-pipeline2 {
+  width: 75vw;
+  background-color: white;
+  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset; */
+}
+.pipeline-map-img {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.pipeline-pages > img {
+  width: 100%;
+}
+.pipeline-map-img > P {
+  font-size: 2.5vw;
+}
+
+/* .pipeline-map-img > p {
+  width: fit-content;
+  border: none;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  color: darkslategray;
+  margin-bottom: 10px;
+  transition: 0.3s;
+  font-size: 2.5vw;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.pipeline-map-img > p:hover {
+  cursor: pointer;
+  background-color: #03c9da;
+  color: white;
+} */
+.pipeline-map-img > img {
+  width: 50%;
+}
+
+@media (max-width: 1200px) {
+  .video-pipeline2 > video {
+    width: 90vw;
+  }
+  /* .upper-below {
+    width: 90vw;
+  } */
+}

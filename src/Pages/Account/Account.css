@@ -1,0 +1,89 @@
+.account {
+    height: fit-content;
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px 50px;
+    min-height: 100vh;
+}
+.account-card{
+    border-radius: 20px;
+    background-color: white;
+    width: fit-content;
+    padding: 20px;
+    width: 100%;
+    height: fit-content;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+}
+.account-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* .account-box{
+    display: flex;
+    flex-wrap: wrap;
+} */
+
+.account-text{
+    /* display: flex;
+    flex-direction: column; */
+    width: 100%;
+    /* flex: 0.5; */
+}
+
+.account-text > label {
+    font-size: 22px;
+}
+
+.account-inputs {
+    margin: 20px 0px;
+    font-size: 22px;
+    padding: 0px 10px;
+}
+.account-button {
+    background-color: white;
+    border: 1px solid #F04D41;
+    padding: 10px 50px;
+    border-radius: 25px;
+    max-width: 300px;
+    font-size: 20px;
+    transition: 0.3s;
+    color: #F04D41;
+}
+.account-button:hover{
+color: #FFFFE0;
+cursor: pointer;
+background-image: linear-gradient(to right,#F04D41,#F5793B,#FAA640);
+border: 1px solid transparent;
+}
+
+.account-image{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    text-align: center;
+    font-size: 20px;
+    position: relative;
+    align-items: center;
+}
+
+.account-image > p {
+    z-index: 100;
+    color: white;
+    backdrop-filter: invert(.4);
+    padding: 0px 15px;
+    cursor: pointer;
+    display: none;
+    border-radius: 10px;
+    position: absolute;
+}
+.account-image:hover > p {
+    display: block;
+}
+
+.account-avatar {
+    cursor: pointer;
+}
+
+

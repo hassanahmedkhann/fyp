@@ -1,0 +1,116 @@
+
+
+/* ClusterCard CSS */
+.cluster-card{
+height: 270px;
+width: 320px;
+border-radius: 30px;
+background-color: white;
+display: flex;
+flex-direction: column;
+transition: 0.3s;
+cursor: pointer;
+box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;}
+
+.cluster-card:hover{
+    background-color: #F25839;
+    color: white;
+}
+
+.cluster-text{
+    flex: 0.5;
+}
+
+.cluster-card:hover .cluster-link {
+    background-color: white !important;
+    color: rgb(29, 193, 40)
+    !important;
+}
+
+.cluster-images{
+    flex: 0.5;
+    display: flex;
+    padding: 0px 10px;
+}
+
+.avatar-2{
+    margin-left: 70px;
+}
+.avatar-3{
+    margin-left: 120px;
+}
+.avatar-4{
+    margin-left: 180px;
+}
+
+
+/* Cluster Page CSS */
+
+.cluster-page{
+    height: 100vh;
+}
+
+.cluster-page-card{
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 30px 100px !important;
+    height: fit-content;
+}
+
+.customer-name{
+    background-color: white;
+    color: #F25839;
+    transition: 0.3s;
+    border-radius: 30px;
+}
+
+.customer-name:hover{
+    background-color: #F25839;
+    color: white;
+}
+.customer-list{
+    overflow-y: scroll;
+    height: 400px;
+}
+
+.cluster-customer-list{
+    flex: 0.5
+}
+.cluster-page-header{
+    flex: 0.5
+}
+
+.cluster-page-buttons > .btn-1{
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 30px;
+    transition: 0.3s;
+    font-size: 22px;
+    min-width: 250px;
+}
+
+.cluster-page-buttons > .btn-1:hover{
+
+    color: red;
+    background-color: white;
+}
+
+.cluster-page-buttons > .btn-2:hover{
+
+    color: rgb(29, 193, 40);
+    background-color: white;
+}
+
+.cluster-page-buttons > .btn-2{
+    border: 1px solid  rgb(29, 193, 40);
+    background-color: rgb(29, 193, 40);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 30px;
+    transition: 0.3s;
+    font-size: 22px;
+    min-width: 250px;
+}

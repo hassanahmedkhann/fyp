@@ -1,0 +1,38 @@
+.mainUI {
+  width: 100%;
+  background-color: #FAFAFA;
+  /* background-image: url("../../Images/sampleBack5.png");
+  background-position: center;
+  background-repeat: space;
+  background-size: cover; */
+  /* background-image: url("../../Images/sampleBack.PNG"); */
+}
+.sidebar-hidden {
+  margin-left: -360px;
+  opacity: 0;
+  transition: 0.4s;
+}
+.sidebar-show {
+  opacity: 1;
+  margin-left: 0;
+}
+.main-container {
+  display: flex;
+}
+.main-sidebar {
+  position: absolute;
+  z-index: 100;
+}
+.main-page {
+  transition: 0.3s;
+  flex: 1;
+
+}
+.blur {
+  /* filter: blur(8px); */
+  opacity: 0.2;
+  pointer-events: none;
+}
+.mainPad{
+  padding-top: 60px;
+}

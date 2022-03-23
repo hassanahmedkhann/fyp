@@ -1,0 +1,60 @@
+.analytics {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 10px;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.analyticsMain {
+  margin-top: -10px;
+  background-repeat: no-repeat;
+}
+
+.analyticsMain > div > h1 {
+  letter-spacing: 2px;
+  color: white;
+}
+
+.analytics-heading {
+  background-image: url('../../Images//analytics.jpg');
+  border-radius: 20px;
+  margin: 0px 100px;
+}
+
+.analytics-graph1 {
+  border-radius: 10px;
+  background-color: white;
+  height: 450px;
+}
+
+
+.analytics-items-container {
+  background-color: white;
+}
+.analytics-small-items {
+  background-color: white;
+  height: 300px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.smallgraphs > img {
+  width: 100%;
+}
+
+.smallgraphs > p {
+  font-size: 20px;
+}
+
+.text-smallgraph {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-smallgraph > p {
+  font-size: 20px;
+}
