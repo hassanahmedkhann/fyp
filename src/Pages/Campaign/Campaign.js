@@ -141,19 +141,19 @@ const Campaign = () => {
 
   ]
   return (
-    <div className="p-3">
-  <div className="campaign container-fluid">
-    <h3 className="text-center my-4">CLUSTER ANALYSIS</h3>
-    <div className="row row-cols-lg-3 row-cols-xl-4 row-cols-md-2 ">
-      { clusterArray.map((clusterData,index)=> (
-      <div className="col">
-      <ClusterCard clusterData={clusterData} index={index+1} key={index}/>
+    <div>
+      <div className="campaign container-fluid">
+        <h3 className="text-center my-4 ">CLUSTER ANALYSIS</h3>
+        <div className="row row-cols-lg-3 row-cols-xl-4 row-cols-md-2 ">
+          {clusterArray.map((clusterData, index) => (
+            <div className="col p-0 d-flex justify-content-center">
+              <ClusterCard clusterData={clusterData} index={index + 1} key={index} />
+            </div>
+          ))
+          }
+        </div>
       </div>
-      ))
-      }
     </div>
-  </div>
-  </div>
   )
 };
 

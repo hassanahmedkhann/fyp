@@ -69,7 +69,7 @@ const Pipeline = () => {
           <div className="col-12 px-4 upper-pipeline video-pipeline2 w-100">
             <div className="pipeline-text mx-4 mb-3 w-100">
               <p className="h3 my-3 ms-4">Watch Our AV!</p>
-              <img className="me-3" src={videoIcon} alt="video-icon" />
+              <img className="mx-3" src={videoIcon} alt="video-icon" />
             </div>
             <video
               className="video-pipeline"
@@ -87,7 +87,7 @@ const Pipeline = () => {
             </div>
             <div className="pipeline-map-img">
               <img src={mapImage} alt="map-image" />
-              
+
             </div>
           </div>
           <span

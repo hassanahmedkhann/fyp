@@ -7,6 +7,9 @@ import { Avatar, Tooltip } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 const Navbar = (props) => {
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
   return (
     <div className={`navbar mt-2 mx-2 fadeIn ${props.flag && "d-none"}`}>
       <div
@@ -16,7 +19,7 @@ const Navbar = (props) => {
         }}
       >
         <MenuOpenIcon fontSize="large" className="nav-menubtn" />
-        
+
       </div>
       <img
         className="smallIcon ms-4"
@@ -28,17 +31,17 @@ const Navbar = (props) => {
         <SearchIcon style={{ color: "gray" }} fontSize="large" />
         <input type="text" className="navbar-searchbox" />
       </div>
-      
+
       {/* <h5 className="d-none d-lg-block">
         Hey, Welcome!<strong>&#160;Hassan Ahmed Khan</strong>
       </h5> */}
       <Tooltip title="Logout" >
-      <Link to='/'>
-      <Avatar
-        sx={{ width: 45, height: 47, cursor: "pointer",  }}
-        src={sample}
-      />
-      </Link>
+        <Link to='/' onClick={() => localStorage.clear()}>
+          <Avatar
+            sx={{ width: 45, height: 47, cursor: "pointer", }}
+          // src={sampl}
+          >{user?.email[0].toUpperCase()}</Avatar>
+        </Link>
       </Tooltip>
     </div>
   );

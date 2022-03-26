@@ -4,7 +4,9 @@
     justify-content: flex-start;
     margin: 20px 50px;
     min-height: 100vh;
+    min-width: 360px;
 }
+
 .account-card{
     border-radius: 20px;
     background-color: white;
@@ -14,6 +16,7 @@
     height: fit-content;
     box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
 }
+
 .account-header{
     display: flex;
     flex-direction: column;
@@ -41,16 +44,7 @@
     font-size: 22px;
     padding: 0px 10px;
 }
-.account-button {
-    background-color: white;
-    border: 1px solid #F04D41;
-    padding: 10px 50px;
-    border-radius: 25px;
-    max-width: 300px;
-    font-size: 20px;
-    transition: 0.3s;
-    color: #F04D41;
-}
+
 .account-button:hover{
 color: #FFFFE0;
 cursor: pointer;

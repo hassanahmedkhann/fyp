@@ -111,30 +111,7 @@ const Graph = () => {
         </Select>} MONTHS </p>
         <span className="p-2 m-4" style={{ backgroundColor: "#F4752C", borderRadius: "40px" }}><TimelineIcon style={{ fontSize: "40px", color: 'white' }} /></span></div>
 
-      {/* <ResponsiveContainer width="90%" height="100%">
-        <LineChart
-          data={data}
-          margin={{
-            top: 30,
-            right: 30,
-            left: 0, 
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="Month" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line
-            type="monotone"
-            dataKey="Profits"
-            stroke="#8884d8"
-            activeDot={{ r: 8 }}
-          />
-          <Line type="monotone" dataKey="Purchases" stroke="#82ca9d" />
-        </LineChart>
-      </ResponsiveContainer> */}
+
       <ResponsiveContainer width="90%" height="100%">
         <AreaChart
           data={data}

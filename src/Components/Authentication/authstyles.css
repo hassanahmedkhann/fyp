@@ -5,8 +5,8 @@
     height: max-content;
     background-size: cover;
     height: 100vh;
-
 }
+
 .login-box{
     outline: none;
     background-color: white;
@@ -19,8 +19,8 @@
     font-size: 20px;
     height: 100vh;
     flex: 0.4;
-
 }
+
 .login-box > input {
     margin: 20px 0px;
     padding: 5px 15px;
@@ -56,20 +56,29 @@
     display: flex;
     justify-content: center;
 }
+
 .login-link:hover {
 color: #FFFFE0;
 border: 1px solid transparent;
 cursor: pointer;
-background-image: linear-gradient(to right,#F04D41,#F5793B,#FAA640);
+/* background-image: linear-gradient(to right,#F04D41,#F5793B,#FAA640); */
+background-color: #F6803C;
 }
-.login-link p{
+
+.login-link p , .login-link span{
     transition: 0.2s;
-    /* font-size: 22px; */
     margin: 0;
 }
-.login-link:hover p {
-    transform: translateX(10px);
+
+.login-link span{
+    opacity: 0;
 }
+
+.login-link:hover span {
+    transform: translateX(20px);
+    opacity: 1;
+}
+
 .background{
     padding-top: 20px;
     text-align: center;
@@ -83,24 +92,45 @@ background-image: linear-gradient(to right,#F04D41,#F5793B,#FAA640);
     align-items: center;
     justify-content: center;
 }
+
 .background > p {
     margin-top: 10px;
     font-size: 20px;
     color: white;
 }
+
 .background > img {
     width: 360px;
 }
 
-.login-label{
-    margin-bottom: -10px;
-}
 
-@media only screen and (max-width: 1000) {
+@media only screen and (max-width: 939px) {
     .background{
         display: none
     }
     .login-box{
-        flex: 1
+        flex: 1;
+        background-image: url("../../Images/loginBack.JPG");   
+        background-repeat: no-repeat;
+        background-position-x: center ;
     }
+}
+
+.login-input{
+    margin: 20px 0px;
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 340px;
+    display: flex;
+    background-color: whitesmoke;
+}
+
+.login-input > input{
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding-left: 5px ;
+    font-size: 18px;
+    width: 100%;
+    background-color: whitesmoke;
 }

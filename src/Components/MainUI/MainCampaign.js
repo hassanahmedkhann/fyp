@@ -34,9 +34,9 @@ const MainCampaign = () => {
 
   return (
     <>
-        <div className="mainUI">
-          <Navbar flag={flag} setFlag={setFlag} />
-          {/* <div className="container-fluid mt-3">
+      <div className="mainUI">
+        <Navbar flag={flag} setFlag={setFlag} />
+        {/* <div className="container-fluid mt-3">
         <div className="row">
           <div className={`col-3 ${!flag && "sidebar-show"} sidebar-hidden`}>
             <Sidebar />
@@ -46,26 +46,24 @@ const MainCampaign = () => {
           </div>
         </div>
       </div> */}
-          <div className="main-container">
-            <div
-              className={`main-sidebar sidebar-hidden ${
-                flag && "sidebar-show"
+        <div className="main-container">
+          <div
+            className={`main-sidebar sidebar-hidden ${flag && "sidebar-show"
               }`}
-            >
-              <Sidebar
-                option={option}
-                setOption={setOption}
-                flag={flag}
-                setFlag={setFlag}
-              />
-            </div>
-            <div className={`main-page mainPad ${flag && "blur"}`}>
-               <Campaign />
-            
-            </div>
+          >
+            <Sidebar
+              option={option}
+              setOption={setOption}
+              flag={flag}
+              setFlag={setFlag}
+            />
+          </div>
+          <div className={`main-page mainPad ${flag && "blur"}`}>
+            <Campaign />
           </div>
         </div>
-      
+      </div>
+
     </>
   );
 };

@@ -5,39 +5,48 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Avatar, IconButton, Input, InputAdornment, InputLabel, OutlinedInput, TextField } from "@mui/material";
-import { fontStyle } from "@mui/system";
+import { Avatar, IconButton, InputLabel, TextField } from "@mui/material";
+import Notification from "../../Utils/Notification"
+import Loader from "../../Utils/Loader";
+import { updateUser } from "../../Api-Interaction/api-Interaction";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import { buttonSX } from "../../Util"
 
 const Account = () => {
 
+  const [showPassword, setShowPassword] = useState()
+
+  const [open, setOpen] = useState(false)
+
+  const navigate = useNavigate()
+
+  const [alert, setAlert] = useState({
+    flag: false,
+    status: 1,
+    message: ""
+  })
+
+
+  const [openModal, setOpenModal] = useState(false);
+
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/
+
+  const user = JSON.parse(localStorage.getItem('user'));
+
   const [values, setValues] = useState({
-    amount: '',
+    email: user?.email,
+    companyName: user?.companyName,
+    oldPassword: "",
+    confirmPassword: '',
     password: '',
-    weight: '',
-    weightRange: '',
-    showPassword: false,
   });
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
-  const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
-  const handleOpen = () => setOpen(true);
 
 
   //Modal Styles
@@ -46,159 +55,200 @@ const Account = () => {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    minWidth: 400,
+    maxWidth: 500,
     bgcolor: 'white',
     border: 'none',
     boxShadow: 24,
     borderRadius: '25px',
     p: 4,
-
   };
 
 
   //Form Styles
-  const formStyle={
+  const formStyle = {
     fontSize: "20px",
-    marginBottom: "30px"
+    marginBottom: "30px",
+    width: "100%"
   }
 
   //Label Styles 
   const labelStyle = {
     marginBottom: "5px",
+    width: "100%"
   }
 
 
-  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/
+
+  const handleForm = () => {
+
+    //Empty Fields
+    Object.keys(values).forEach((key) => {
+      if (values[key] === null || values[key] === undefined || values[key] === "") {
+        return setAlert({ flag: true, status: 2, message: "Can not have empty fields!" })
+      }
+    })
+
+    //Passwords validation
+    if (values.confirmPassword !== values.password) {
+      return setAlert({ flag: true, status: 2, message: "Passwords do not match!" })
+    }
+
+    //Regex validation
+    let val = regex.test(values.password)
+    if (!val) {
+      return setAlert({ flag: true, status: 2, message: "Min length should be 8 with 1 special character and 1 Capital letter" })
+    }
+
+    const accountData = {
+      "email": values.email,
+      "companyName": values.companyName,
+      "oldPassword": values.oldPassword,
+      "password": values.password,
+    }
+    handleAPI(accountData)
+
+  }
+
+  const handleAPI = async (data) => {
+
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    try {
+      setOpen(true)
+      let resultHandle = await updateUser(data, user._id);
+
+      if (resultHandle?.success === true) {
+        setOpen(false);
+        setAlert({ flag: true, 'status': 1, message: resultHandle?.message.Success });
+        setTimeout(() => {
+          navigate('/dashboard')
+        }, 2000);
+      }
+      else {
+        setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
+        setOpen(false)
+      }
+
+    }
+    catch (err) {
+      setOpen(false)
+      console.log("Error! ", err)
+    }
+
+  }
+
+
 
   return (
-    <div className="account fadeUp ">
+    <div className="account fadeUp">
+      <Notification alert={alert} setAlert={setAlert} />
+      <Loader open={open} />
       <div className="account-card">
-      <div className="account-header mb-4 text-center pt-4 ps-4">
-      <h2>Account Information</h2>
-      </div>
-      <div className="ps-4 account-box container-fluid">
-        <div className="row">
-          <div className="col-12 col-lg-6">
-          <form className="account-text justify-content-center">
-      {/* <label>Organization Name:</label>
-      <input placeholder="Hassan Ahmed Khan ( Can not change )" disabled type='text' />
-      <label>Email: </label>
-      <input placeholder="hassan.ahmed@gmail.com ( Can not change )" disabled disabled type='email' />
-      <label>Password: </label>
-      <input type="password"/>
-      <label>Confirm Password: </label>
-      <input type="password"/>
-      <button className="mt-4">Save Changes</button> */}
-        <InputLabel sx={labelStyle} htmlFor="standard-adornment-password">Name</InputLabel>
-        <TextField
-          id="outlined-read-only-input"
-          fullWidth
-          sx={formStyle}
-          defaultValue="Hassan Ahmed Khan"
-          variant="standard"
-          InputProps={{
-            readOnly: true,
-          }}
-          helperText="Can not change"
-        />
-        <InputLabel sx={labelStyle} htmlFor="standard-adornment-password">Email</InputLabel>
-         <TextField
-          fullWidth
-          sx={formStyle}
-          id="outlined-read-only-input"
-          variant="standard"
-          type='email'
-          defaultValue="hassanahmed@origin8.com"
-          InputProps={{
-            readOnly: true,
-          }}
-          helperText="Can not change"
-        />
-
-        <InputLabel sx={labelStyle} htmlFor="standard-adornment-password">Password</InputLabel>
-        <Input
-            fullWidth
-            sx={formStyle}
-            variant="standard"
-            id="outlined-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            // value='dummypassword'
-            helperText="Min Length should be 8 with 1 special character and 1 Capital letter"
-            onChange={handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {!values.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Password"
-          />
-        <InputLabel sx={labelStyle} htmlFor="standard-adornment-password">Confirm Password</InputLabel>
-        <Input
-            fullWidth
-            sx={formStyle}
-            margin="normal"
-            variant="standard"
-            id="outlined-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            // value='dummypassword'
-            helperText="Min Length should be 8 with 1 special character and 1 Capital letter"
-            onChange={handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {!values.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Confirm Password"
-          />
-
-      </form>
-          </div>
-          <div className="col-12 col-lg-6">
-          <div className="account-text d-flex flex-column ps-3 align-items-center p-3">
-      <InputLabel className="my-3" htmlFor="standard-adornment-password">Current Profile Picture</InputLabel>
-
-      {/* <div className="account-image"><img src={sample} /><p onClick={handleOpen}>Change Profile Picture</p></div>   */}
-      <div onClick={handleOpen} className="account-image"><Avatar className="account-avatar" sx={{height: '300px', width: '300px'}} src={sample} /><p>Change Profile Picture</p></div>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-      <Box className="d-flex flex-column align-items-center" sx={style}>
-      <Typography id="modal-modal-title" variant="h6" component="h2">
-        Choose from Desktop/Computer
-      </Typography>
-      <input  className="my-3 account-file" type="file"/>
-      <Typography className="mt-3" variant="h5">Selected Image</Typography>
-      {/* <img src={sample} className="mt-4" style={{width: "300px", height: "300px", borderRadius: "20px"}}/> */}
-      <Avatar sx={{height: '300px', width: '300px'}} src={sample}/>
-      </Box>
-      </Modal>
-      </div>
-          </div>
-          <button className="account-button">Save Changes</button>      
+        <div className="account-header mb-4 text-center pt-4 ps-4">
+          <h2>Account Information</h2>
         </div>
-      
-      
-      {/* <input type="file" className="account-file" /> */}
+        <div className="ps-4 account-box container-fluid">
+          <div style={{ display: "flex", justifyContent: "center" }} className="row">
+            <div className="col-12 col-lg-6">
+              <form className="account-text justify-content-center">
+                <InputLabel sx={labelStyle} htmlFor="standard-adornment-password">Company Name</InputLabel>
+                <TextField
+                  fullWidth
+                  sx={formStyle}
+                  defaultValue={values.companyName}
+                  variant="standard"
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  helperText="Can not change"
+                />
+                <InputLabel sx={labelStyle} htmlFor="standard-adornment-password">Email</InputLabel>
+                <TextField
+                  fullWidth
+                  sx={formStyle}
+                  id="outlined-read-only-input"
+                  variant="standard"
+                  type='email'
+                  defaultValue={values.email}
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  helperText="Can not change"
+                />
+
+                <InputLabel sx={labelStyle} htmlFor="standard-adornment-password">Old Password</InputLabel>
+                <span className="d-flex align-items-center mb-3">
+                  <TextField
+                    helperText={"Note: Please enter yout old password!"}
+                    variant="standard"
+                    onChange={handleChange('oldPassword')}
+                    fullWidth
+                    type={showPassword ? 'text' : 'password'}
+                  />
+                  <IconButton onClick={() => setShowPassword(!showPassword)}>{showPassword ? <Visibility /> : <VisibilityOff />}</IconButton>
+                </span>
+
+                <InputLabel sx={labelStyle} htmlFor="standard-adornment-password">New Password</InputLabel>
+                <span className="d-flex align-items-center mb-3">
+                  <TextField
+                    helperText={values.password !== values.confirmPassword ? `Password do not match!` : "Note: Min length should be 8 with 1 special character and 1 Capital letter"}
+                    variant="standard"
+                    onChange={handleChange('password')}
+                    fullWidth
+                    type={showPassword ? 'text' : 'password'}
+                  />
+                  <IconButton onClick={() => setShowPassword(!showPassword)}>{showPassword ? <Visibility /> : <VisibilityOff />}</IconButton>
+                </span>
+
+                <InputLabel sx={labelStyle} htmlFor="standard-adornment-password">Confirm New Password</InputLabel>
+                <span className="d-flex align-items-center mb-4">
+                  <TextField
+                    error={values.password === values.confirmPassword ? false : true}
+                    helperText={values.password !== values.confirmPassword ? `Password do not match!` : "Note: Min length should be 8 with 1 special character and 1 Capital letter"}
+                    variant="standard"
+                    onChange={handleChange('confirmPassword')}
+                    fullWidth
+                    type={showPassword ? 'text' : 'password'}
+                  />
+                  <IconButton onClick={() => setShowPassword(!showPassword)}>{showPassword ? <Visibility /> : <VisibilityOff />}</IconButton>
+                </span>
+
+
+
+              </form>
+            </div>
+            <div className="col-12 col-lg-6">
+              <div className="account-text d-flex flex-column ps-3 align-items-center p-3">
+                <InputLabel className="my-3" htmlFor="standard-adornment-password">Current Profile Picture</InputLabel>
+
+                {/* <div className="account-image"><img src={sample} /><p onClick={handleOpen}>Change Profile Picture</p></div>   */}
+                <div onClick={() => setOpenModal(true)} className="account-image"><Avatar className="account-avatar" sx={{ height: '300px', width: '300px' }} src={sample} /><p>Change Profile Picture</p></div>
+                <Modal
+                  open={openModal}
+                  onClose={() => setOpenModal(false)}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box className="d-flex flex-column align-items-center" sx={style}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                      Choose from Desktop/Computer
+                    </Typography>
+                    <input className="my-3 account-file" type="file" />
+                    <Typography className="mt-3" variant="h5">Selected Image</Typography>
+                    {/* <img src={sample} className="mt-4" style={{width: "300px", height: "300px", borderRadius: "20px"}}/> */}
+                    <Avatar sx={{ height: '300px', width: '300px' }} src={sample} />
+                  </Box>
+                </Modal>
+              </div>
+            </div>
+            <Button sx={buttonSX} onClick={handleForm} className="account-button">Save Changes</Button>
+          </div>
+
+
+        </div>
       </div>
-    </div>
-    </div>
+    </div >
   );
 };
 
