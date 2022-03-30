@@ -34,9 +34,7 @@ const Dashboard = () => {
       let resultHandle = await getProfit();
 
       if (resultHandle?.success === true) {
-        // console.log(resultHandle?.message)
         setProfitData(resultHandle?.message)
-        localStorage.setItem('profits', resultHandle?.message)
         setOpen(false);
       }
       else {
@@ -56,21 +54,21 @@ const Dashboard = () => {
   const data = [
     {
       heading: "Profit",
-      amount: profitData?.totalProfit,
+      amount: profitData?.Analytics?.totalProfit,
       icon: AccountBalanceIcon,
       color: "yellowgreen",
       backImg: dash5,
     },
     {
       heading: "Purchases",
-      amount: profitData?.totalPurchases,
+      amount: profitData?.Analytics.totalSales,
       icon: PlaylistAddCheckCircleIcon,
       color: "#02CCCF",
       backImg: dash4,
     },
     {
       heading: "Total Earnings",
-      amount: profitData?.totalEarning,
+      amount: profitData?.Analytics.totalEarning,
       icon: PaidIcon,
       color: "#F25339",
       backImg: dash6,

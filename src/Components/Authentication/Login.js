@@ -43,11 +43,10 @@ const Login = () => {
       let resultHandle = await LoginApi(values);
 
       if (resultHandle?.success === true) {
-        localStorage.setItem('user', JSON.stringify(resultHandle?.message.User_Data))
         localStorage.setItem('token', JSON.stringify(resultHandle?.message.Access_Token))
-
-        navigate('/dashboard')
+        localStorage.setItem('user', JSON.stringify(resultHandle?.message.User_Data))
         setOpen(false);
+        navigate('/dashboard')
       }
       else {
         setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });

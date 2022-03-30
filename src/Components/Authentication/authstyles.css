@@ -110,9 +110,6 @@ background-color: #F6803C;
     }
     .login-box{
         flex: 1;
-        background-image: url("../../Images/loginBack.JPG");   
-        background-repeat: no-repeat;
-        background-position-x: center ;
     }
 }
 
