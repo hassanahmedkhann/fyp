@@ -1,6 +1,7 @@
 .infobox {
   height: 220px;
   width: 100%;
+  max-width: 500px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;

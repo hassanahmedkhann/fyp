@@ -9,3 +9,16 @@ export const buttonSX = {
   transition: "0.3s",
   color: "#F04D41"
 }
+
+
+export const searchFunction = (searchKey, data) => {
+
+  const records = []
+
+  data.forEach((product) => {
+    if (product.productName.toLowerCase().includes(searchKey.toLowerCase())) {
+      records.push(product)
+    }
+  })
+  return records
+}

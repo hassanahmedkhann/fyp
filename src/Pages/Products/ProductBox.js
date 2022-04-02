@@ -9,13 +9,13 @@ const ProductBox = ({ productData, ...props }) => {
 
       <div className="d-flex">
         <div className="producBox-detailBox d-flex flex-column mx-1 align-items-center w-100">
-          <h3 className="my-2">{productData?.productName}</h3>
-          <h3 className="my-1">{productData?.productCategory}</h3>
+          <h5 className="my-2">{productData?.productName}</h5>
+          <h5 className="my-1">{productData?.productCategory}</h5>
         </div>
         <div className="producBox-detailBox d-flex flex-column mx-1 align-items-center w-100">
-          <h4 className="my-1">Price: {productData?.unitPrice}</h4>
-          <h4 className="my-1">Cost: {productData?.unitCost}</h4>
-          <h4 className="my-1">Total Profit: {productData?.unitProfit * productData?.totalSales}</h4>
+          <h5 className="my-1">Price: {productData?.unitPrice}</h5>
+          <h5 className="my-1">Cost: {productData?.unitCost}</h5>
+          <h5 className="my-1">Total Profit: {productData?.unitProfit * productData?.totalSales}</h5>
         </div>
       </div>
 

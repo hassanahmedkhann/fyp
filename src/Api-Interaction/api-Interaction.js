@@ -22,7 +22,7 @@ export async function LoginApi(data) {
 };
 
 
-// Get Profit Data
+// Get Dashboard Infobox Data
 export async function getProfit() {
 
     let result = await fetch(`${baseURL}/dashboard`,
@@ -118,3 +118,48 @@ export async function getTopProduct() {
     return await ErrorHandling(result)
 
 };
+
+
+// Get Dashboard Graph Data
+export async function getDashboardGraph(year) {
+
+    let result = await fetch(`${baseURL}/dashboard/graph/${year}`,
+        {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+            },
+        });
+
+    return await ErrorHandling(result)
+};
+
+// Get Overall Product Analytics Data
+export async function getOverallProductAnalytics(rating) {
+
+    let result = await fetch(`${baseURL}/overall2/products/${rating}`,
+        {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+            },
+        });
+
+    return await ErrorHandling(result)
+};
+
+// Get Overall Product Growth, ROI and Cost Data
+export async function getOverallProductGrowth(rating) {
+
+    let result = await fetch(`${baseURL}/overall2/products/growth/${rating}`,
+        {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+            },
+        });
+
+    return await ErrorHandling(result)
+};
+
+

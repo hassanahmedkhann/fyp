@@ -8,12 +8,15 @@ import { Avatar, CircularProgress } from "@mui/material";
 import Notification from "../../Utils/Notification";
 import Loader from "../../Utils/Loader";
 import { getProducts, getTopProduct } from "../../Api-Interaction/api-Interaction";
+import { searchFunction } from "../../Util";
 const Products = () => {
   const [scrollData, setScrollData] = useState(0);
   const [productItems, setProductItems] = useState([]);
+  const [searchedProducts, setSearchedProducts] = useState([]);
   const [topProduct, setTopProduct] = useState();
   const [topDiv, setTopDiv] = useState("");
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
   const [alert, setAlert] = useState({ flag: false, status: 1, message: "" });
 
 
@@ -78,26 +81,33 @@ const Products = () => {
   }, []);
 
 
+  const handleSearch = (input) => {
+    setSearch(input)
+    const matches = searchFunction(input, productItems)
+    setSearchedProducts([...matches])
+  }
+
+
 
   return (
-    <div className="products-main bor">
+    <div className="products-main ">
       <Notification alert={alert} setAlert={setAlert} />
       <Loader open={open} />
       <>
         <div style={{ paddingTop: "100px" }} className="d-flex justify-content-center">
-          <h1 className="display-2" style={{ color: "#033A7D" }}>
+          <h3 className="display-4" style={{ color: "#033A7D" }}>
             Product View
-          </h1>
-          <img
+          </h3>
+          {/* <img
             style={{ width: "100px", borderRadius: "30px" }} className="ms-3"
             src={productHeaderImage}
             alt="img"
-          />
+          /> */}
         </div>
-        <div className="my-4 w-100 d-flex justify-content-center productTopText">
-          <h1 className=" mt-3 w-50 text-heading text-center">
+        <div className="my-4 w-100 d-flex justify-content-center">
+          <h4 className=" mt-3 w-50 text-heading text-center">
             Top Products
-          </h1>
+          </h4>
         </div>
 
 
@@ -127,6 +137,7 @@ const Products = () => {
                 type="text"
                 placeholder="Search Product"
                 className="w-100"
+                onChange={(event) => handleSearch(event.target.value)}
               />
             </div>
           </div>
@@ -144,22 +155,39 @@ const Products = () => {
 
 
 
-            {productItems?.map((item, index) => (
-              <div key={index} className="product-items-container">
-                <p className="product-items font-weight-light">{item?.productID}</p>
-                {/* <p className="product-items">{item?.category.toUpperCase()}</p> */}
-                <div className="product-items product-item-lg">
-                  <Avatar alt="Product-Image" src={item.productImage} sx={{ width: 60, height: 60 }} />
-                  <p className="ms-1">{item.productName}</p>
-                </div>
-                <p className="product-items">{item.productRating}</p>
-                <p className="product-items">{item.unitPrice}</p>
-                <p className="product-items">{`${item.unitCost}`}</p>
-                <p className="product-items">{`${item.unitProfit}`}</p>
-                <p className="product-items">{`${item.totalSales}`}</p>
+            {search.length < 1 ?
+              productItems?.map((item, index) => (
+                <div key={index} className="product-items-container">
+                  <p className="product-items font-weight-light">{item?.productID}</p>
+                  {/* <p className="product-items">{item?.category.toUpperCase()}</p> */}
+                  <div className="product-items product-item-lg">
+                    <Avatar alt="Product-Image" src={item.productImage} sx={{ width: 60, height: 60 }} />
+                    <p className="ms-1">{item.productName}</p>
+                  </div>
+                  <p className="product-items">{item.productRating}</p>
+                  <p className="product-items">{item.unitPrice}</p>
+                  <p className="product-items">{`${item.unitCost}`}</p>
+                  <p className="product-items">{`${item.unitProfit}`}</p>
+                  <p className="product-items">{`${item.totalSales}`}</p>
 
-              </div>
-            ))}
+                </div>
+              )) :
+              searchedProducts?.map((item, index) => (
+                <div key={index} className="product-items-container">
+                  <p className="product-items font-weight-light">{item?.productID}</p>
+                  {/* <p className="product-items">{item?.category.toUpperCase()}</p> */}
+                  <div className="product-items product-item-lg">
+                    <Avatar alt="Product-Image" src={item.productImage} sx={{ width: 60, height: 60 }} />
+                    <p className="ms-1">{item.productName}</p>
+                  </div>
+                  <p className="product-items">{item.productRating}</p>
+                  <p className="product-items">{item.unitPrice}</p>
+                  <p className="product-items">{`${item.unitCost}`}</p>
+                  <p className="product-items">{`${item.unitProfit}`}</p>
+                  <p className="product-items">{`${item.totalSales}`}</p>
+
+                </div>
+              ))}
 
           </div>
         </div>
