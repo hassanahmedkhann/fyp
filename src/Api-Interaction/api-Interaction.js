@@ -162,4 +162,19 @@ export async function getOverallProductGrowth(rating) {
     return await ErrorHandling(result)
 };
 
+// Get Overall Orders, Average Buy Rate and Average Earning per month
+export async function getOverallAverage(year) {
+
+    let result = await fetch(`${baseURL}/overall/customers/${year}`,
+        {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+            },
+        });
+
+    return await ErrorHandling(result)
+};
+
+
 

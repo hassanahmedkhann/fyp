@@ -98,11 +98,6 @@ const Products = () => {
           <h3 className="display-4" style={{ color: "#033A7D" }}>
             Product View
           </h3>
-          {/* <img
-            style={{ width: "100px", borderRadius: "30px" }} className="ms-3"
-            src={productHeaderImage}
-            alt="img"
-          /> */}
         </div>
         <div className="my-4 w-100 d-flex justify-content-center">
           <h4 className=" mt-3 w-50 text-heading text-center">

@@ -38,3 +38,8 @@
 }
 
 
+.tooltipContainer{
+  background-color: whitesmoke;
+  padding: 10px;
+  border-radius: 20px;
+}

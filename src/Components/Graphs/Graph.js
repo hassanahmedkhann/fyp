@@ -21,8 +21,8 @@ const Graph = () => {
   const [graphData, setGraphData] = useState();
   const [alert, setAlert] = useState({ flag: false, status: 1, message: '' });
   const [open, setOpen] = useState(false);
-  const months = [2022, 2021, 2020];
-  const [selected, setSelected] = useState(2022);
+  const years = [{ text: "This year", value: 2022 }, { text: "Last year", value: 2021 }, { text: "Year 2020", value: 2020 }, { text: "Year 2019", value: 2019 }];
+  const [selected, setSelected] = useState(years[0].value);
 
 
   useEffect(async () => {
@@ -62,14 +62,14 @@ const Graph = () => {
       <Notification alert={alert} setAlert={setAlert} />
       <Loader open={open} />
       <div className="d-flex w-100 justify-content-between">
-        <p style={{ fontSize: '1.2rem' }} className="pt-3 ps-4 my-2 text-start w-100 px-3"> Year {<Select
+        <p style={{ fontSize: '1.2rem' }} className="pt-3 ps-4 my-2 text-start w-100 px-3">Analytics for {<Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={selected}
           label="Age"
           onChange={handleChange}
-        >{months.map((month, index) => (
-          <MenuItem key={index} value={month}>{month}</MenuItem>
+        >{years.map((year, index) => (
+          <MenuItem key={index} value={year.value}>{year.text}</MenuItem>
         ))
           }
         </Select>} </p>

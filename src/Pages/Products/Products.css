@@ -184,9 +184,17 @@
   background-color: #F25839;
   color: whitesmoke;
 }
-.productBox > img {
+.productBoxImg {
+  overflow: hidden;
+}
+.productBoxImg > img {
   width: 100%;
   height: 300px;
+  transition: all 0.3s;
+}
+
+.productBox:hover  .pbi {
+  transform: scale(1.25);
 }
 
 .text-heading {

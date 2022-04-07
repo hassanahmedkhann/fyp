@@ -6,6 +6,7 @@ import Notification from "../../Utils/Notification";
 
 const BarGraph = ({ graphData }) => {
 
+
   return (
     <ResponsiveContainer width="100%" height="100%">
       <ComposedChart
@@ -21,8 +22,8 @@ const BarGraph = ({ graphData }) => {
       >
         <CartesianGrid stroke="#f5f5f5" />
         <XAxis dataKey="productID" label={{ value: 'Product IDs', position: 'insideBottomRight', offset: -10 }} scale="band" />
-        <YAxis dataKey='unitPrice' label={{ value: 'Price', angle: -90, position: 'insideLeft' }} />
-        <Tooltip />
+        <YAxis domain={[0, 2000]} dataKey='unitPrice' label={{ value: 'Price', angle: -90, position: 'insideLeft' }} />
+        <Tooltip labelFormatter={value => { return `Product ID: ${value}` }} />
         <Legend />
         <Area type="monotone" dataKey="unitProfit" fill="rgb(244, 117, 44)" stroke="#F15238" />
         <Bar dataKey="unitCost" barSize={20} fill="#F15238" />

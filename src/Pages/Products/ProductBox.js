@@ -3,7 +3,7 @@ import "./Products.css";
 const ProductBox = ({ productData, ...props }) => {
   return (
     <div className="productBox my-3 mx-3">
-      <img style={{ borderRadius: "10px" }} src={productData?.productImage} alt="productImage" />
+      <div className="productBoxImg"><img className="pbi" style={{ borderRadius: "10px" }} src={productData?.productImage} alt="productImage" /></div>
       {props.rating ? <h5 className="mt-2">The product has the highest sales with a rating of 5!</h5> :
         <h5 className="mt-2">The product has the highest sales.</h5>}
 

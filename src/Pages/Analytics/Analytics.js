@@ -13,16 +13,20 @@ import { useState } from "react";
 import BarGraph from "../../Components/Graphs/BarGraph";
 import Notification from "../../Utils/Notification";
 import Loader from "../../Utils/Loader";
-import { getOverallProductAnalytics, getOverallProductGrowth } from "../../Api-Interaction/api-Interaction";
+import { getOverallAverage, getOverallProductAnalytics, getOverallProductGrowth } from "../../Api-Interaction/api-Interaction";
 const Analytics = () => {
 
-  const [selectedOrder, setSelectedOrder] = useState("Last Year");
+  const [selectedOrder, setSelectedOrder] = useState(2022);
   const [selectedProduct, setSelectedProduct] = useState(5);
 
   const [alert, setAlert] = useState({ flag: false, status: 1, message: "" });
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
   const [barGraph, setBarGraph] = useState();
   const [smallGraph2, setSmallGraph2] = useState();
+  const [smallGraphData, setSmallGraph] = useState();
+  const types = ['Average Transactions', "Average Buy Rate", "Total Orders"]
+
 
 
 
@@ -30,32 +34,35 @@ const Analytics = () => {
     setSelectedOrder(event.target.value);
   }
 
+  const getSmallGraph = async (year) => {
+    try {
+      setOpen2(true)
+      let resultHandle = await getOverallAverage(year);
 
-  const smallGraphData = [
-    { text: "Customers", numbers: 14.586, src: smallGraph1 },
-    { text: "New Customers", numbers: 17.586, src: smallGraph2 },
-    { text: "Website Views", numbers: 188.586, src: smallGraph3 },
-    { text: "Sessions", numbers: 134.464, src: smallGraph3 },
-    { text: "Avg. Buy Rate", numbers: 32.526, src: smallGraph2 },
-    { text: "Avg. transaction", numbers: 321.586, src: smallGraph1 },
-  ];
+      if (resultHandle?.success === true) {
+        setSmallGraph(resultHandle?.message)
+        setOpen2(false);
+      }
+      else {
+        setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
+        setOpen2(false)
+      }
 
-  const smallGraphData2 = [
-    { text: "Product Growth", numbers: 14.586, src: smallGraph1 },
-    { text: "Manufacturing Cost", numbers: 17.586, src: smallGraph2 },
-    { text: "ROI", numbers: 188.586, src: smallGraph3 },
-  ];
+    }
+    catch (err) {
+      setOpen2(false)
+      console.log("Error! ", err)
+    }
+  }
 
-
-
-  useEffect(async () => {
+  const getBarGraph = async (product) => {
 
     try {
       setOpen(true)
-      let resultHandle = await getOverallProductAnalytics(selectedProduct);
+      let resultHandle = await getOverallProductAnalytics(product);
 
       if (resultHandle?.success === true) {
-        console.log(resultHandle?.message)
+        // console.log(resultHandle?.message)
         setBarGraph(resultHandle?.message)
         setOpen(false);
       }
@@ -70,16 +77,15 @@ const Analytics = () => {
       console.log("Error! ", err)
     }
 
-  }, [selectedProduct]);
+  }
 
-  useEffect(async () => {
-
+  const getSmallGraph2 = async (product) => {
     try {
       setOpen(true)
-      let resultHandle = await getOverallProductGrowth(selectedProduct);
+      let resultHandle = await getOverallProductGrowth(product);
 
       if (resultHandle?.success === true) {
-        console.log(resultHandle?.message)
+        // console.log(resultHandle?.message)
         setSmallGraph2(resultHandle?.message)
         setOpen(false);
       }
@@ -93,12 +99,27 @@ const Analytics = () => {
       setOpen(false)
       console.log("Error! ", err)
     }
+  }
+
+  useEffect(async () => {
+
+    getBarGraph(selectedProduct)
+
+    getSmallGraph2(selectedProduct)
+
 
   }, [selectedProduct]);
+
+  useEffect(async () => {
+
+    getSmallGraph(selectedOrder)
+
+  }, [selectedOrder]);
 
   return (
     <div className="analyticsMain fadeUp pt-4">
       <Notification alert={alert} setAlert={setAlert} />
+      <Loader open={open2} />
       <Loader open={open} />
       <div className="analytics-heading"><h1 className="text-center p-3">Overall Analytics</h1></div>
       {/* Overall 1 */}
@@ -106,7 +127,7 @@ const Analytics = () => {
 
         <div className="analytics-graph1 d-flex flex-column justify-content-space px-2 pt-4">
           <div className="d-flex justify-content-between w-100">
-            <h3 className="ms-3">Expanded View of Overall Growth</h3>
+            <h3 className="ms-3">Expanded View - Overall Growth</h3>
             <p className="icon-div" style={{ backgroundColor: "#F4752C" }}>
               <AutoGraphIcon style={{ fontSize: "40px", color: "white" }} />
             </p>
@@ -120,18 +141,18 @@ const Analytics = () => {
             label="Timeline"
             onChange={handleChange}
           >
-            <MenuItem value='Last Month'>Last Month</MenuItem>
-            <MenuItem value='Last 6 Months'>Last 6 Months</MenuItem>
-            <MenuItem value="Last Year">Last Year</MenuItem>
-            <MenuItem value="Last 2 Years">Last 2 Years</MenuItem>
+            <MenuItem value='2022'>This Year</MenuItem>
+            <MenuItem value='2021'>Last Year</MenuItem>
+            <MenuItem value="2020">Year 2020</MenuItem>
+            <MenuItem value="2019">Year 2019</MenuItem>
           </Select>
           <LineGraph />
         </div>
         <div className="analytics-items-container container-fluid">
           <div style={{ borderRadius: "20px" }} className="row pt-3 row-cols-1 row-cols-md-2 row-cols-lg-3">
-            {smallGraphData.map((data, index) => (
+            {smallGraphData?.map((data, index) => (
               <div key={index} className="analytics-small-items  col px-3 py-4">
-                <SmallLineGraph text={data.text} numbers={data.numbers} src={data.src} />
+                <SmallLineGraph graph={index + 1} graphData={data} />
               </div>
             ))}
           </div>
@@ -143,7 +164,7 @@ const Analytics = () => {
 
         <div className="analytics-graph1 d-flex flex-column justify-content-space px-2 pt-4">
           <div className="d-flex justify-content-between w-100">
-            <h3 className="ms-3">Expanded View of Product Analysis</h3>
+            <h3 className="ms-3">Expanded View - Product Analysis</h3>
             <p className="icon-div" style={{ backgroundColor: "#F4752C" }}>
               <EqualizerIcon style={{ fontSize: "40px", color: "white" }} />
             </p>

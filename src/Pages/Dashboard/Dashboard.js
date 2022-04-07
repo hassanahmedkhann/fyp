@@ -67,7 +67,7 @@ const Dashboard = () => {
       backImg: dash4,
     },
     {
-      heading: "Total Earnings",
+      heading: "Earnings",
       amount: profitData?.Analytics.totalEarning,
       icon: PaidIcon,
       color: "#F25339",
