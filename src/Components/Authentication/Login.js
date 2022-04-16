@@ -64,7 +64,7 @@ const Login = () => {
     <div className="login fadeIn">
       <div className="background">
         <h1 className="mt-4 text-white">Lets sign in and make it work!</h1>
-        <p><strong>Origin 8 AI</strong> is a state of the art AI powred CRM.</p>
+        <p style={{ fontSize: "20px" }}><strong>Origin 8 AI</strong> is a state of the art AI powred CRM.</p>
         <p>Need Analytics about your business to help grow ? We've got you covered.</p>
         <p>Take your marketing to a whole new level with us.</p>
 

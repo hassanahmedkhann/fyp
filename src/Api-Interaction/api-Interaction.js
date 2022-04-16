@@ -177,4 +177,19 @@ export async function getOverallAverage(year) {
 };
 
 
+// Get Individual Product Analysis
+export async function getProductAnalysis(id) {
+
+    let result = await fetch(`${baseURL}/overall2/product/${id}`,
+        {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+            },
+        });
+
+    return await ErrorHandling(result)
+};
+
+
 

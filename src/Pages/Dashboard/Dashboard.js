@@ -35,6 +35,7 @@ const Dashboard = () => {
 
       if (resultHandle?.success === true) {
         setProfitData(resultHandle?.message)
+        JSON.stringify(localStorage.setItem('totalEarning', resultHandle?.message?.Analytics?.totalEarning))
         setOpen(false);
       }
       else {

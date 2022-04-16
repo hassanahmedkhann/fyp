@@ -9,6 +9,8 @@ import Notification from "../../Utils/Notification";
 import Loader from "../../Utils/Loader";
 import { getProducts, getTopProduct } from "../../Api-Interaction/api-Interaction";
 import { searchFunction } from "../../Util";
+import ProductAnalysis from "./ProductAnalysis";
+import { LoopSharp } from "@mui/icons-material";
 const Products = () => {
   const [scrollData, setScrollData] = useState(0);
   const [productItems, setProductItems] = useState([]);
@@ -18,6 +20,16 @@ const Products = () => {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [alert, setAlert] = useState({ flag: false, status: 1, message: "" });
+  const [modalState, setModalState] = useState({ open: false, product: null });
+  const [loadFlag, setLoadFlag] = useState(false);
+
+
+
+
+  const handleModal = (product) => {
+    setModalState({ open: true, product: product })
+    setLoadFlag(!loadFlag)
+  }
 
 
   useEffect(() => {
@@ -143,11 +155,11 @@ const Products = () => {
               <p className="product-captions product-item-lg">Product</p>
               <p className="product-captions">Rating</p>
               <p className="product-captions">Price</p>
-              <p className="product-captions">Unit Cost</p>
-              <p className="product-captions">Unit Profit</p>
-              <p className="product-captions">Total Sales</p>
-            </div>
+              <p className="product-captions">Action</p>
 
+
+            </div>
+            <ProductAnalysis setModalState={setModalState} loadFlag={loadFlag} modalState={modalState} />
 
 
             {search.length < 1 ?
@@ -161,9 +173,8 @@ const Products = () => {
                   </div>
                   <p className="product-items">{item.productRating}</p>
                   <p className="product-items">{item.unitPrice}</p>
-                  <p className="product-items">{`${item.unitCost}`}</p>
-                  <p className="product-items">{`${item.unitProfit}`}</p>
-                  <p className="product-items">{`${item.totalSales}`}</p>
+                  <p className="product-items"><button onClick={() => handleModal(item)} className="productButton">Detailed Analysis</button></p>
+
 
                 </div>
               )) :
@@ -177,9 +188,9 @@ const Products = () => {
                   </div>
                   <p className="product-items">{item.productRating}</p>
                   <p className="product-items">{item.unitPrice}</p>
-                  <p className="product-items">{`${item.unitCost}`}</p>
-                  <p className="product-items">{`${item.unitProfit}`}</p>
-                  <p className="product-items">{`${item.totalSales}`}</p>
+                  <p className="product-items"><button onClick={() => handleModal(item)} className="productButton">Detailed Analysis</button></p>
+
+
 
                 </div>
               ))}
