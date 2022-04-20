@@ -34,11 +34,12 @@ cursor: pointer;}
 }
 .productlist-items::-webkit-scrollbar-track {
     border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.4);
+    /* background-color: rgba(0, 0, 0, 0.4); */
+    background-color: whitesmoke;
   }
   .productlist-items::-webkit-scrollbar-thumb {
     background-color: #e78632;
-    background-image:-webkit-linear-gradient(45deg,rgba(255,255,255,.3) 20%,transparent 20%,transparent 40%,rgba(255, 255, 255, 0.3) 40%,rgba(255,255,255,.3) 60%,transparent 60%,transparent 80%,rgba(255, 255, 255, 0.3) 80%);
+    /* background-image:-webkit-linear-gradient(45deg,rgba(255,255,255,.3) 20%,transparent 20%,transparent 40%,rgba(255, 255, 255, 0.3) 40%,rgba(255,255,255,.3) 60%,transparent 60%,transparent 80%,rgba(255, 255, 255, 0.3) 80%); */
     border-radius: 10px;
   }
 

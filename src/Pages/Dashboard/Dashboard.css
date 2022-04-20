@@ -6,6 +6,7 @@
   margin-top: -10px;
   /* background-image: url("../../Images/sampleBack.PNG"); */
   /* background-color: white; */
+  min-height: 100vh;
 }
 
 .dashboard-sidebar {

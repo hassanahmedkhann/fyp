@@ -21,7 +21,7 @@ const ProductAnalysis = ({ modalState, setModalState, loadFlag }) => {
 
     const [open, setOpen] = useState(false);
     const [productData, setProductData] = useState();
-    const [chartData, setChartData] = useState([{ name: "All Sales", sold: JSON.parse(localStorage.getItem('totalEarning')) }]);
+    const [chartData, setChartData] = useState([{ name: "All Sales", sold: JSON.parse(localStorage.getItem('totalPurchases')) }]);
 
 
 
@@ -60,7 +60,7 @@ const ProductAnalysis = ({ modalState, setModalState, loadFlag }) => {
 
     const handleClose = () => {
         setModalState({ open: false, product: null })
-        setChartData([{ name: "All Sales", sold: JSON.parse(localStorage.getItem('totalEarning')) }])
+        setChartData([{ name: "All Sales", sold: JSON.parse(localStorage.getItem('totalPurchases')) }])
     }
 
 
