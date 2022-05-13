@@ -6,9 +6,12 @@ import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import { Avatar, Tooltip } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
+import Loader from "../../Utils/Loader";
 const Navbar = (props) => {
 
   const user = JSON.parse(localStorage.getItem("user"));
+
+
 
   return (
     <div className={`navbar mt-2 mx-2 fadeIn ${props.flag && "d-none"}`}>

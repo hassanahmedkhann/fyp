@@ -23,7 +23,7 @@ const Productlist = () => {
 
       if (resultHandle?.success === true) {
         // console.log(resultHandle?.message)
-        setProductItems(resultHandle?.message)
+        setProductItems(resultHandle?.message?.Products)
         setOpen(false);
       }
       else {
@@ -49,7 +49,7 @@ const Productlist = () => {
           </div>
           <div className="productlist-items d-flex flex-column">
             {
-              productItems.map((product, index) => (
+              productItems?.map((product, index) => (
                 <h5 key={index} className="my-2 productItem mx-1">{product?.productName}</h5>
               ))
             }

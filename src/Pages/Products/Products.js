@@ -11,6 +11,7 @@ import { getProducts, getTopProduct } from "../../Api-Interaction/api-Interactio
 import { searchFunction } from "../../Util";
 import ProductAnalysis from "./ProductAnalysis";
 import { LoopSharp } from "@mui/icons-material";
+import ProductBoxSkeleton from "./ProductBoxSkeleton";
 const Products = () => {
   const [scrollData, setScrollData] = useState(0);
   const [productItems, setProductItems] = useState([]);
@@ -76,7 +77,7 @@ const Products = () => {
 
       if (resultHandle?.success === true) {
         // console.log(resultHandle?.message)
-        setProductItems(resultHandle?.message)
+        setProductItems(resultHandle?.message?.Products)
         setOpen(false);
       }
       else {
@@ -119,16 +120,23 @@ const Products = () => {
 
 
         <div className="best-product-container">
-          <div className="best-product">
-            <ProductBox
-              productData={topProduct?.highestSales}
-            />
-          </div><div className="best-product">
-            <ProductBox
-              rating
-              productData={topProduct?.topProduct}
-            />
-          </div>
+          {topProduct ?
+            <div className="best-product">
+              <ProductBox
+                productData={topProduct?.highestSales}
+              />
+            </div> :
+            <ProductBoxSkeleton />
+          }
+          {topProduct ?
+            <div className="best-product">
+              <ProductBox
+                rating
+                productData={topProduct?.topProduct}
+              />
+            </div> :
+            <ProductBoxSkeleton />
+          }
         </div>
 
         <div className="my-4 w-100 d-flex justify-content-center">

@@ -5,11 +5,12 @@
   border-radius: 10px;
   padding: 20px;
   overflow: hidden;
+  min-height: 100vh;
 }
 
 .analyticsMain {
   margin-top: -10px;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat
 }
 
 .analyticsMain > div > h1 {

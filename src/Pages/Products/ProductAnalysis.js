@@ -3,6 +3,7 @@ import Backdrop from '@mui/material/Backdrop';
 import { getProductAnalysis } from "../../Api-Interaction/api-Interaction"
 import React, { useEffect, useState } from "react";
 import { Pie, PieChart, Tooltip } from "recharts";
+import numeral from "numeral";
 
 const ProductAnalysis = ({ modalState, setModalState, loadFlag }) => {
 
@@ -59,8 +60,8 @@ const ProductAnalysis = ({ modalState, setModalState, loadFlag }) => {
 
 
     const handleClose = () => {
-        setModalState({ open: false, product: null })
         setChartData([{ name: "All Sales", sold: JSON.parse(localStorage.getItem('totalPurchases')) }])
+        setModalState({ open: false, product: null })
     }
 
 
@@ -92,11 +93,11 @@ const ProductAnalysis = ({ modalState, setModalState, loadFlag }) => {
                                 <p>Unit Cost: {productData?.product?.unitCost}</p>
                             </div>
                             <div >
-                                <p>Unit Price: {productData?.product?.unitPrice}</p>
-                                <p>Unit Profit: {productData?.product?.unitProfit}</p>
-                                <p>Total Units Sold: {productData?.totalSold}</p>
-                                <p>Total Profit Generated: {productData?.totalSold * productData?.product?.unitProfit}</p>
-                                <p>Total Earnings Generated: {productData?.totalSold * productData?.product?.unitPrice}</p>
+                                <p>Unit Price: {numeral(productData?.product?.unitPrice).format('($ 0.000 a)')}</p>
+                                <p>Unit Profit: {numeral(productData?.product?.unitProfit).format('($ 0.000 a)')}</p>
+                                <p>Total Units Sold: {numeral(productData?.totalSold).format('($ 0.000 a)')}</p>
+                                <p>Total Profit Generated: {numeral(productData?.totalSold * productData?.product?.unitProfit).format('($ 0.000 a)')}</p>
+                                <p>Total Earnings Generated: {numeral(productData?.totalSold * productData?.product?.unitPrice).format('($ 0.000 a)')}</p>
                             </div>
                             <PieChart width={350} height={350}>
                                 <Tooltip />
@@ -105,8 +106,8 @@ const ProductAnalysis = ({ modalState, setModalState, loadFlag }) => {
                         </div>
                     </div>
                     :
-                    <div className="d-flex justify-content-center">
-                        <CircularProgress />
+                    <div className="d-flex w-100 align-items-center">
+                        <div className="me-4">Loading</div> <CircularProgress />
                     </div>
                 }
             </Box>

@@ -33,14 +33,17 @@ const Dashboard = () => {
       setOpen(true)
       let resultHandle = await getProfit();
 
+
       if (resultHandle?.success === true) {
         setProfitData(resultHandle?.message)
         JSON.stringify(localStorage.setItem('totalPurchases', resultHandle?.message?.Analytics?.totalSales))
         setOpen(false);
+
       }
       else {
         setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
         setOpen(false)
+
       }
 
     }
@@ -61,7 +64,7 @@ const Dashboard = () => {
       backImg: dash5,
     },
     {
-      heading: "Purchases",
+      heading: "Purchases ( Units )",
       amount: profitData?.Analytics.totalSales,
       icon: PlaylistAddCheckCircleIcon,
       color: "#02CCCF",

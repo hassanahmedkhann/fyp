@@ -4,6 +4,12 @@ const baseURL = "http://127.0.0.1:8000/api"
 let token = JSON.parse(localStorage.getItem('token'))
 
 
+// Function to extract token!
+const getToken = () => {
+    return JSON.parse(localStorage.getItem('token'))
+}
+
+
 
 // Login API 
 export async function LoginApi(data) {
@@ -30,7 +36,7 @@ export async function getProfit() {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
-                'Authorization': token
+                'Authorization': getToken()
             },
         });
     return await ErrorHandling(result)
@@ -45,7 +51,7 @@ export async function getOrders() {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
-                'Authorization': token
+                'Authorization': getToken()
             },
         });
 
@@ -62,7 +68,7 @@ export async function updateUser(data, userID) {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
-                'Authorization': token
+                'Authorization': getToken()
             },
             body: JSON.stringify(data),
         });
@@ -79,7 +85,7 @@ export async function getUser(userID) {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
-                'Authorization': token
+                'Authorization': getToken()
             },
         });
 
@@ -95,7 +101,7 @@ export async function getProducts() {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
-                'Authorization': JSON.parse(localStorage.getItem('token'))
+                'Authorization': getToken()
             },
         });
 
@@ -111,7 +117,7 @@ export async function getTopProduct() {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
-                'Authorization': JSON.parse(localStorage.getItem('token'))
+                'Authorization': getToken()
             },
         });
 
@@ -185,11 +191,43 @@ export async function getProductAnalysis(id) {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
+                'Authorization': getToken()
             },
         });
 
     return await ErrorHandling(result)
 };
+
+export const getRequest = async (essentials) => {
+
+    let result = await fetch(`${essentials.endPoint}`,
+        {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': essentials.tokenFlag ? getToken() : ''
+            },
+        });
+
+    return await ErrorHandling(result)
+
+}
+
+export const postRequest = async (essentials) => {
+
+    let result = await fetch(`${essentials.endPoint}`,
+        {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': essentials.tokenFlag ? getToken() : ''
+            },
+            body: essentials.body
+        });
+
+    return await ErrorHandling(result)
+
+}
 
 
 
