@@ -73,7 +73,7 @@ const Graph = () => {
         ))
           }
         </Select>} </p>
-        <span className="p-2 m-4" style={{ backgroundColor: "#F4752C", borderRadius: "40px" }}><TimelineIcon style={{ fontSize: "40px", color: 'white' }} /></span></div>
+        <span className="p-2 m-4" style={{ backgroundColor: "#F4752C", borderRadius: "40px" }}><TimelineIcon style={{ fontSize: "30px", color: 'white' }} /></span></div>
 
 
       <ResponsiveContainer width="90%" height="100%">

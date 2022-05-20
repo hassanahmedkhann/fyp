@@ -49,7 +49,7 @@ const Sidebar = (props) => {
         {sidebarData.map((item, index) => (
           <li
             className={`${
-              props.option === index && "background-sidebar"
+              props.option === index && "background-sidebar "
             } animate-btn btn-animated-pop`}
             key={index}
             onClick={() => handleClick(index)}

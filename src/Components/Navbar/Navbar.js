@@ -42,8 +42,8 @@ const Navbar = (props) => {
         <Link to='/' onClick={() => localStorage.clear()}>
           <Avatar
             sx={{ width: 45, height: 47, cursor: "pointer", }}
-          // src={sampl}
-          >{user?.email[0].toUpperCase()}</Avatar>
+           src={user?.profileImage}
+          />
         </Link>
       </Tooltip>
     </div>

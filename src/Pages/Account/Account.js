@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import sample from "../../Images/sample.jpg"
 import "./Account.css"
 import Box from '@mui/material/Box';
@@ -11,13 +11,15 @@ import Loader from "../../Utils/Loader";
 import { updateUser } from "../../Api-Interaction/api-Interaction";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { buttonSX } from "../../Util"
+import { buttonSX, convertBase64 } from "../../Util"
 
 const Account = () => {
 
   const [showPassword, setShowPassword] = useState()
 
   const [open, setOpen] = useState(false)
+
+  const [timerFlag, setTimerFlag] = useState(false)
 
   const navigate = useNavigate()
 
@@ -41,6 +43,8 @@ const Account = () => {
     confirmPassword: '',
     password: '',
   });
+
+  const [image, setImage] = useState({ preview: '', selected: user?.profileImage })
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -78,6 +82,32 @@ const Account = () => {
     width: "100%"
   }
 
+  const handleUpload = (event) => {
+
+  const uploadedImage = event.target.files[0]
+
+  if ( !uploadedImage.type.includes('image') && !uploadedImage.type.includes('webp') ){
+    setOpenModal(false)
+    return setAlert({ flag: true, status: 2, message: "Selected file is not an image!" })
+  }
+
+  const fileReader = new FileReader();
+  fileReader.readAsDataURL(uploadedImage)
+  fileReader.onload = () => {
+      setImage({ preview: fileReader.result, selected: user?.profileImage })
+      localStorage.setItem('image', JSON.stringify(fileReader.result))
+    }
+
+  }
+
+
+  const handleImageSelection = () => {
+    if (image.preview === '') return setAlert({ flag: true, 'status': 2, message: "No picture selected!" });
+    setImage({ preview: '', selected: JSON.parse(localStorage.getItem("image")) })
+    setOpenModal(false)
+    localStorage.removeItem('image')
+  }
+
 
 
   const handleForm = () => {
@@ -100,12 +130,17 @@ const Account = () => {
       return setAlert({ flag: true, status: 2, message: "Min length should be 8 with 1 special character and 1 Capital letter" })
     }
 
+
     const accountData = {
       "email": values.email,
       "companyName": values.companyName,
       "oldPassword": values.oldPassword,
       "password": values.password,
+      'profileImage': image.selected.length > 0 ? image.selected : user?.profileImage
     }
+
+
+    // console.log(accountData)
     handleAPI(accountData)
 
   }
@@ -121,7 +156,10 @@ const Account = () => {
       if (resultHandle?.success === true) {
         setOpen(false);
         setAlert({ flag: true, 'status': 1, message: resultHandle?.message.Success });
+        localStorage.setItem('user', JSON.stringify(resultHandle?.message.User_Data))
+        setTimerFlag(true)
         setTimeout(() => {
+          setTimerFlag(false)
           navigate('/dashboard')
         }, 2000);
       }
@@ -223,7 +261,7 @@ const Account = () => {
                 <InputLabel className="my-3" htmlFor="standard-adornment-password">Current Profile Picture</InputLabel>
 
                 {/* <div className="account-image"><img src={sample} /><p onClick={handleOpen}>Change Profile Picture</p></div>   */}
-                <div onClick={() => setOpenModal(true)} className="account-image"><Avatar className="account-avatar" sx={{ height: '300px', width: '300px' }} src={sample} /><p>Change Profile Picture</p></div>
+                <div onClick={() => setOpenModal(true)} className="account-image"><Avatar className="account-avatar" sx={{ height: '300px', width: '300px' }} src={image?.selected} /><p>Change Profile Picture</p></div>
                 <Modal
                   open={openModal}
                   onClose={() => setOpenModal(false)}
@@ -234,15 +272,16 @@ const Account = () => {
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                       Choose from Desktop/Computer
                     </Typography>
-                    <input className="my-3 account-file" type="file" />
+                    <input accept="image/*" className="my-3 account-file" type="file" onChange={(e) => handleUpload(e)} />
                     <Typography className="mt-3" variant="h5">Selected Image</Typography>
                     {/* <img src={sample} className="mt-4" style={{width: "300px", height: "300px", borderRadius: "20px"}}/> */}
-                    <Avatar sx={{ height: '300px', width: '300px' }} src={sample} />
+                    <Avatar sx={{ height: '300px', width: '300px' }} src={image.preview.length > 0 ? image.preview : null} />
+                    <button style={buttonSX} onClick={handleImageSelection} className="account-button mt-2">Select this Image</button>
                   </Box>
                 </Modal>
               </div>
             </div>
-            <Button sx={buttonSX} onClick={handleForm} className="account-button">Save Changes</Button>
+            <button disabled={timerFlag} style={buttonSX} onClick={handleForm} className="account-button">Save Changes</button>
           </div>
 
 

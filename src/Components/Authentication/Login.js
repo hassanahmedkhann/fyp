@@ -60,6 +60,10 @@ const Login = () => {
     }
   }
 
+  const handleRequired = () => {
+    console.log("Required!")
+  }
+
   return (
     <div className="login fadeIn">
       <div className="background">

@@ -42,7 +42,7 @@
     text-align: center;
     width: 100%;
     border: none;
-    border-radius: 25px;
+    border-radius: 20px;
     padding: 5px;
     transition: all 0.2s;
     color: #FADA5F;
@@ -62,12 +62,16 @@ color: #FFFFE0;
 border: 1px solid transparent;
 cursor: pointer;
 /* background-image: linear-gradient(to right,#F04D41,#F5793B,#FAA640); */
-background-color: #FAA040;
+background-color: #F5793B;
 }
 
 .login-link p , .login-link span{
     transition: 0.2s;
     margin: 0;
+}
+
+.login-link{
+    color: #F04D41
 }
 
 .login-link span{

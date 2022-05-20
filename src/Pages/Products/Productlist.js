@@ -45,7 +45,7 @@ const Productlist = () => {
         <div className="productlist p-4">
           <Notification alert={alert} setAlert={setAlert} />
           <div className="d-flex justify-content-between">
-            <h3 className="mt-3">Products List (Total {productItems?.length})</h3><p className="icon-div" style={{ backgroundColor: "#F4752C" }}><FormatListBulletedIcon style={{ fontSize: "40px", color: "white" }} /></p>
+            <h4 className="mt-3">Products List (Total {productItems?.length})</h4><p className="icon-div" style={{ backgroundColor: "#F4752C" }}><FormatListBulletedIcon style={{ fontSize: "30px", color: "white" }} /></p>
           </div>
           <div className="productlist-items d-flex flex-column">
             {

@@ -2,7 +2,7 @@
 export const buttonSX = {
   backgroundColor: "white",
   border: "1px solid #F04D41",
-  padding: "10px 50px",
+  padding: "5px 35px",
   borderRadius: "25px",
   maxWidth: "300px",
   fontSize: "20px",
@@ -21,4 +21,13 @@ export const searchFunction = (searchKey, data) => {
     }
   })
   return records
+}
+
+export const convertBase64 = (file) => {
+  // return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file)
+    fileReader.onload = () => {
+      return fileReader.result;
+    }
 }

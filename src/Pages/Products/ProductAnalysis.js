@@ -95,9 +95,9 @@ const ProductAnalysis = ({ modalState, setModalState, loadFlag }) => {
                             <div >
                                 <p>Unit Price: {numeral(productData?.product?.unitPrice).format('($ 0.000 a)')}</p>
                                 <p>Unit Profit: {numeral(productData?.product?.unitProfit).format('($ 0.000 a)')}</p>
-                                <p>Total Units Sold: {numeral(productData?.totalSold).format('($ 0.000 a)')}</p>
-                                <p>Total Profit Generated: {numeral(productData?.totalSold * productData?.product?.unitProfit).format('($ 0.000 a)')}</p>
-                                <p>Total Earnings Generated: {numeral(productData?.totalSold * productData?.product?.unitPrice).format('($ 0.000 a)')}</p>
+                                <p>Total Units Sold: {numeral(productData?.totalSold).format('(0.000 a)')}</p>
+                                <p>Total Profit Generated: {numeral(productData?.totalSold * productData?.product?.unitProfit).format('($ 0.000 a)').toUpperCase()}</p>
+                                <p>Total Earnings Generated: {numeral(productData?.totalSold * productData?.product?.unitPrice).format('($ 0.000 a)').toUpperCase()}</p>
                             </div>
                             <PieChart width={350} height={350}>
                                 <Tooltip />
