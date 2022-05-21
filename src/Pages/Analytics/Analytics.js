@@ -129,7 +129,7 @@ const Analytics = () => {
           <div className="d-flex justify-content-between w-100">
             <h3 className="ms-3">Expanded View - Overall Growth</h3>
             <p className="icon-div" style={{ backgroundColor: "#F4752C" }}>
-              <AutoGraphIcon style={{ fontSize: "40px", color: "white" }} />
+              <AutoGraphIcon style={{ fontSize: "30px", color: "white" }} />
             </p>
           </div>
           <Select
@@ -166,7 +166,7 @@ const Analytics = () => {
           <div className="d-flex justify-content-between w-100">
             <h3 className="ms-3">Expanded View - Product Analysis</h3>
             <p className="icon-div" style={{ backgroundColor: "#F4752C" }}>
-              <EqualizerIcon style={{ fontSize: "40px", color: "white" }} />
+              <EqualizerIcon style={{ fontSize: "30px", color: "white" }} />
             </p>
           </div>
           <Select

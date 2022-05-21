@@ -6,7 +6,7 @@ const Notification = ({ alert, setAlert }) => {
 
   return <>
     <Snackbar anchorOrigin={{
-      vertical: "top",
+      vertical: "bottom",
       horizontal: "center"
     }} style={{ width: "fit-content", height: "100px" }} open={alert.flag} autoHideDuration={3000} onClose={() => setAlert({ flag: false, status: 2 })}>
       <Alert style={{ fontSize: "17px", display: "flex", alignItems: "center" }} onClose={() => setAlert({ flag: false, status: 2 })} severity={`${alert.status === 1 ? 'success' : 'error'}`} sx={{ width: '100%' }}>

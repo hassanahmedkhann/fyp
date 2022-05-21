@@ -8,6 +8,7 @@ import MainProducts from "../Components/MainUI/MainProducts";
 import MainUI from '../Components/MainUI/MainUI'
 import MainAccount from "../Components/MainUI/MainAccount"
 import MainClusterPage from "../Components/MainUI/MainClusterPage";
+import MainManageProducts from "../Components/MainUI/MainManageProducts";
 const Routing = () => {
   return (
     <Router>
@@ -20,6 +21,8 @@ const Routing = () => {
         <Route exact path="/products" element={<MainProducts/>}/>
         <Route exact path="/campaign" element={<MainCampaign/>}/>
         <Route exact path="/cluster-page" element={<MainClusterPage/>}/>
+        <Route exact path="/manage-products" element={<MainManageProducts/>}/>
+
     </Routes>
 </Router>
   )

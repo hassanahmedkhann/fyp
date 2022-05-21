@@ -11,8 +11,12 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import FeedbackIcon from "@mui/icons-material/Feedback";
 import CategoryIcon from "@mui/icons-material/Category";
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
+import { ClickAwayListener } from '@mui/base';
+
+
 const Sidebar = (props) => {
   const sidebarData = [
     { name: "Account", icon: ManageAccountsIcon, link: 'account' },
@@ -20,48 +24,63 @@ const Sidebar = (props) => {
     { name: "Overall Analytics", icon: InsertChartIcon, link: 'analytics' },
     { name: "Pipeline", icon: EditRoadIcon, link: 'pipeline' },
     { name: "Products", icon: CategoryIcon, link: 'products' },
-    { name: "Campaigns", icon: StackedLineChartIcon, link: 'campaign'},
+    { name: "Campaigns", icon: StackedLineChartIcon, link: 'campaign' },
+    { name: "Manage Products", icon: PrecisionManufacturingIcon, link: 'manage-products' },
+
   ];
 
-  
+
 
   const handleClick = (index) => {
     props.setOption(index);
     props.setFlag(!props.flag);
   };
 
+  const handleClickAway = () => {
+    if ( props.flag ){
+      props.setOption(0)
+      props.setFlag(!props.flag);
+    }
+  }
+
 
 
   return (
-    <div className="sidebar">
-      <div className="sidebar-icon my-3">
-        <img alt="icon" src={bg} />
-      </div>
+    <ClickAwayListener
+      mouseEvent="onMouseDown"
+      // touchEvent="onTouchStart"
+      onClickAway={handleClickAway}
+    >
 
-      <div className="sidebar-list">
-        <li
-          className={`animate-btn btn-animated-pop`}
-          onClick={() => props.setFlag(!props.flag)}
-        >
-          <CancelIcon fontSize="large" />
-          &#160;&#160;Close
-        </li>
-        {sidebarData.map((item, index) => (
+      <div className="sidebar">
+        <div className="sidebar-icon my-3">
+          <img alt="icon" src={bg} />
+        </div>
+
+        <div className="sidebar-list">
           <li
-            className={`${
-              props.option === index && "background-sidebar "
-            } animate-btn btn-animated-pop`}
-            key={index}
-            onClick={() => handleClick(index)}
+            className={`animate-btn btn-animated-pop`}
+            onClick={() => props.setFlag(!props.flag)}
           >
-            <Link className="sidebar-link w-100" to={`/${item.link}`}>
-            <item.icon fontSize="large" />
-            &#160;&#160;{item.name}
-            </Link>
+            <CancelIcon fontSize="large" />
+            &#160;&#160;Close
           </li>
-        ))}
+          {sidebarData.map((item, index) => (
+            <li
+              className={`${props.option === index && "background-sidebar "
+                } animate-btn btn-animated-pop`}
+              key={index}
+              onClick={() => handleClick(index)}
+            >
+              <Link className="sidebar-link w-100" to={`/${item.link}`}>
+                <item.icon fontSize="large" />
+                &#160;&#160;{item.name}
+              </Link>
+            </li>
+          ))}
+        </div>
       </div>
-    </div>
+    </ClickAwayListener>
   );
 };
 

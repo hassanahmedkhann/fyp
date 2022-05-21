@@ -213,6 +213,23 @@ export const getRequest = async (essentials) => {
 
 }
 
+// Update User 
+export async function addNewProduct(data) {
+
+    let result = await fetch(`${baseURL}/product/list/add`,
+        {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': getToken()
+            },
+            body: JSON.stringify(data),
+        });
+
+    return await ErrorHandling(result)
+
+};
+
 export const postRequest = async (essentials) => {
 
     let result = await fetch(`${essentials.endPoint}`,

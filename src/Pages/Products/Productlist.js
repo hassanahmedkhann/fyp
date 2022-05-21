@@ -24,6 +24,7 @@ const Productlist = () => {
       if (resultHandle?.success === true) {
         // console.log(resultHandle?.message)
         setProductItems(resultHandle?.message?.Products)
+        localStorage.setItem('productID',JSON.stringify(resultHandle?.message?.Products?.length))
         setOpen(false);
       }
       else {

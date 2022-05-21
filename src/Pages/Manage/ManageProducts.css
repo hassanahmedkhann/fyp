@@ -1,0 +1,38 @@
+.manage-products{
+    margin-top: 90px;
+    padding: 0px 30px;
+    height: 100vh;
+}
+
+.manage-products-container{
+    padding: 20px 0px;
+    margin-top: 30px;
+    border-radius: 20px;
+    background-color: white;
+    width: 100%;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+    
+}
+
+.manage-products-input{
+    /* width: "150px" !important */
+    outline: none;
+    padding: 5px;
+    border: none;
+    border-bottom: 0.5px solid gray;
+    width: 60%;
+}
+
+.manage-products-labels{
+    /* width: "150px" !important; */
+    font-size: 18px;
+    width: 100px;
+}
+
+.manage-card-container{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+    align-items: center;
+    text-align: left;
+}
