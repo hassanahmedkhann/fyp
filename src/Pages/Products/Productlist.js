@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Productlist.css"
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Rating } from "@mui/material";
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { getProducts } from "../../Api-Interaction/api-Interaction";
 import Loader from "../../Utils/Loader";
@@ -51,7 +51,7 @@ const Productlist = () => {
           <div className="productlist-items d-flex flex-column">
             {
               productItems?.map((product, index) => (
-                <h5 key={index} className="my-2 productItem mx-1">{product?.productName}</h5>
+                <h5 key={index} className="my-2 productItem mx-1">{product?.productName}<Rating className="ms-4" name="read-only" value={product?.productRating} readOnly /></h5>
               ))
             }
           </div>

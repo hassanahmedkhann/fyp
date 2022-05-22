@@ -33,7 +33,20 @@ export const ButtonSX = {
   maxWidth: "300px",
   fontSize: "15px",
   transition: "0.3s",
-  color: "#F04D41"
+  color: "#F04D41",
+  minWidth: "280px"
+}
+
+//Button styles 3
+export const BackButton = {
+  backgroundColor: "white",
+  border: "1px solid #F04D41",
+  padding: "5px 35px",
+  borderRadius: "25px",
+  maxWidth: "300px",
+  fontSize: "15px",
+  transition: "0.3s",
+  color: "#F04D41",
 }
 
 

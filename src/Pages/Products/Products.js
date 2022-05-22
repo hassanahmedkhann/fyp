@@ -4,7 +4,7 @@ import searchIcon from "../../Images/searchicon.png";
 import ProductBox from "./ProductBox";
 import gif from "../../Images/loading.gif";
 import productHeaderImage from "../../Images/productsPageHead.PNG";
-import { Avatar, CircularProgress } from "@mui/material";
+import { Avatar, CircularProgress, Rating } from "@mui/material";
 import Notification from "../../Utils/Notification";
 import Loader from "../../Utils/Loader";
 import { getProducts, getTopProduct } from "../../Api-Interaction/api-Interaction";
@@ -103,7 +103,7 @@ const Products = () => {
 
 
   return (
-    <div className="products-main ">
+    <div className="products-main fadeUp">
       <Notification alert={alert} setAlert={setAlert} />
       <Loader open={open} />
       <>
@@ -179,7 +179,7 @@ const Products = () => {
                     <Avatar alt="Product-Image" src={item.productImage} sx={{ width: 60, height: 60 }} />
                     <p className="ms-1">{item.productName}</p>
                   </div>
-                  <p className="product-items">{item.productRating}</p>
+                  <p className="product-items"><Rating name="read-only" value={item?.productRating} readOnly /></p>
                   <p className="product-items">{item.unitPrice}</p>
                   <p className="product-items"><button onClick={() => handleModal(item)} className="productButton">Detailed Analysis</button></p>
 

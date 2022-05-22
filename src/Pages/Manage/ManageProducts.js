@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Grid from '@mui/material/Grid';
 import "./ManageProducts.css"
-import { ButtonSX, buttonSX } from '../../Util';
+import { BackButton, ButtonSX, buttonSX } from '../../Util';
 import { Avatar, Button, MenuItem, Select } from '@mui/material';
 import Notification from '../../Utils/Notification';
 import Loader from '../../Utils/Loader';
@@ -139,9 +139,9 @@ const ManageProducts = () => {
                 <h2 className='mb-2 ms-4 text-left'>Add a product</h2>
             </Grid>
 
-            <Grid container className='manage-products-container'>
+            <Grid container className='manage-products-container mb-4'>
                 <div className='w-100 ms-4 d-flex justify-content-start'>
-                    <Button onClick={() => window.location.reload()} className="account-button" sx={ButtonSX}><ArrowBackIosIcon /> Back</Button>
+                    <Button onClick={() => window.location.reload()} className="account-button" sx={BackButton}><ArrowBackIosIcon /> Back</Button>
                 </div>
                 <Grid className='text-center mt-3 w-100'>
                     <h4>Enter product details</h4>

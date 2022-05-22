@@ -102,7 +102,7 @@ const Account = () => {
 
 
   const handleImageSelection = () => {
-    if (image.preview === '') return setAlert({ flag: true, 'status': 2, message: "No picture selected!" });
+    if (image.preview === '') return setAlert({ flag: true, 'status': 2, message: "No picture uploaded!" });
     setImage({ preview: '', selected: JSON.parse(localStorage.getItem("image")) })
     setOpenModal(false)
     localStorage.removeItem('image')

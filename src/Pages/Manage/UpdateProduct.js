@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Grid from '@mui/material/Grid';
 import "./ManageProducts.css"
-import { ButtonSX, buttonSX, modalStyle } from '../../Util';
+import { ButtonSX, buttonSX, modalStyle, BackButton } from '../../Util';
 import { Avatar, Button, MenuItem, Modal, Select, Typography } from '@mui/material';
 import Notification from '../../Utils/Notification';
 import Loader from '../../Utils/Loader';
@@ -211,10 +211,15 @@ const UpdateProduct = (props) => {
     return (
         <div className='manage-products fadeUp'>
             <Grid>
-                <h2 style={{ marginTop: "100px" }} className='mb-2 ms-4 text-left'>Edit/Update a product</h2>
+               { !existFlag && <div className='w-100 ms-4 d-flex justify-content-start'>
+                    <Button style={{ marginTop: "50px" }} onClick={() => window.location.reload()} className="account-button" sx={BackButton}><ArrowBackIosIcon /> Back</Button>
+                </div>}
+                {props.choice === 1 && <h2  className={`mb-2 ms-4 text-left mt-3 ${existFlag && 'margin'}`}>Edit/Update a product</h2>}
+                {props.choice === 3 && <h2  className={`mb-2 ms-4 text-left mt-3 ${existFlag && 'margin'}`}>Search the product</h2>}
+
                 {!existFlag && <div className='my-4'>
                     <input required onChange={(event) => setSearchedProduct(event.target.value)} style={{ width: "fit-content" }} className="manage-products-input ms-4" placeholder="Enter product ID" type="text" />
-                    <Button onClick={handleSearch} sx={ButtonSX} className="ms-2 account-button">Check for availability</Button>
+                    <Button onClick={handleSearch} sx={ButtonSX} className="mt-2 ms-2 account-button">Check for availability</Button>
                 </div>
                 }
             </Grid>
@@ -243,7 +248,7 @@ const UpdateProduct = (props) => {
 
             {(existFlag && props.choice !== 3) && <Grid container className='manage-products-container'>
                 <div className='w-100 ms-4 d-flex justify-content-start'>
-                    <Button onClick={() => window.location.reload()} className="account-button" sx={ButtonSX}><ArrowBackIosIcon /> Back</Button>
+                    <Button onClick={() => window.location.reload()} className="account-button" sx={BackButton}><ArrowBackIosIcon /> Back</Button>
                 </div>
 
                 <Grid className='text-center mt-3 w-100'>
