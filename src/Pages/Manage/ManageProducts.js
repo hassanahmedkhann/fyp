@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import Grid from '@mui/material/Grid';
 import "./ManageProducts.css"
-import { buttonSX } from '../../Util';
-import { Avatar, MenuItem, Select } from '@mui/material';
+import { ButtonSX, buttonSX } from '../../Util';
+import { Avatar, Button, MenuItem, Select } from '@mui/material';
 import Notification from '../../Utils/Notification';
 import Loader from '../../Utils/Loader';
 import { addNewProduct } from '../../Api-Interaction/api-Interaction';
 import { useNavigate } from 'react-router-dom';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const ManageProducts = () => {
 
@@ -70,34 +71,31 @@ const ManageProducts = () => {
 
         // console.log(data)
 
-        if ( data.productCost > data.productPrice )
-        {
+        if (data.productCost > data.productPrice) {
             setAlert({ flag: true, 'status': 2, message: "Product cost can not be greater than product cost!" });
-            validationFlag = true 
+            validationFlag = true
         }
-        if ( data.unitCost === 0   )
-        {
+        if (data.unitCost === 0) {
             setAlert({ flag: true, 'status': 2, message: "Values can not be 0!" });
-            validationFlag = true 
+            validationFlag = true
         }
-        if ( data.unitPrice === 0   )
-        {
+        if (data.unitPrice === 0) {
             setAlert({ flag: true, 'status': 2, message: "Values can not be 0!" });
-            validationFlag = true 
+            validationFlag = true
         }
 
         Object.keys(data).forEach((key) => {
-            if ( data[key] === '' || data[key] === null) {
+            if (data[key] === '' || data[key] === null) {
                 setAlert({ flag: true, 'status': 2, message: "Can not have empty fields!" });
                 validationFlag = true
             }
-            if ( data[key] < 0 ) {
+            if (data[key] < 0) {
                 setAlert({ flag: true, 'status': 2, message: "Can not have negative values!" });
                 validationFlag = true
             }
         })
 
-        
+
 
         if (validationFlag) return
 
@@ -118,11 +116,9 @@ const ManageProducts = () => {
             if (resultHandle?.success === true) {
                 setOpen(false);
                 // console.log(resultHandle?.message)
+                window.location.reload()
                 setAlert({ flag: true, 'status': 1, message: resultHandle?.message });
                 localStorage.setItem('productID', JSON.stringify(data.productID))
-                setTimeout(() => {
-                    navigate('/products')
-                }, 2000);
             }
             else {
                 setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
@@ -139,11 +135,14 @@ const ManageProducts = () => {
 
     return (
         <div className='manage-products fadeUp'>
-            <Grid>
+            <Grid style={{ marginTop: "70px" }}>
                 <h2 className='mb-2 ms-4 text-left'>Add a product</h2>
             </Grid>
 
             <Grid container className='manage-products-container'>
+                <div className='w-100 ms-4 d-flex justify-content-start'>
+                    <Button onClick={() => window.location.reload()} className="account-button" sx={ButtonSX}><ArrowBackIosIcon /> Back</Button>
+                </div>
                 <Grid className='text-center mt-3 w-100'>
                     <h4>Enter product details</h4>
                 </Grid>

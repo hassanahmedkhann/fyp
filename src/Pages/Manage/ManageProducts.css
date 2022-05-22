@@ -1,5 +1,5 @@
 .manage-products{
-    margin-top: 90px;
+    margin-top: 30px;
     padding: 0px 30px;
     height: 100vh;
 }
@@ -35,4 +35,55 @@
     padding: 10px;
     align-items: center;
     text-align: left;
+}
+
+
+.btn-1{
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 30px;
+    transition: 0.3s;
+    font-size: 22px;
+    width: 100px;
+}
+
+.btn-1:hover{
+    color: red;
+    background-color: white;
+}
+
+.btn-2:hover{
+
+    color: rgb(29, 193, 40);
+    background-color: white;
+}
+
+.btn-2{
+    border: 1px solid  rgb(29, 193, 40);
+    background-color: rgb(29, 193, 40);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 30px;
+    transition: 0.3s;
+    font-size: 22px;
+    min-width: 100px;
+}
+
+.deleteProductModal{
+    display: flex !important;
+    justify-content: space-evenly !important;
+    align-items: center !important;
+    width: 100%;
+    border: 3px solid gray;
+    border-radius: 10px;
+    padding: 10px;
+    border-style: dashed;
+    margin-top: 10px;
+}
+
+.deleteProductModal > p {
+    font-size: 20px;
+    margin-top: 10px;
 }

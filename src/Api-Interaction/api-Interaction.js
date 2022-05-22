@@ -198,25 +198,29 @@ export async function getProductAnalysis(id) {
     return await ErrorHandling(result)
 };
 
-export const getRequest = async (essentials) => {
 
-    let result = await fetch(`${essentials.endPoint}`,
-        {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': essentials.tokenFlag ? getToken() : ''
-            },
-        });
-
-    return await ErrorHandling(result)
-
-}
 
 // Update User 
 export async function addNewProduct(data) {
 
     let result = await fetch(`${baseURL}/product/list/add`,
+        {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': getToken()
+            },
+            body: JSON.stringify(data),
+        });
+
+    return await ErrorHandling(result)
+
+};
+
+// Update Product
+export async function updateProduct(id,data) {
+
+    let result = await fetch(`${baseURL}/product/list/update/${id}`,
         {
             method: 'PUT',
             headers: {
@@ -229,6 +233,39 @@ export async function addNewProduct(data) {
     return await ErrorHandling(result)
 
 };
+
+// Delete individual product
+export async function deleteProduct(id) {
+
+    let result = await fetch(`${baseURL}/product/list/delete/${id}`,
+        {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': getToken()
+            },
+        });
+
+    return await ErrorHandling(result)
+
+};
+
+// Get Individual Product 
+export async function getProduct(id) {
+
+    let result = await fetch(`${baseURL}/product/list/id/${id}`,
+        {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': getToken()
+            },
+        });
+
+    return await ErrorHandling(result)
+};
+
+
 
 export const postRequest = async (essentials) => {
 

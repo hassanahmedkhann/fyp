@@ -58,13 +58,13 @@ const Sidebar = (props) => {
         </div>
 
         <div className="sidebar-list">
-          <li
+          {/* <li
             className={`animate-btn btn-animated-pop`}
             onClick={() => props.setFlag(!props.flag)}
           >
             <CancelIcon fontSize="large" />
             &#160;&#160;Close
-          </li>
+          </li> */}
           {sidebarData.map((item, index) => (
             <li
               className={`${props.option === index && "background-sidebar "

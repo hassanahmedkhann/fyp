@@ -36,3 +36,8 @@
 .mainPad{
   padding-top: 60px;
 }
+
+.selectedChoice{
+  background-color: #F5793B !important;
+  color: white !important;
+}
