@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Grid from '@mui/material/Grid';
 import "./ManageProducts.css"
-import { ButtonSX, buttonSX, modalStyle, BackButton } from '../../Util';
+import { ButtonSX, buttonSX, modalStyle, BackButton, checkButton } from '../../Util';
 import { Avatar, Button, MenuItem, Modal, Select, Typography } from '@mui/material';
 import Notification from '../../Utils/Notification';
 import Loader from '../../Utils/Loader';
@@ -219,7 +219,7 @@ const UpdateProduct = (props) => {
 
                 {!existFlag && <div className='my-4'>
                     <input required onChange={(event) => setSearchedProduct(event.target.value)} style={{ width: "fit-content" }} className="manage-products-input ms-4" placeholder="Enter product ID" type="text" />
-                    <Button onClick={handleSearch} sx={ButtonSX} className="mt-2 ms-2 account-button">Check for availability</Button>
+                    <Button onClick={handleSearch} sx={checkButton} className="mt-2 ms-2 account-button">Check for availability</Button>
                 </div>
                 }
             </Grid>

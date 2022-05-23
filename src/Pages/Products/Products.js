@@ -103,19 +103,20 @@ const Products = () => {
 
 
   return (
+
     <div className="products-main fadeUp">
       <Notification alert={alert} setAlert={setAlert} />
       <Loader open={open} />
       <>
         <div style={{ paddingTop: "100px" }} className="d-flex justify-content-center">
-          <h3 className="display-4" style={{ color: "#033A7D" }}>
+          <h6 className="display-6" style={{ color: "#033A7D" }}>
             Product View
-          </h3>
+          </h6>
         </div>
         <div className="my-4 w-100 d-flex justify-content-center">
-          <h4 className=" mt-3 w-50 text-heading text-center">
+          <p className=" mt-3 w-50 text-heading text-center">
             Top Products
-          </h4>
+          </p>
         </div>
 
 
@@ -197,8 +198,6 @@ const Products = () => {
                   <p className="product-items">{item.productRating}</p>
                   <p className="product-items">{item.unitPrice}</p>
                   <p className="product-items"><button onClick={() => handleModal(item)} className="productButton">Detailed Analysis</button></p>
-
-
 
                 </div>
               ))}
