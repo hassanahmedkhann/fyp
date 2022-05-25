@@ -19,14 +19,7 @@ const MainClusterPage = () => {
     const mainDiv = document.querySelector(".mainUI");
     const mainDiv2 = document.querySelector(".main-sidebar");
 
-    // mainDiv.addEventListener("click", () => {
-    //   console.log("Clicked", flag);
-    // });
-    // mainUI.addEventListener("click", () => {
-    //   console.log("Clicked", flag);
-    // if (flag === true) {
-    //   setFlag((flag) => !flag);
-    // }
+
   }, []);
 
   return (

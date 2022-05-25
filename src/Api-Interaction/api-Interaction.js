@@ -269,7 +269,7 @@ export async function getProduct(id) {
 
 export const postRequest = async (essentials) => {
 
-    let result = await fetch(`${essentials.endPoint}`,
+    let result = await fetch(`${baseURL}${essentials.endPoint}`,
         {
             method: 'POST',
             headers: {
@@ -277,6 +277,22 @@ export const postRequest = async (essentials) => {
                 'Authorization': essentials.tokenFlag ? getToken() : ''
             },
             body: essentials.body
+        });
+
+    return await ErrorHandling(result)
+
+}
+
+
+export const getRequest = async (essentials) => {
+
+    let result = await fetch(`${baseURL}${essentials.endPoint}`,
+        {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': getToken()
+            },
         });
 
     return await ErrorHandling(result)

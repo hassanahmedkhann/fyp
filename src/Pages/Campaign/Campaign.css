@@ -1,24 +1,26 @@
-.campaign{
+.campaign {
     margin: 0 !important;
 }
-/* ClusterCard CSS */
-.cluster-card{
-height: 270px;
-width: 320px;
-border-radius: 30px;
-background-color: white;
-display: flex;
-flex-direction: column;
-transition: 0.3s;
-cursor: pointer;
-box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;}
 
-.cluster-card:hover{
+/* ClusterCard CSS */
+.cluster-card {
+    height: 270px;
+    width: 320px;
+    border-radius: 30px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+    cursor: pointer;
+    box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+}
+
+.cluster-card:hover {
     background-color: #F25839;
     color: white;
 }
 
-.cluster-text{
+.cluster-text {
     flex: 0.5;
 }
 
@@ -27,30 +29,32 @@ box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1p
     color: rgb(29, 193, 40) !important;
 }
 
-.cluster-images{
+.cluster-images {
     flex: 0.5;
     display: flex;
     padding: 0px 10px;
 }
 
-.avatar-2{
+.avatar-2 {
     margin-left: 70px;
 }
-.avatar-3{
+
+.avatar-3 {
     margin-left: 120px;
 }
-.avatar-4{
+
+.avatar-4 {
     margin-left: 180px;
 }
 
 
 /* Cluster Page CSS */
 
-.cluster-page{
-    height: 88vh;
+.cluster-page {
+    height: fit-content;
 }
 
-.cluster-page-card{
+.cluster-page-card {
     background-color: white;
     border-radius: 20px;
     padding: 20px;
@@ -58,7 +62,7 @@ box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1p
     height: fit-content;
 }
 
-.customer-name{
+.customer-name {
     background-color: white;
     color: #F25839;
     transition: 0.3s;
@@ -68,23 +72,25 @@ box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1p
 
 }
 
-.customer-name:hover{
+.customer-name:hover {
     background-color: #F25839;
     color: white;
 }
-.customer-list{
+
+.customer-list {
     overflow-y: scroll;
     height: 400px;
 }
 
-.cluster-customer-list{
-    flex: 0.5
-}
-.cluster-page-header{
+.cluster-customer-list {
     flex: 0.5
 }
 
-.cluster-page-buttons > .btn-1{
+.cluster-page-header {
+    flex: 0.5
+}
+
+.cluster-page-buttons>.btn-1 {
     border: 1px solid red;
     background-color: red;
     color: white;
@@ -95,19 +101,19 @@ box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1p
     min-width: 250px;
 }
 
-.cluster-page-buttons > .btn-1:hover{
+.cluster-page-buttons>.btn-1:hover {
     color: red;
     background-color: white;
 }
 
-.cluster-page-buttons > .btn-2:hover{
+.cluster-page-buttons>.btn-2:hover {
 
     color: rgb(29, 193, 40);
     background-color: white;
 }
 
-.cluster-page-buttons > .btn-2{
-    border: 1px solid  rgb(29, 193, 40);
+.cluster-page-buttons>.btn-2 {
+    border: 1px solid rgb(29, 193, 40);
     background-color: rgb(29, 193, 40);
     color: white;
     padding: 5px 10px;
@@ -115,4 +121,14 @@ box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1p
     transition: 0.3s;
     font-size: 22px;
     min-width: 250px;
+}
+
+.clusterPageCard{
+    display: flex;
+}
+
+@media only screen and (max-width: 800px) {
+    .clusterPageCard {
+        flex-direction: column !important;
+    }
 }

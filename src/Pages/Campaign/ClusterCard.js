@@ -1,9 +1,12 @@
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ButtonSX } from "../../Util";
 import "./Campaign.css"
 
 const ClusterCard = ({clusterData,...props}) => {
+
+  const navigate = useNavigate()
 
   const avatarStyle = {
     height: '80px',
@@ -12,19 +15,24 @@ const ClusterCard = ({clusterData,...props}) => {
   }
 
   const linkStyle = {
-    fontSize: "20px",
+    fontSize: "18px",
     textDecoration: "none",
-    padding: "5px 10px",
+    padding: "3px 10px",
     borderRadius: "20px",
     backgroundColor: "#F25839",
     color: "white",
     transition: "all 0.3s"
   }
+
+  const handleClick = () => {
+    navigate("/cluster-page", { state: { clusterID: clusterData?._id } })
+  }
+  
   return <div className="cluster-card p-4 m-2 fadeUp">
   <div className="cluster-text">
-    <h4>Cluster No. {props.index}</h4>
-    <h5>Total members: {clusterData.total}</h5>
-    <Link className="cluster-link" style={linkStyle} to="/cluster-page">Cluster Details</Link>
+    <h4>Cluster No. {clusterData?.clusterNumber}</h4>
+    <h5>Total members: {clusterData?.totalCustomers}</h5>
+    <Button onClick={handleClick} className="cluster-link" style={linkStyle} to="/cluster-page">Cluster Details</Button>
   </div>
   <div className="cluster-images mt-2">
     <Avatar sx={avatarStyle} src={clusterData.customer1}/>
