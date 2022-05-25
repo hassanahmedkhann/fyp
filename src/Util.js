@@ -7,7 +7,7 @@ export const buttonSX = {
   maxWidth: "300px",
   fontSize: "20px",
   transition: "0.3s",
-  color: "#F04D41"
+  color: "#F25839"
 }
 
  //Modal Styles
@@ -29,11 +29,11 @@ export const ButtonSX = {
   backgroundColor: "white",
   border: "1px solid #F04D41",
   padding: "5px 35px",
-  borderRadius: "25px",
+  borderRadius: "10px",
   maxWidth: "300px",
   fontSize: "18px",
   transition: "0.3s",
-  color: "#F04D41",
+  color: "#F25839",
   minWidth: "280px",
 }
 
@@ -46,7 +46,7 @@ export const checkButton = {
   maxWidth: "300px",
   fontSize: "15px",
   transition: "0.3s",
-  color: "#F04D41",
+  color: "#F25839",
   minWidth: "280px",
 }
 

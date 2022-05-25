@@ -32,20 +32,21 @@
 .cluster-images {
     flex: 0.5;
     display: flex;
-    padding: 0px 10px;
+    align-items: flex-end;
+    justify-content: flex-start;
 }
 
 .avatar-2 {
-    margin-left: 70px;
+    margin-left: 60px;
 }
 
-.avatar-3 {
+ .avatar-3 {
     margin-left: 120px;
 }
 
 .avatar-4 {
     margin-left: 180px;
-}
+}  
 
 
 /* Cluster Page CSS */

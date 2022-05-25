@@ -18,7 +18,7 @@ const ClusterCard = ({clusterData,...props}) => {
     fontSize: "18px",
     textDecoration: "none",
     padding: "3px 10px",
-    borderRadius: "20px",
+    borderRadius: "10px",
     backgroundColor: "#F25839",
     color: "white",
     transition: "all 0.3s"
@@ -32,9 +32,9 @@ const ClusterCard = ({clusterData,...props}) => {
   <div className="cluster-text">
     <h4>Cluster No. {clusterData?.clusterNumber}</h4>
     <h5>Total members: {clusterData?.totalCustomers}</h5>
-    <Button onClick={handleClick} className="cluster-link" style={linkStyle} to="/cluster-page">Cluster Details</Button>
+    <Button onClick={handleClick} className="cluster-link" sx={linkStyle} to="/cluster-page">Cluster Details</Button>
   </div>
-  <div className="cluster-images mt-2">
+  <div className="cluster-images">
     <Avatar sx={avatarStyle} src={clusterData.customer1}/>
     <Avatar className="avatar-2" sx={avatarStyle} src={clusterData.customer2}/>
     <Avatar className="avatar-3" sx={avatarStyle} src={clusterData.customer3}/>
