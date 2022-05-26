@@ -14,7 +14,7 @@ import { getCustomerData, getProfit } from "../../Api-Interaction/api-Interactio
 import Notification from "../../Utils/Notification";
 import Loader from "../../Utils/Loader";
 
-const Dashboard = () => {
+const Dashboard = ({profitData}) => {
 
   const [open, setOpen] = useState(false);
   const [alert, setAlert] = useState({
@@ -23,36 +23,7 @@ const Dashboard = () => {
     message: ""
   });
 
-  const [profitData, setProfitData] = useState();
 
-
-  useEffect(async () => {
-
-
-    try {
-      setOpen(true)
-      let resultHandle = await getProfit();
-
-
-      if (resultHandle?.success === true) {
-        setProfitData(resultHandle?.message)
-        JSON.stringify(localStorage.setItem('totalPurchases', resultHandle?.message?.Analytics?.totalSales))
-        setOpen(false);
-
-      }
-      else {
-        setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
-        setOpen(false)
-
-      }
-
-    }
-    catch (err) {
-      setOpen(false)
-      console.log("Error! ", err)
-    }
-
-  }, []);
 
 
   const data = [

@@ -16,35 +16,11 @@ const MainAnalytics = () => {
 
 
 
-  useEffect(() => {
-    // setMainUi(document.querySelector(".main-page"));
-    const mainDiv = document.querySelector(".mainUI");
-    const mainDiv2 = document.querySelector(".main-sidebar");
-
-    // mainDiv.addEventListener("click", () => {
-    //   console.log("Clicked", flag);
-    // });
-    // mainUI.addEventListener("click", () => {
-    //   console.log("Clicked", flag);
-    // if (flag === true) {
-    //   setFlag((flag) => !flag);
-    // }
-  }, []);
 
   return (
     <>
         <div className="mainUI">
           <Navbar flag={flag} setFlag={setFlag} />
-          {/* <div className="container-fluid mt-3">
-        <div className="row">
-          <div className={`col-3 ${!flag && "sidebar-show"} sidebar-hidden`}>
-            <Sidebar />
-          </div>
-          <div className={`col-9 p-0`}>
-            <Dashboard />
-          </div>
-        </div>
-      </div> */}
           <div className="main-container">
             <div
               className={`main-sidebar sidebar-hidden ${

@@ -124,7 +124,7 @@ const Campaign = () => {
       </div>
       <Modal
         open={openModal}
-        onClose={() => setOpenModal(false)}
+        // onClose={() => setOpenModal(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -134,10 +134,10 @@ const Campaign = () => {
             <WarningIcon sx={{ color: "red", fontSize: "50px" }} />
             <p className="mt-3 ms-2" style={{ color: "red" }}><b>Remember!</b> this will erase all existing clusters and populate new ones.</p>
           </div>
-          <p className="w-100"><InfoIcon sx={{ color: "#1976D2", margin: "10px 2px", fontSize: "30px" }} />This may take some time.</p>
+          <p style={{fontSize: "12px" , color: "#1976D2", border: "1px solid #1976D2" , width: "fit-content"}} className="mt-1 pe-2"><InfoIcon sx={{ color: "#1976D2", margin: "10px 2px", fontSize: "28px" }} />Getting new predictions may take some time.</p>
           <div className="d-flex justify-content-evenly">
-            <button onClick={getNewPredictions} className="ms-2 btn-1">Yes</button>
-            <button onClick={() => setOpenModal(false)} className="ms-2 btn-2">No</button>
+            <button onClick={getNewPredictions} className="mt-2 btn-1">Yes</button>
+            <button onClick={() => setOpenModal(false)} className="mt-2 ms-2 btn-2">No</button>
           </div>
         </Box>
       </Modal>

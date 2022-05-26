@@ -274,9 +274,9 @@ export const postRequest = async (essentials) => {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                'Authorization': essentials.tokenFlag ? getToken() : ''
+                'Authorization': getToken()
             },
-            body: essentials.body
+            body: JSON.stringify(essentials.body)
         });
 
     return await ErrorHandling(result)
@@ -289,6 +289,21 @@ export const getRequest = async (essentials) => {
     let result = await fetch(`${baseURL}${essentials.endPoint}`,
         {
             method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': getToken()
+            },
+        });
+
+    return await ErrorHandling(result)
+
+}
+
+export const deleteRequest = async (essentials) => {
+
+    let result = await fetch(`${baseURL}${essentials.endPoint}`,
+        {
+            method: 'DELETE',
             headers: {
                 'content-type': 'application/json',
                 'Authorization': getToken()

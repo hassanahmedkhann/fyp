@@ -1,9 +1,11 @@
-import { Box, CircularProgress, Fade, Modal, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Fade, Modal, Typography } from "@mui/material";
 import Backdrop from '@mui/material/Backdrop';
 import { getProductAnalysis } from "../../Api-Interaction/api-Interaction"
 import React, { useEffect, useState } from "react";
 import { Pie, PieChart, Tooltip } from "recharts";
 import numeral from "numeral";
+import CancelIcon from '@mui/icons-material/Cancel';
+import { CancelOutlined } from "@mui/icons-material";
 
 const ProductAnalysis = ({ modalState, setModalState, loadFlag }) => {
 
@@ -72,7 +74,7 @@ const ProductAnalysis = ({ modalState, setModalState, loadFlag }) => {
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={modalState.open}
-        onClose={handleClose}
+        // onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -83,6 +85,7 @@ const ProductAnalysis = ({ modalState, setModalState, loadFlag }) => {
             <Box sx={style}>
                 {!open ?
                     <div>
+                        <h4 className="w-100 d-flex justify-content-end p-1"><CancelIcon onClick={handleClose} sx={{ fontSize: "35px" , color: "red" , cursor: "pointer"}}/></h4>
                         <h1>Product Analysis</h1>
                         <div className="productAnalysisText d-flex">
                             <div>

@@ -55,11 +55,11 @@ const Analytics = () => {
     }
   }
 
-  const getBarGraph = async (product) => {
+  const getBarGraph = async (rating) => {
 
     try {
       setOpen(true)
-      let resultHandle = await getOverallProductAnalytics(product);
+      let resultHandle = await getOverallProductAnalytics(rating);
 
       if (resultHandle?.success === true) {
         // console.log(resultHandle?.message)
@@ -79,10 +79,10 @@ const Analytics = () => {
 
   }
 
-  const getSmallGraph2 = async (product) => {
+  const getSmallGraph2 = async (rating) => {
     try {
       setOpen(true)
-      let resultHandle = await getOverallProductGrowth(product);
+      let resultHandle = await getOverallProductGrowth(rating);
 
       if (resultHandle?.success === true) {
         // console.log(resultHandle?.message)

@@ -76,7 +76,7 @@ const MainManageProducts = () => {
               setFlag={setFlag}
             />
           </div>
-          <div style={{height: "100vh"}} className={`main-page ${flag && "blur"}`}>
+          <div style={{height: "100vh"}} className={`main-page fadeUp ${flag && "blur"}`}>
             {choice === 0 && <h1 style={ButtonStyles}>Product Management</h1>}
             { choice === 0 && <h3 className="w-100 text-center mt-4">What do you want to do ?</h3>}
             <Grid rowSpacing={1} container className="w-100" style={ButtonStyles2}>
