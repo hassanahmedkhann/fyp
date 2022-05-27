@@ -15,6 +15,7 @@ import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturi
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import { ClickAwayListener } from '@mui/base';
+import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 
 
 const Sidebar = (props) => {
@@ -26,7 +27,7 @@ const Sidebar = (props) => {
     { name: "Products", icon: CategoryIcon, link: 'products' },
     { name: "Campaigns", icon: StackedLineChartIcon, link: 'campaign' },
     { name: "Manage Products", icon: PrecisionManufacturingIcon, link: 'manage-products' },
-
+    { name: "Contact Team", icon: PrivacyTipIcon, link: 'contact-team' },
   ];
 
 

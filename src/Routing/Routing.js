@@ -9,6 +9,7 @@ import MainUI from '../Components/MainUI/MainUI'
 import MainAccount from "../Components/MainUI/MainAccount"
 import MainClusterPage from "../Components/MainUI/MainClusterPage";
 import MainManageProducts from "../Components/MainUI/MainManageProducts";
+import MainContact from "../Components/MainUI/MainContact";
 const Routing = () => {
   return (
     <Router>
@@ -22,6 +23,7 @@ const Routing = () => {
         <Route exact path="/campaign" element={<MainCampaign/>}/>
         <Route exact path="/cluster-page" element={<MainClusterPage/>}/>
         <Route exact path="/manage-products" element={<MainManageProducts/>}/>
+        <Route exact path="/contact-team" element={<MainContact/>}/>
 
     </Routes>
 </Router>

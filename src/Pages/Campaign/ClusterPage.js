@@ -219,8 +219,9 @@ const ClusterPage = () => {
                         <label>Body</label>
                         <textarea defaultValue={emailDraft.body} onChange={(event) => setDraftChange({ ...draftChange, body: event.target.value })} id="w3review" name="w3review" rows="4" cols="50" />
                     </div>
-                    <div className="d-flex justify-content-evenly">
-                        <button onClick={handleDraftChange} className="mt-2 ms-2 btn-2">Change</button>
+                    <div className="d-flex justify-content-evenly align-items-center">
+                        <button onClick={handleDraftChange} className="mt-2 btn-2 mx-1">Change</button>
+                        <button onClick={()=>setOpenEmailModal(false)} className="edit-button2 mt-2 mx-1" >Keep as is</button>
                     </div>
                 </Box>
             </Modal>

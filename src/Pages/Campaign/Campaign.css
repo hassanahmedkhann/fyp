@@ -160,6 +160,7 @@
     border-radius: 5px;
     background-color: #FAFAFA;
     margin: 10px 5px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
 .subject-container{
@@ -186,17 +187,27 @@
 
 .edit-button{
     padding: 5px;
-    border: 1px solid #A8D1DF;
-    background-color: white;
+    border: 1px solid #4D94EC;
+    background-color: #4D94EC;
     border-radius: 10px;
-    color: #A8D1DF;
+    color: white;
     transition: 0.3s;
     margin-left: 5px;
 }
 
-.edit-button:hover{
-    background-color: #A8D1DF;
+.edit-button2{
+    border: 1px solid #4D94EC;
+    background-color: #4D94EC;
     color: white;
+    padding: 5px 10px;
+    border-radius: 30px;
+    transition: 0.3s;
+    font-size: 22px;
+}
+
+.edit-button:hover , .edit-button2:hover{
+    background-color: white;
+    color: #4D94EC;
 }
 
 @media only screen and (max-width: 800px) {
