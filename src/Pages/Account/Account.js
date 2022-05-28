@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import sample from "../../Images/sample.jpg"
+import React, {  useState } from "react";
 import "./Account.css"
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Avatar, IconButton, InputLabel, TextField } from "@mui/material";
@@ -11,7 +9,7 @@ import Loader from "../../Utils/Loader";
 import { updateUser } from "../../Api-Interaction/api-Interaction";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { buttonSX, convertBase64 } from "../../Util"
+import { buttonSX } from "../../Util"
 
 const Account = () => {
 
@@ -230,7 +228,7 @@ const Account = () => {
                 <InputLabel sx={labelStyle} htmlFor="standard-adornment-password">New Password</InputLabel>
                 <span className="d-flex align-items-center mb-3">
                   <TextField
-                    helperText={values.password !== values.confirmPassword ? `Password do not match!` : "Note: Min length should be 8 with 1 special character and 1 Capital letter"}
+                    helperText={values.password !== values.confirmPassword ? `Passwords do not match!` : "Note: Min length should be 8 with 1 special character and 1 Capital letter"}
                     variant="standard"
                     onChange={handleChange('password')}
                     fullWidth
@@ -243,7 +241,7 @@ const Account = () => {
                 <span className="d-flex align-items-center mb-4">
                   <TextField
                     error={values.password === values.confirmPassword ? false : true}
-                    helperText={values.password !== values.confirmPassword ? `Password do not match!` : "Note: Min length should be 8 with 1 special character and 1 Capital letter"}
+                    helperText={values.password !== values.confirmPassword ? `Passwords do not match!` : "Note: Min length should be 8 with 1 special character and 1 Capital letter"}
                     variant="standard"
                     onChange={handleChange('confirmPassword')}
                     fullWidth

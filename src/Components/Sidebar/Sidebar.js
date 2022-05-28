@@ -1,14 +1,10 @@
 import React from "react";
 import "../../Utils.css";
-import sampleicon from "../../Images/sampleIcon.png";
 import bg from "../../Images/sampleIcon8.PNG";
-import CancelIcon from "@mui/icons-material/Cancel";
 import StackedLineChartIcon from "@mui/icons-material/StackedLineChart";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
-import FaceIcon from "@mui/icons-material/Face";
 import EditRoadIcon from "@mui/icons-material/EditRoad";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import FeedbackIcon from "@mui/icons-material/Feedback";
 import CategoryIcon from "@mui/icons-material/Category";
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
@@ -58,11 +54,11 @@ const Sidebar = (props) => {
           <img alt="icon" src={bg} />
         </div>
 
-        <div className="sidebar-list">
+        <div className="sidebar-list mt-3">
         
           {sidebarData.map((item, index) => (
             <li
-              className={`${props.option === index && "background-sidebar "
+              className={`mb-2 ${props.option === index && "background-sidebar "
                 } animate-btn btn-animated-pop`}
               key={index}
               onClick={() => handleClick(index)}

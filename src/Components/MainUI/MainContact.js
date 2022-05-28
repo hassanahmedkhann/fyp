@@ -1,26 +1,16 @@
-import Feedback from "@mui/icons-material/Feedback";
-import React, { useEffect, useState } from "react";
-import Account from "../../Pages/Account/Account";
-import Analytics from "../../Pages/Analytics/Analytics";
-import Campaigns from "../../Pages/Campaigns/Campaigns";
+import React, { useState } from "react";
 import ContactTeam from "../../Pages/Contact Team/ContactTeam";
-import Dashboard from "../../Pages/Dashboard/Dashboard";
-import Pipeline from "../../Pages/Pipeline/Pipeline";
-import Products from "../../Pages/Products/Products";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
-import SplashScreen from "../SplashScreen/SplashScreen";
 import "./MainUI.css";
 import Hassan from "../../Images/hassan.jpg"
 import Asmar from "../../Images/asmar.jpg"
 import Furqan from "../../Images/furqan.jpg"
-import QuizIcon from '@mui/icons-material/Quiz';
 import PestControlIcon from '@mui/icons-material/PestControl';
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import DataThresholdingIcon from '@mui/icons-material/DataThresholding';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import InfoIcon from '@mui/icons-material/Info';
-import { Settings } from "@mui/icons-material";
 
 const MainContact = () => {
     const [flag, setFlag] = useState(false);
