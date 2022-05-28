@@ -1,14 +1,13 @@
 .team-card{
     height: 400px;
     width: 400px;
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     display: grid;
     place-items: center;
     grid-template-areas: "main";
     overflow: hidden;
-    cursor: pointer;
     text-decoration: none;
-    margin: 10px 0px;
 }
 
 .team-card > * {
@@ -44,5 +43,12 @@ filter: brightness(0.4);
     opacity: 1;
     }
 
+.main-team-card{
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
 
+.team-card-info > p{
+    font-size: 20px;
+}
 

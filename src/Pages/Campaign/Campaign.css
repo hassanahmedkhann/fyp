@@ -52,7 +52,7 @@
 /* Cluster Page CSS */
 
 .cluster-page {
-    height: fit-content;
+    min-height: 100vh;
 }
 
 .cluster-page-card {

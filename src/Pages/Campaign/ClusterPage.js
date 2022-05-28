@@ -8,6 +8,7 @@ import { Box, Button, Modal } from "@mui/material";
 import { BackButton, ButtonSX } from "../../Util";
 import InfoIcon from '@mui/icons-material/Info';
 import EditIcon from '@mui/icons-material/Edit';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const ClusterPage = () => {
 
@@ -164,7 +165,7 @@ const ClusterPage = () => {
         <div className="m-4 cluster-page-card">
             <div className="clusterPageCard">
                 <div className="cluster-page-header my-3">
-                    <Button onClick={() => navigate('/campaign')} className="account-button mb-3" sx={BackButton}>Back</Button>
+                    <Button onClick={() => navigate('/campaign')} className="account-button mb-3" sx={BackButton}><ArrowBackIosIcon /> Back</Button>
                     <h1>Cluster No. {clusterData?.clusterNumber}</h1>
                     <h3>Total Members: {clusterData?.totalCustomers}</h3>
                     <button className="edit-button" onClick={() => setOpenEmailModal(true)}>Edit Email <EditIcon/></button>
@@ -198,7 +199,7 @@ const ClusterPage = () => {
             >
                 <Box className="d-flex flex-column align-items-center" sx={style}>
                     <h4 className="mb-2"><strong>Are you sure ?</strong></h4>
-                    <p style={{ fontSize: "12px", color: "#1976D2", border: "1px solid #1976D2", width: "fit-content" }} className="mt-1 pe-2"><InfoIcon sx={{ color: "#1976D2", margin: "10px 2px", fontSize: "28px" }} />You can still retrieve the cluster from the deleted group.</p>
+                    <p style={{ fontSize: "14px", color: "#1976D2", border: "1px solid #1976D2", width: "fit-content" }} className="mt-1 pe-2"><InfoIcon sx={{ color: "#1976D2", margin: "10px 2px", fontSize: "28px" }} />You can still retrieve the cluster from the deleted group.</p>
                     <div className="d-flex justify-content-evenly">
                         <button onClick={handleDelete} className="mt-2 btn-1">Yes</button>
                         <button onClick={() => setOpenModal(false)} className="mt-2 ms-2 btn-2">No</button>

@@ -39,7 +39,7 @@ const Sidebar = (props) => {
 
   const handleClickAway = () => {
     if ( props.flag ){
-      props.setOption(0)
+      props.setOption(props.option)
       props.setFlag(!props.flag);
     }
   }
@@ -59,13 +59,7 @@ const Sidebar = (props) => {
         </div>
 
         <div className="sidebar-list">
-          {/* <li
-            className={`animate-btn btn-animated-pop`}
-            onClick={() => props.setFlag(!props.flag)}
-          >
-            <CancelIcon fontSize="large" />
-            &#160;&#160;Close
-          </li> */}
+        
           {sidebarData.map((item, index) => (
             <li
               className={`${props.option === index && "background-sidebar "
@@ -79,6 +73,7 @@ const Sidebar = (props) => {
               </Link>
             </li>
           ))}
+
         </div>
       </div>
     </ClickAwayListener>
