@@ -55,17 +55,18 @@ const MainContact = () => {
                             setFlag={setFlag}
                         />
                     </div>
-                    <div className={`main-page ${flag && "blur"}`}>
+                    <div className={`main-page-contact ${flag && "blur"}`}>
                         <div className="d-flex justify-content-center mb-3" style={{marginTop: "80px"}}>
                             <h2>Contact the Team</h2>
                         </div>
                         <div className="d-flex justify-content-center">
                         <ul className="team-list">
-                           <div style={{borderBottom: "1px solid #2DC1BA" , color: "#2DC1BA"}} className="d-flex justify-content-center w-100 mb-2 py-1"><InfoIcon sx={{margin: "0px 5px"}}/> Guidelines</div>
+                           <div style={{borderBottom: "1px solid #2DC1BA" , color: "#2DC1BA", backdropFilter: "blur(10px)"}} className="d-flex justify-content-center w-100 mb-2 py-1 align-items-center"><InfoIcon sx={{margin: "0px 5px"}}/> Guidelines</div>
                             <li><PestControlIcon/> Report a bug.</li>
                             <li><SettingsSuggestIcon/> Help with the system.</li>
                             <li><DataThresholdingIcon/> Request data upgrade.</li>
                             <li><ModelTrainingIcon/> Request a new model.</li>
+                            
                         </ul>
                         </div>
                         <div  className="container-team d-flex justify-content-evenly align-items-center mb-4">

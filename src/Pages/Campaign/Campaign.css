@@ -215,3 +215,45 @@
         flex-direction: column !important;
     }
 }
+
+
+.package-ul{
+    list-style: none;
+    height: 250px;
+    overflow-y: scroll;
+    margin: 0px 5px;
+    padding: 5px;
+}
+
+.package-ul > p {
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    padding: 3px;
+    border: 1px solid #F25839;
+    border-radius: 10px;
+    margin: 5px 0px;
+
+}
+
+.package-img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.package-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px dashed gray;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.package-input {
+    border: none;
+    border-bottom: 1px solid gray;
+    outline: none;
+}
