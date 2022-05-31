@@ -23,9 +23,12 @@ const ClusterPage = () => {
 
     const [openPackageModal, setOpenPackageModal] = useState(false)
 
+    const [showPackage, setShowPackage] = useState(false)
+
     const [emailDraft, setEmailDraft] = useState({
         subject: "Thanks for stopping by at our store!",
-        body: "As a reward we've decided to make you a member of our growth panel."
+        body: "We've observed your choices and have decided to make a discounted package as a reward.",
+        pakage: {}
     })
 
     const [draftChange, setDraftChange] = useState({
@@ -37,7 +40,6 @@ const ClusterPage = () => {
         customerNames: [],
         totalCustomers: 0,
         clusterNumber: 0,
-        package: ''
     })
 
     const [packageData, setPackageData] = useState()
@@ -45,7 +47,6 @@ const ClusterPage = () => {
     const [discount, setDiscount] = useState(10)
 
     const [originalAmount, setOriginalAmount] = useState()
-
 
     const [open, setOpen] = useState(false)
 
@@ -90,7 +91,6 @@ const ClusterPage = () => {
                 const packageArray = resultHandle?.message.package.split(',')
                 handlePackage(packageArray)
                 setOpen(false);
-
             }
             else {
                 setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
@@ -126,7 +126,6 @@ const ClusterPage = () => {
                 setPackageData(resultHandle.message)
                 setOriginalAmount(resultHandle.message[resultHandle?.message?.length - 1]?.originalAmount)
                 setOpen(false);
-
             }
             else {
                 setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
@@ -178,12 +177,25 @@ const ClusterPage = () => {
     }
 
     const handleEmailAPI = async () => {
+        let packageInfo = ''
+        packageInfo = packageInfo + packageData.slice(0,packageData.length - 1).map((item)=> item.productName)
+
+        let emailBody = {
+            subject: emailDraft.subject,
+            body: emailDraft.body,
+            packageInfo: packageInfo,
+            originalPrice: originalAmount,
+            discountedPrice: ((originalAmount) - ((originalAmount / 100) * discount)).toFixed(2)
+        }
+
+
+
         try {
 
 
             const essentials = {
                 endPoint: `/email/${state?.clusterID}`,
-                body: emailDraft
+                body: emailBody
             }
 
             setOpen(true)
@@ -224,7 +236,19 @@ const ClusterPage = () => {
                         <div className="body-container">
                             <p>Howdy "Customer Name",</p>
                             {emailDraft.body}
-                            <p className="mt-3">Hope you'd want to shop again and redeem you package!<br />Cheers!</p>
+                            <button onClick={()=>setShowPackage(!showPackage)} style={{width: "fit-content" , textDecoration: "underline", background: "transparent", border: "none"}} className="my-2 mx-0">Show/Hide Package</button>
+                            {showPackage && <>
+                                <p className="mt-2 mb-0">The package includes..</p>
+                                <div className="my-2 fadeIn">
+                                    {packageData.slice(0, packageData.length - 1).map((item,index) => (
+                                        <p key={index} className="m-0">{item.productName}</p>
+                                    ))
+                                    }
+                                    <p className="m-0">Original cost: {originalAmount} $</p>
+                                    <p>Discounted cost: <strong>{((originalAmount) - ((originalAmount / 100) * discount)).toFixed(2)}</strong> $</p>
+                                </div>
+                            </>}
+                            <p>Hope you'd want to shop again and redeem you package!<br />Cheers!</p>
                         </div>
                     </div>
                 </div>

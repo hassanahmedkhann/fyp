@@ -181,7 +181,7 @@
     font-family: 'Roboto Mono', monospace;
 }
 
-.body-container > p {
+.body-container > p , .body-container > div > p{
     font-family: 'Roboto Mono', monospace;
 }
 
