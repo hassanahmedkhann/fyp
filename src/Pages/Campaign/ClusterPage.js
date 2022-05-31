@@ -219,6 +219,14 @@ const ClusterPage = () => {
             console.log("Error! ", err)
         }
     }
+    
+    const handlePackageClose = () => {
+        if (discount.length <= 0) return setAlert({ flag: true, 'status': 2, message: "Discount field can not be left empty!" })
+        if (discount < 0) return setAlert({ flag: true, 'status': 2, message: "Discount field can not be negative!" })
+        if (discount > 75) return setAlert({ flag: true, 'status': 2, message: "Discount value not allowed!" })
+        setOpenPackageModal(false)
+    }
+
 
     return <div className="cluster-page">
         <Loader open={open} />
@@ -307,11 +315,11 @@ const ClusterPage = () => {
                 aria-describedby="modal-modal-description"
             >
                 <Box className="d-flex flex-column align-items-center" sx={style}>
-                    <h4 className="mb-2"><strong>Package</strong></h4>
+                    <h4 className="mb-2"><strong>Package Information</strong></h4>
                     <p style={{ fontSize: "14px", color: "#1976D2", border: "1px solid #1976D2", width: "fit-content" }} className="mt-1 pe-2"><InfoIcon sx={{ color: "#1976D2", margin: "10px 2px", fontSize: "28px" }} />This package is generated on the basis of buying patterns.</p>
 
                     <div className="package-container w-100">
-                        <h5>Product list </h5>
+                        <h5 style={{padding:"10px", backgroundColor: "lightgrey" , width: "fit-content", borderRadius: "10px"}}>Product list </h5>
                         <div className="d-flex justify-content-center">
                             <div className="package-ul">
                                 {packageData?.slice(0, packageData?.length - 1).map((product, index) => (
@@ -331,7 +339,7 @@ const ClusterPage = () => {
                     </div>
 
                     <div className="d-flex justify-content-evenly">
-                        <button onClick={() => setOpenPackageModal(false)} className="mt-2 ms-2 btn-2">Close</button>
+                        <button onClick={handlePackageClose} className="mt-2 ms-2 btn-2">Close</button>
                     </div>
                 </Box>
             </Modal>

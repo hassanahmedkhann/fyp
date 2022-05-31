@@ -11,6 +11,7 @@ import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import DataThresholdingIcon from '@mui/icons-material/DataThresholding';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import InfoIcon from '@mui/icons-material/Info';
+import ContactTeamCard from "../../Pages/Contact Team/ContactTeamCard";
 
 const MainContact = () => {
     const [flag, setFlag] = useState(false);
@@ -71,7 +72,9 @@ const MainContact = () => {
                         </div>
                         <div  className="container-team d-flex justify-content-evenly align-items-center mb-4">
                             {team.map((member, index) => (
-                                <ContactTeam key={index} memberInfo={member} />
+                                // <ContactTeam key={index} memberInfo={member} />
+                                <ContactTeamCard key={index} memberInfo={member} />
+
                             ))}
                         </div>
 

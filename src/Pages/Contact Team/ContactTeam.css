@@ -52,5 +52,28 @@ filter: brightness(0.4);
     font-size: 20px;
 }
 
+.testButton{
+    background-color: #F25839;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 15px;
+    transition: 0.3s all;
+    border: 1px solid transparent;
+}
 
+.testButton:hover{
+    background-color: white;
+    color:#F25839;
+    border-color:#F25839;
+}
 
+.testCard:hover{
+    background-color: #F25839 !important;
+    color: white;
+}
+
+.testCard:hover > .testButton{
+    background-color: white !important;
+    color: #F25839;
+}

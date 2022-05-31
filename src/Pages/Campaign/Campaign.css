@@ -80,7 +80,7 @@
 
 .customer-list {
     overflow-y: scroll;
-    height: 400px;
+    height: 500px;
 }
 
 .cluster-customer-list {
@@ -257,3 +257,4 @@
     border-bottom: 1px solid gray;
     outline: none;
 }
+
