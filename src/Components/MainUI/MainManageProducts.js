@@ -76,7 +76,7 @@ const MainManageProducts = () => {
               setFlag={setFlag}
             />
           </div>
-          <div style={{height: "fit-content", zIndex: "2"}} className={`main-page fadeUp ${flag && "blur"}`}>
+          <div style={{minHeight: "100vh", zIndex: "2"}} className={`main-page fadeUp ${flag && "blur"}`}>
             {choice === 0 && <h1 style={ButtonStyles}>Product Management</h1>}
             { choice === 0 && <h3 className="w-100 text-center mt-4">What do you want to do ?</h3>}
             <Grid rowSpacing={1} container className="w-100" style={ButtonStyles2}>
@@ -85,8 +85,8 @@ const MainManageProducts = () => {
               { choice === 3 || choice === 0 && <Grid item><Button onClick={() => setChoice(3)} className={`account-button`} sx={ButtonSX}>Delete Product</Button></Grid>}
             </Grid>
             {choice === 0 && 
-            <div style={{height: "fit-content"}} className="w-100 d-flex justify-content-center">
-              <img style={{width: "60%", height: "100%" , zIndex: "-1"}} src={sample}/>
+            <div className="w-100 d-flex justify-content-center">
+              <img style={{width: "45%" , zIndex: "-1" , marginTop: "-20px"}} src={sample}/>
             </div>}
 
             {choice === 2 ?

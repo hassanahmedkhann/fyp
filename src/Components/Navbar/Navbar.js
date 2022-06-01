@@ -15,6 +15,7 @@ const Navbar = (props) => {
 
   return (
     <div className={`navbar mt-2 mx-2 fadeIn ${props.flag && "d-none"}`}>
+      
       <div
         className="navmenu-btn ml-2"
         onClick={() => {
@@ -22,17 +23,18 @@ const Navbar = (props) => {
         }}
       >
         <MenuOpenIcon fontSize="large" className="nav-menubtn" />
-
       </div>
-      <img
+
+      {/* <img
         className="smallIcon ms-4"
         style={{ width: "35px" }}
         alt="Icon"
         src={smallIcon}
-      />
+      /> */}
+
       <div className="navbar-search d-none d-md-flex">
         <SearchIcon style={{ color: "gray" }} fontSize="large" />
-        <input type="text" className="navbar-searchbox" />
+        <input placeholder="Search here.." type="text" className="navbar-searchbox" />
       </div>
 
       {/* <h5 className="d-none d-lg-block">

@@ -103,11 +103,7 @@ const Campaign = () => {
 
   }, [reloadPredictions])
 
-  useEffect(() => {
 
-    getDeletedClusters()
-
-  }, [reloadPredictions])
 
   const getNewPredictions = async () => {
 
@@ -141,8 +137,8 @@ const Campaign = () => {
 
 
   const handleDeleted = () => {
-    setReloadPredictions(!reloadPredictions)
     setDeletedFlag(true)
+    getDeletedClusters()
   }
 
 
@@ -151,7 +147,7 @@ const Campaign = () => {
       <Loader open={open} />
       <div className="campaign container-fluid">
         <h3 className="text-center my-4 ">CLUSTER ANALYSIS</h3>
-        <div className="d-flex ">
+        <div className="d-flex mb-3">
           <div className="ms-4"><Button onClick={() => setOpenModal(true)} className="account-button" style={ButtonSX}>Get New Predictions</Button></div>
           <div className="ms-4"><Button onClick={() => setDeletedFlag(false)} className={`account-button ${!deletedFlag && 'hold'}`} style={ButtonSX}>Existing Clusters</Button></div>
           <div className="ms-4"><Button onClick={handleDeleted} className={`account-button ${deletedFlag && 'hold'}`} style={ButtonSX}>Deleted Clusters</Button></div>
@@ -167,7 +163,7 @@ const Campaign = () => {
             }
           </div> :
           <div className="row row-cols-lg-3 row-cols-xl-4 row-cols-md-2 ">
-            {deletedClusters.length > 0 ? <>{deletedClusters?.map((clusterData, index) => (
+            {deletedClusters?.length > 0 ? <>{deletedClusters?.map((clusterData, index) => (
               <div key={index} className="col p-0 d-flex justify-content-center">
                 <ClusterCard clusterData={clusterData} index={index + 1} />
                 <Notification setAlert={setAlert} alert={alert} />
@@ -175,8 +171,8 @@ const Campaign = () => {
             ))
             }</> :
               // <h4 style={{marginTop: "150px" , color: "red"}} className="w-100 text-center d-flex align-items-center justify-content-center"><ErrorIcon sx={{fontSize: "35px"}} />   No data exists!</h4>
-              <img style={{width: "100%" , marginTop: "-200px"}} src={noData} />
-              }
+                <div className="d-flex justify-content-center w-100 mt-4"><img style={{ width: "50%" , borderRadius: "30px" , boxShadow: 'rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px'}} src={noData} /></div>
+            }
           </div>
         }
       </div>

@@ -39,7 +39,7 @@
   flex: 1;
 }
 .blur {
-  /* filter: blur(8px); */
+  /* filter: brightness(0.5); */
   opacity: 0.2;
   pointer-events: none;
 }

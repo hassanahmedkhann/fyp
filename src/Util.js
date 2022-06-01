@@ -28,12 +28,13 @@ export const buttonSX = {
 export const ButtonSX = {
   backgroundColor: "white",
   border: "1px solid #F04D41",
+  // border: "1px solid #F4752C",
   padding: "5px 35px",
   borderRadius: "10px",
   maxWidth: "300px",
   fontSize: "18px",
   transition: "0.3s",
-  color: "#F25839",
+  color: "#F04D41",
   minWidth: "280px",
 }
 
