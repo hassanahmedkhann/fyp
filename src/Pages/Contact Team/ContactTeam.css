@@ -74,6 +74,6 @@ filter: brightness(0.4);
 }
 
 .testCard:hover > .testButton{
-    background-color: white !important;
-    color: #F25839;
+    background-color:  white !important;
+    color: #FFA500;
 }

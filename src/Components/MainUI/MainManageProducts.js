@@ -14,7 +14,7 @@ import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import SplashScreen from "../SplashScreen/SplashScreen";
 import "./MainUI.css";
-import sample from "../../Images/manage.png"
+import sample from "../../Images/manage.jpg"
 const MainManageProducts = () => {
   const [flag, setFlag] = useState(false);
   const [option, setOption] = useState(6);
@@ -76,7 +76,7 @@ const MainManageProducts = () => {
               setFlag={setFlag}
             />
           </div>
-          <div style={{height: "100vh"}} className={`main-page fadeUp ${flag && "blur"}`}>
+          <div style={{height: "fit-content", zIndex: "2"}} className={`main-page fadeUp ${flag && "blur"}`}>
             {choice === 0 && <h1 style={ButtonStyles}>Product Management</h1>}
             { choice === 0 && <h3 className="w-100 text-center mt-4">What do you want to do ?</h3>}
             <Grid rowSpacing={1} container className="w-100" style={ButtonStyles2}>
@@ -84,8 +84,9 @@ const MainManageProducts = () => {
               { choice === 2 || choice === 0 && <Grid item><Button onClick={() => setChoice(2)} className={`account-button`} sx={ButtonSX}>Add new product</Button></Grid>}
               { choice === 3 || choice === 0 && <Grid item><Button onClick={() => setChoice(3)} className={`account-button`} sx={ButtonSX}>Delete Product</Button></Grid>}
             </Grid>
-            {choice === 0 && <div style={{height: "20em"}} className="w-100 d-flex justify-content-center">
-              <img style={{width: "20em"}} src={sample}/>
+            {choice === 0 && 
+            <div style={{height: "fit-content"}} className="w-100 d-flex justify-content-center">
+              <img style={{width: "60%", height: "100%" , zIndex: "-1"}} src={sample}/>
             </div>}
 
             {choice === 2 ?

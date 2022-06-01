@@ -22,13 +22,11 @@ const ContactTeamCard = ({ memberInfo }) => {
         borderRadius: "50%"
     }
 
-
-
     return (
         <div style={cardStyle} className='bg-white testCard'>
             <img className='mt-4' style={imageStyle} src={memberInfo.picture} />
             <p className='mt-3'>{memberInfo.name}</p>
-            <p>{memberInfo.designation}</p>
+            <p><strong>{memberInfo.designation}</strong></p>
             <button className='testButton mb-4'>Send Email</button>
         </div>
     )

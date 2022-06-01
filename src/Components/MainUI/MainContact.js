@@ -72,9 +72,10 @@ const MainContact = () => {
                         </div>
                         <div  className="container-team d-flex justify-content-evenly align-items-center mb-4">
                             {team.map((member, index) => (
-                                // <ContactTeam key={index} memberInfo={member} />
+                                <>
+                                {/* <ContactTeam key={index} memberInfo={member} /> */}
                                 <ContactTeamCard key={index} memberInfo={member} />
-
+                                </>
                             ))}
                         </div>
 

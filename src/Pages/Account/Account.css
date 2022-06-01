@@ -50,7 +50,13 @@ color: #FFFFE0 !important;
 cursor: pointer;
 background-color: #F25839 !important;
 border: 1px solid transparent !important;
+}
 
+.hold{
+    color: #FFFFE0 !important;
+cursor: pointer;
+background-color: #F25839 !important;
+border: 1px solid transparent !important;
 }
 
 .account-image{
