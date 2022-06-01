@@ -2,10 +2,10 @@
 export const buttonSX = {
   backgroundColor: "white",
   border: "1px solid #F04D41",
-  padding: "5px 35px",
+  padding: "5px 5px",
   borderRadius: "25px",
   maxWidth: "300px",
-  fontSize: "20px",
+  fontSize: "18px",
   transition: "0.3s",
   color: "#F25839"
 }
@@ -16,7 +16,7 @@ export const buttonSX = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  minWidth: "fit-content",
+  width: "fit-content",
   bgcolor: 'white',
   border: 'none',
   boxShadow: 24,

@@ -191,7 +191,7 @@ const ManageProducts = () => {
                     </div>
                     <div style={{ flexDirection: "column" }} className="manage-card-container">
                         <label style={{ fontSize: "22px" }} className="manage-products-labels w-100 text-center my-2">Selected Image</label>
-                        <Avatar sx={{ height: '300px', width: '300px' }} src={image.length > 0 ? image : null} />
+                        <Avatar className="product-avatar" sx={{ height: '300px', width: '300px' }} src={image.length > 0 ? image : null} />
                     </div>
 
 

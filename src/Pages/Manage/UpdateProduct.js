@@ -8,6 +8,7 @@ import Loader from '../../Utils/Loader';
 import { addNewProduct, deleteProduct, getProduct, updateProduct } from '../../Api-Interaction/api-Interaction';
 import { useNavigate } from 'react-router-dom';
 import { Box } from '@mui/system';
+import search from "../../Images/searchvector.jpg"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 const UpdateProduct = (props) => {
 
@@ -208,6 +209,9 @@ const UpdateProduct = (props) => {
         setOpenModal(true)
     }
 
+    const profit = formValues?.unitPrice - formValues?.unitCost
+    const oldProfit = productData?.unitPrice - productData?.unitCost
+
     return (
         <div className='manage-products fadeUp'>
             <Grid>
@@ -217,26 +221,31 @@ const UpdateProduct = (props) => {
                 {props.choice === 1 && <h2  className={`mb-2 ms-4 text-left mt-3 ${existFlag && 'margin'}`}>Edit/Update a product</h2>}
                 {props.choice === 3 && <h2  className={`mb-2 ms-4 text-left mt-3 ${existFlag && 'margin'}`}>Search the product</h2>}
 
-                {!existFlag && <div className='my-4'>
+                {!existFlag &&<> <div className='my-4'>
                     <input required onChange={(event) => setSearchedProduct(event.target.value)} style={{ width: "fit-content" }} className="manage-products-input ms-4" placeholder="Enter product ID" type="text" />
                     <Button onClick={handleSearch} sx={checkButton} className="mt-2 ms-2 account-button">Check for availability</Button>
                 </div>
+                <div className="d-flex justify-content-center">
+                    <img style={{width: "40%" , borderRadius:"38% 62% 19% 81% / 66% 65% 35% 34%" }} src={search} />
+                </div>
+                </>
                 }
             </Grid>
             <Modal
                 // backdrop="static"
                 // onHide={() => window.location.reload()}
+                className="modalStyle"
                 open={openModal}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box className="d-flex flex-column align-items-center" sx={modalStyle}>
+                <Box className="modalStyle d-flex flex-column align-items-center" sx={modalStyle}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         Are you sure you want to delete the following product ?
                     </Typography>
                     <div className="deleteProductModal">
-                        <Avatar sx={{ height: '70px', width: '70px' }} src={productData?.productImage} />
+                        <Avatar className="modalAvatar" sx={{ height: '70px', width: '70px' }} src={productData?.productImage} />
                         <p>{productData?.productName}</p>
                     </div>
                     <div className="d-flex justify-content-evenly mt-4">
@@ -268,7 +277,7 @@ const UpdateProduct = (props) => {
                     </div>
                     <div className="manage-card-container ">
                         <label className="manage-products-labels">Product Profit</label>
-                        <input disabled value={formValues?.unitPrice.length >= 0 || formValues?.unitCost.length >= 0 ? (formValues?.unitPrice - formValues.unitCost) : productData?.unitProfit} className="manage-products-input" placeholder="Type here.." onChange={handleChange('unitProfit')} type="text" />
+                        <input disabled value={profit || oldProfit} className="manage-products-input" placeholder="Type here.." onChange={handleChange('unitProfit')} type="text" />
                     </div>
                     <div className="manage-card-container ">
                         <label className="manage-products-labels">Product Cost</label>
@@ -299,7 +308,7 @@ const UpdateProduct = (props) => {
                     </div>
                     <div style={{ flexDirection: "column" }} className="manage-card-container">
                         <label style={{ fontSize: "22px" }} className="manage-products-labels w-100 text-center my-2">Current Image</label>
-                        <Avatar sx={{ height: '300px', width: '300px' }} src={image || productData?.productImage} />
+                        <Avatar className="product-avatar" sx={{ height: '300px', width: '300px' }} src={image || productData?.productImage} />
                     </div>
 
 

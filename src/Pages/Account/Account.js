@@ -184,9 +184,9 @@ const Account = () => {
         <div className="account-header mb-4 text-center pt-4 ps-4">
           <h2>Account Information</h2>
         </div>
-        <div className="ps-4 account-box container-fluid">
+        <div className="px-2 account-box container-fluid">
           <div style={{ display: "flex", justifyContent: "center" }} className="row">
-            <div className="col-12 col-lg-6">
+            <div className="p-0 col-12 col-lg-6">
               <form className="account-text justify-content-center">
                 <InputLabel sx={labelStyle} htmlFor="standard-adornment-password">Company Name</InputLabel>
                 <TextField
@@ -273,7 +273,7 @@ const Account = () => {
                     <input accept="image/*" className="my-3 account-file" type="file" onChange={(e) => handleUpload(e)} />
                     <Typography className="mt-3" variant="h5">Selected Image</Typography>
                     {/* <img src={sample} className="mt-4" style={{width: "300px", height: "300px", borderRadius: "20px"}}/> */}
-                    <Avatar sx={{ height: '300px', width: '300px' }} src={image.preview.length > 0 ? image.preview : null} />
+                    <Avatar className="account-avatar" sx={{ height: '300px', width: '300px' }} src={image.preview.length > 0 ? image.preview : null} />
                     <button style={buttonSX} onClick={handleImageSelection} className="account-button mt-2">Select this Image</button>
                   </Box>
                 </Modal>

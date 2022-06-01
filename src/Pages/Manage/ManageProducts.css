@@ -54,7 +54,15 @@
     .manage-products-container{
         margin-bottom: 20px !important;
     }
-    
+    .product-avatar{
+        width: 100% !important;
+    }
+    .modalStyle > * , .modalStyle > div > p {
+        font-size: 15px !important;
+    }
+    .modalStyle{
+        margin: 0px 3px;
+    }
 }
 
 

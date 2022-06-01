@@ -23,7 +23,7 @@ const ContactTeamCard = ({ memberInfo }) => {
     }
 
     return (
-        <div style={cardStyle} className='bg-white testCard'>
+        <div style={cardStyle} className='bg-white testCard mb-2'>
             <img className='mt-4' style={imageStyle} src={memberInfo.picture} />
             <p className='mt-3'>{memberInfo.name}</p>
             <p><strong>{memberInfo.designation}</strong></p>

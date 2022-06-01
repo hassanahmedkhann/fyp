@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Campaign.css"
+import Grid from '@mui/material/Grid';
 import ClusterCard from "./ClusterCard";
 import customer1 from "../../Images/customer1.jpg"
 import customer2 from "../../Images/customer2.jpg"
@@ -147,11 +148,11 @@ const Campaign = () => {
       <Loader open={open} />
       <div className="campaign container-fluid">
         <h3 className="text-center my-4 ">CLUSTER ANALYSIS</h3>
-        <div className="d-flex mb-3">
-          <div className="ms-4"><Button onClick={() => setOpenModal(true)} className="account-button" style={ButtonSX}>Get New Predictions</Button></div>
-          <div className="ms-4"><Button onClick={() => setDeletedFlag(false)} className={`account-button ${!deletedFlag && 'hold'}`} style={ButtonSX}>Existing Clusters</Button></div>
-          <div className="ms-4"><Button onClick={handleDeleted} className={`account-button ${deletedFlag && 'hold'}`} style={ButtonSX}>Deleted Clusters</Button></div>
-        </div>
+        <Grid rowGap={1} container className="mb-4">
+          <Grid item xs={12} sm={6} md={4} className="d-flex justify-content-center"><Button onClick={() => setOpenModal(true)} className="account-button" style={ButtonSX}>Get New Predictions</Button></Grid>
+          <Grid item xs={12} sm={6} md={4} className="d-flex justify-content-center"><Button onClick={() => setDeletedFlag(false)} className={`account-button ${!deletedFlag && 'hold'}`} style={ButtonSX}>Existing Clusters</Button></Grid>
+          <Grid item xs={12} sm={6} md={4} className="d-flex justify-content-center"><Button onClick={handleDeleted} className={`account-button ${deletedFlag && 'hold'}`} style={ButtonSX}>Deleted Clusters</Button></Grid>
+        </Grid>
         {!deletedFlag ?
           <div className="row row-cols-lg-3 row-cols-xl-4 row-cols-md-2 ">
             {clusterData?.map((clusterData, index) => (
@@ -165,13 +166,13 @@ const Campaign = () => {
           <div className="row row-cols-lg-3 row-cols-xl-4 row-cols-md-2 ">
             {deletedClusters?.length > 0 ? <>{deletedClusters?.map((clusterData, index) => (
               <div key={index} className="col p-0 d-flex justify-content-center">
-                <ClusterCard clusterData={clusterData} index={index + 1} />
+                <ClusterCard reloadFunction={getDeletedClusters} deleted clusterData={clusterData} index={index + 1} />
                 <Notification setAlert={setAlert} alert={alert} />
               </div>
             ))
             }</> :
               // <h4 style={{marginTop: "150px" , color: "red"}} className="w-100 text-center d-flex align-items-center justify-content-center"><ErrorIcon sx={{fontSize: "35px"}} />   No data exists!</h4>
-                <div className="d-flex justify-content-center w-100 mt-4"><img style={{ width: "50%" , borderRadius: "30px" , boxShadow: 'rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px'}} src={noData} /></div>
+                <div className="d-flex justify-content-center w-100 mt-4"><img style={{ width: "50%" , borderRadius: "30px" , boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px', borderRadius: "30% 70% 70% 30% / 30% 34% 66% 70% "}} src={noData} /></div>
             }
           </div>
         }

@@ -256,7 +256,7 @@ const ClusterPage = () => {
                                     <p>Discounted cost: <strong>{((originalAmount) - ((originalAmount / 100) * discount)).toFixed(2)}</strong> $</p>
                                 </div>
                             </>}
-                            <p>Hope you'd want to shop again and redeem you package!<br />Cheers!</p>
+                            <p>We hope you'd want to shop again and redeem you package!<br />Cheers!</p>
                         </div>
                     </div>
                 </div>

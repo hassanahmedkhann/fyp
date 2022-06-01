@@ -37,6 +37,12 @@
 .dashboard-ui-container {
   display: flex;
 }
+
+@media only screen and (max-width: 600px) {
+  .graphDash{
+    display: none;
+  }
+}
 /* .dashboard-ui-1{
     flex: 0.7;
     padding: 20px;

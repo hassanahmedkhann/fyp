@@ -77,7 +77,7 @@ const Dashboard = ({profitData}) => {
           ))}
         </div>
         <div className="row row-cols-1 row-cols-lg-2 my-3 mt-lg-4">
-          <div className="col-12 col-lg-8  mb-4 mb-lg-0">
+          <div className="graphDash col-12 col-lg-8  mb-4 mb-lg-0">
             <Graph />
           </div>
           <div className="col-12 col-lg-4 mt-lg-0 mb-3 mt-3 d-flex justify-content-center">
