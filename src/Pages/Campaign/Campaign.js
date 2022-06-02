@@ -15,7 +15,7 @@ import { Box } from "@mui/system";
 import InfoIcon from '@mui/icons-material/Info';
 import WarningIcon from '@mui/icons-material/Warning';
 import ErrorIcon from '@mui/icons-material/Error';
-import noData from "../../Images/noData.jpg"
+import noData from "../../Images/empty.jpg"
 const Campaign = () => {
 
   const [clusterData, setClusterData] = useState()
@@ -57,7 +57,6 @@ const Campaign = () => {
         // console.log(resultHandle?.message)
         setClusterData(resultHandle?.message)
         setOpen(false);
-
       }
       else {
         setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
@@ -86,7 +85,8 @@ const Campaign = () => {
         setOpen(false);
       }
       else {
-        setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
+        setAlert({ flag: true, 'status': 2, message: "No deleted clusters found!"});
+
         setOpen(false)
 
       }
@@ -146,6 +146,7 @@ const Campaign = () => {
   return (
     <div style={{ minHeight: "100vh" }}>
       <Loader open={open} />
+      <Notification setAlert={setAlert} alert={alert} />
       <div className="campaign container-fluid">
         <h3 className="text-center my-4 ">CLUSTER ANALYSIS</h3>
         <Grid rowGap={1} container className="mb-4">
@@ -158,7 +159,6 @@ const Campaign = () => {
             {clusterData?.map((clusterData, index) => (
               <div key={index} className="col p-0 d-flex justify-content-center">
                 <ClusterCard clusterData={clusterData} index={index + 1} />
-                <Notification setAlert={setAlert} alert={alert} />
               </div>
             ))
             }
@@ -167,12 +167,11 @@ const Campaign = () => {
             {deletedClusters?.length > 0 ? <>{deletedClusters?.map((clusterData, index) => (
               <div key={index} className="col p-0 d-flex justify-content-center">
                 <ClusterCard reloadFunction={getDeletedClusters} deleted clusterData={clusterData} index={index + 1} />
-                <Notification setAlert={setAlert} alert={alert} />
               </div>
             ))
             }</> :
               // <h4 style={{marginTop: "150px" , color: "red"}} className="w-100 text-center d-flex align-items-center justify-content-center"><ErrorIcon sx={{fontSize: "35px"}} />   No data exists!</h4>
-                <div className="d-flex justify-content-center w-100 mt-4"><img style={{ width: "50%" , borderRadius: "30px" , boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px', borderRadius: "30% 70% 70% 30% / 30% 34% 66% 70% "}} src={noData} /></div>
+                <div className="d-flex justify-content-center w-100 mt-4 searchProduct"><img style={{ width: "50%" , borderRadius: "30px" , boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px', borderRadius: "30% 70% 70% 30% / 30% 34% 66% 70% "}} src={noData} /></div>
             }
           </div>
         }

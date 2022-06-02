@@ -84,3 +84,13 @@ export const convertBase64 = (file) => {
       return fileReader.result;
     }
 }
+
+export const selectStyle = {
+  border: "1px solid #F4752C !important",
+  padding: "5px 10px !important",
+  color: "#F4752C",
+  marginBottom: "20px !important"
+}
+
+export const menuItemStyle = {
+}

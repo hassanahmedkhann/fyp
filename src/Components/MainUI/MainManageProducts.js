@@ -85,7 +85,7 @@ const MainManageProducts = () => {
               { choice === 3 || choice === 0 && <Grid item><Button onClick={() => setChoice(3)} className={`account-button`} sx={ButtonSX}>Delete Product</Button></Grid>}
             </Grid>
             {choice === 0 && 
-            <div className="w-100 d-flex justify-content-center mt-3">
+            <div className="w-100 d-flex justify-content-center mt-3 searchProduct">
               <img style={{width: "45%" , zIndex: "-1" , borderRadius: "38% 62% 19% 81% / 66% 65% 35% 34% " }} src={sample}/>
             </div>}
 

@@ -47,11 +47,14 @@
 
 .background-sidebar {
   /* background-color: #F6833C; */
-  background-color:rgb(244, 117, 44);
-  color: white;
+  /* background-color:rgb(244, 117, 44); */
+  /* color: white; */
+  border-left: 10px solid #F5793B !important;
+  border-radius: 0px !important;
 }
 .background-sidebar .sidebar-link{
   color: white;
+  color: #F5793B;
 }
 
 .sidebar-link{

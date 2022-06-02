@@ -10,7 +10,6 @@ import dash5 from "../../Images/dash12.jpg";
 import dash6 from "../../Images/dash13.jpg";
 
 import Productlist from "../Products/Productlist";
-import { getCustomerData, getProfit } from "../../Api-Interaction/api-Interaction";
 import Notification from "../../Utils/Notification";
 import Loader from "../../Utils/Loader";
 

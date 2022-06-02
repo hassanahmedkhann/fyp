@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Grid from '@mui/material/Grid';
 import "./ManageProducts.css"
-import { BackButton, ButtonSX, buttonSX } from '../../Util';
+import { BackButton, ButtonSX, buttonSX, selectStyle } from '../../Util';
 import { Avatar, Button, MenuItem, Select } from '@mui/material';
 import Notification from '../../Utils/Notification';
 import Loader from '../../Utils/Loader';
@@ -169,6 +169,7 @@ const ManageProducts = () => {
                     <div className="manage-card-container ">
                         <label className="manage-products-labels">Product Category</label>
                         <Select
+                            sx={selectStyle}
                             className='manage-products-input'
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"

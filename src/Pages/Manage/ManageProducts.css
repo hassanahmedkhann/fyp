@@ -63,6 +63,11 @@
     .modalStyle{
         margin: 0px 3px;
     }
+    .searchProduct > img{
+        width: 100% !important;
+        margin-top: 0 !important;
+        margin: 0px 5px !important;
+    }
 }
 
 

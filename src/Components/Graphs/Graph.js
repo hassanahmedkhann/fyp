@@ -16,6 +16,7 @@ import "./Graph.css";
 import { getDashboardGraph } from "../../Api-Interaction/api-Interaction";
 import Loader from "../../Utils/Loader";
 import Notification from "../../Utils/Notification";
+import { menuItemStyle, selectStyle } from "../../Util";
 const Graph = () => {
 
   const [graphData, setGraphData] = useState();
@@ -64,12 +65,13 @@ const Graph = () => {
       <div className="d-flex w-100 justify-content-between">
         <p style={{ fontSize: '1.2rem' }} className="pt-3 ps-4 my-2 text-start w-100 px-3">Analytics for {<Select
           labelId="demo-simple-select-label"
+          sx={selectStyle}
           id="demo-simple-select"
           value={selected}
           label="Age"
           onChange={handleChange}
         >{years.map((year, index) => (
-          <MenuItem key={index} value={year.value}>{year.text}</MenuItem>
+          <MenuItem sx={menuItemStyle} key={index} value={year.value}>{year.text}</MenuItem>
         ))
           }
         </Select>} </p>

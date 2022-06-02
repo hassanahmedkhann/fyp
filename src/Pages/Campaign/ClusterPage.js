@@ -239,10 +239,10 @@ const ClusterPage = () => {
                     <h3>Total Members: {clusterData?.totalCustomers}</h3>
                     <button className="edit-button" onClick={() => setOpenEmailModal(true)}>Edit Email <EditIcon /></button>
                     <button className="edit-button" onClick={() => setOpenPackageModal(true)}>View Package <VisibilityIcon /></button>
-                    <div className="email-container">
+                    <div className="email-container mt-3">
                         <div className="subject-container"><label>Subject:</label><p className="ms-3">{emailDraft.subject}</p></div>
                         <div className="body-container">
-                            <p>Howdy "Customer Name",</p>
+                            <p>Howdy Customer,</p>
                             {emailDraft.body}
                             <button onClick={()=>setShowPackage(!showPackage)} style={{width: "fit-content" , textDecoration: "underline", background: "transparent", border: "none"}} className="my-2 mx-0">Show/Hide Package</button>
                             {showPackage && <>
@@ -270,8 +270,8 @@ const ClusterPage = () => {
                 </div>
             </div>
             <div className="cluster-page-buttons">
-                <button onClick={handleEmailAPI} className="btn-2 my-3 mx-2">Start Email Campaign</button>
-                <button onClick={() => setOpenModal(true)} className="btn-1 my-3 mx-2">Eliminate Cluster</button>
+                <button onClick={handleEmailAPI} className="btn-2 mb-3 mx-2">Start Email Campaign</button>
+                <button onClick={() => setOpenModal(true)} className="btn-1 mb-3 mx-2">Eliminate Cluster</button>
             </div>
             <Modal
                 open={openModal}
@@ -319,7 +319,7 @@ const ClusterPage = () => {
                     <p style={{ fontSize: "14px", color: "#1976D2", border: "1px solid #1976D2", width: "fit-content" }} className="mt-1 pe-2"><InfoIcon sx={{ color: "#1976D2", margin: "10px 2px", fontSize: "28px" }} />This package is generated on the basis of buying patterns.</p>
 
                     <div className="package-container w-100">
-                        <h5 style={{padding:"10px", backgroundColor: "lightgrey" , width: "fit-content", borderRadius: "10px"}}>Product list </h5>
+                        <h5 style={{padding:"10px", backgroundColor: "#F5F5F5" , width: "fit-content", borderRadius: "10px"}}>Product list </h5>
                         <div className="d-flex justify-content-center">
                             <div className="package-ul">
                                 {packageData?.slice(0, packageData?.length - 1).map((product, index) => (

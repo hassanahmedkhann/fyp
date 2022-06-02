@@ -36,6 +36,17 @@
     justify-content: flex-start;
 }
 
+.avatar-svg{
+  margin: 0px 3px;
+  /* border-radius: 50%; */
+  border-radius: 70% 30% 46% 54% / 56% 50% 50% 44% ;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #F5F5F5;
+}
+
 .avatar-2 {
     margin-left: 60px;
 }

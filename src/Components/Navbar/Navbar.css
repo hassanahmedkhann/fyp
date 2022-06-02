@@ -6,7 +6,6 @@
   height: max-content;
   color: gray;
   transition: 0.3s;
-  overflow-y: hidden;
   background-color: white;
   /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
@@ -69,9 +68,38 @@
 }
 
 .navbar-searchbox {
-  outline: none;
-  border: none;
-  padding: 5px;
-  font-size: 16px;
-  background-color: whitesmoke;
+  outline: none !important;
+  border: none !important;
+  padding: 5px !important;
+  font-size: 16px !important;
+  background-color: whitesmoke !important;
+  height: 40px !important;
+}
+
+.MuiOutlinedInput-root ,.MuiInputBase-root, .MuiInputBase-colorPrimary .MuiInputBase-fullWidth, .MuiInputBase-formControl, .MuiInputBase-adornedEnd, .MuiAutocomplete-inputRoot, .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root {
+  height: 40px !important;
+  outline: none !important;
+  border: none !important;
+  margin-bottom: 3px !important;
+}
+
+.MuiOutlinedInput-notchedOutline, .css-1d3z3hw-MuiOutlinedInput-notchedOutline{
+  border: none !important;
+  outline: none !important;
+  margin-bottom: 3px !important;
+
+}
+
+.MuiOutlinedInput-input, .MuiInputBase-input, .MuiInputBase-inputAdornedEnd, .MuiAutocomplete-input, .MuiAutocomplete-inputFocused, .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input{
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+
+
+.MuiSelect-icon{
+
+}
+.MuiSelect-iconOutlined{
+  display: none !important;
 }

@@ -14,6 +14,7 @@ import BarGraph from "../../Components/Graphs/BarGraph";
 import Notification from "../../Utils/Notification";
 import Loader from "../../Utils/Loader";
 import { getOverallAverage, getOverallProductAnalytics, getOverallProductGrowth } from "../../Api-Interaction/api-Interaction";
+import { selectStyle } from "../../Util";
 const Analytics = () => {
 
   const [selectedOrder, setSelectedOrder] = useState(2022);
@@ -133,7 +134,8 @@ const Analytics = () => {
             </p>
           </div>
           <Select
-            style={{ maxWidth: "200px" }}
+            style={{ width: "fit-content" }}
+            sx={selectStyle}
             className="mb-3 ms-3"
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -170,7 +172,8 @@ const Analytics = () => {
             </p>
           </div>
           <Select
-            style={{ maxWidth: "200px" }}
+            style={{ width: "fit-content" }}
+            sx={selectStyle}
             className="mb-3 ms-3"
             labelId="demo-simple-select-label"
             id="demo-simple-select"

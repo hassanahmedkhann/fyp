@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Grid from '@mui/material/Grid';
 import "./ManageProducts.css"
-import { ButtonSX, buttonSX, modalStyle, BackButton, checkButton } from '../../Util';
+import { ButtonSX, buttonSX, modalStyle, BackButton, checkButton, selectStyle } from '../../Util';
 import { Avatar, Button, MenuItem, Modal, Select, Typography } from '@mui/material';
 import Notification from '../../Utils/Notification';
 import Loader from '../../Utils/Loader';
@@ -225,8 +225,8 @@ const UpdateProduct = (props) => {
                     <input required onChange={(event) => setSearchedProduct(event.target.value)} style={{ width: "fit-content" }} className="manage-products-input ms-4" placeholder="Enter product ID" type="text" />
                     <Button onClick={handleSearch} sx={checkButton} className="mt-2 ms-2 account-button">Check for availability</Button>
                 </div>
-                <div className="d-flex justify-content-center">
-                    <img style={{width: "40%" , borderRadius:"38% 62% 19% 81% / 66% 65% 35% 34%" }} src={search} />
+                <div className="d-flex justify-content-center searchProduct">
+                    <img style={{ width: "40%" , borderRadius:"38% 62% 19% 81% / 66% 65% 35% 34%" }} src={search} />
                 </div>
                 </>
                 }
@@ -286,6 +286,7 @@ const UpdateProduct = (props) => {
                     <div className="manage-card-container ">
                         <label className="manage-products-labels">Product Category</label>
                         <Select
+                            sx={selectStyle}
                             className='manage-products-input'
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
