@@ -10,6 +10,7 @@ import { LoginApi } from "../../Api-Interaction/api-Interaction";
 import Notification from "../../Utils/Notification";
 import Loader from "../../Utils/Loader";
 import LoginIcon from '@mui/icons-material/Login';
+import CustomToast from "../../Utils/CustomToast";
 
 const Login = () => {
 
@@ -87,7 +88,7 @@ const Login = () => {
         {/* <p className="w-100 login-label mt-4">Password:</p> */}
         <Notification open={open} alert={alert} setAlert={setAlert} />
         <Loader open={open} />
-
+        <CustomToast flag={alert.flag} status={alert.status} text={alert.message}/>
       </div>
 
     </div>

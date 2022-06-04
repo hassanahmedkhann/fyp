@@ -91,3 +91,54 @@
     opacity: 1;
   }
 }
+
+
+.toastContainer{
+  background-color: white;
+  height: 50px;
+  width: fit-content;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  margin-right: -1000px;
+  transition: 0.3s all;
+}
+
+.display{
+margin-right: 20px;
+}
+
+.success{
+  background-color: green;
+  width: 5px;
+  height: 100%;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.error{
+  background-color: red;
+  width: 5px;
+  height: 100%;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.toastText{
+font-size: 18px;
+}
+
+.successbg{
+  background-color: #EDF7ED;
+}
+
+.errorbg{
+  background-color: #FDEDED;
+}
+
+
+

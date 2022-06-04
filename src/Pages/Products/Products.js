@@ -12,6 +12,7 @@ import { searchFunction } from "../../Util";
 import ProductAnalysis from "./ProductAnalysis";
 import { LoopSharp } from "@mui/icons-material";
 import ProductBoxSkeleton from "./ProductBoxSkeleton";
+import CustomToast from "../../Utils/CustomToast";
 const Products = () => {
   const [scrollData, setScrollData] = useState(0);
   const [productItems, setProductItems] = useState([]);

@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { Box } from '@mui/system';
 import search from "../../Images/searchvector.jpg"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import CustomToast from '../../Utils/CustomToast';
 const UpdateProduct = (props) => {
 
     const categories = ['Footwear', 'Casual Clothing', 'Formal Clothing', 'Jwellery', 'Accessories', 'Sports']
@@ -320,6 +321,7 @@ const UpdateProduct = (props) => {
             </Grid>}
             <Notification alert={alert} setAlert={setAlert} />
             <Loader open={open} />
+            <CustomToast flag={alert.flag} status={alert.status} text={alert.message}/>
         </div>
     )
 }

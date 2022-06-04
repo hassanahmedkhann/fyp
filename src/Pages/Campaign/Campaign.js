@@ -86,7 +86,7 @@ const Campaign = () => {
       }
       else {
         setAlert({ flag: true, 'status': 2, message: "No deleted clusters found!"});
-
+        setDeletedClusters('')
         setOpen(false)
 
       }
