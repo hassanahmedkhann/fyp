@@ -16,9 +16,9 @@ const Infobox = (props) => {
       >
         <div className="infobox-header mt-2">
           <p style={{ color: `${props.color2}` }} className="h5">{props.heading.toUpperCase()}</p>
-          <div className="icon-div">
+          <div className={`icon-div ${props.color == 'yellowgreen' && 'p-3'}`}>
             {props.icon && (
-              <props.icon style={{ color: props.color, fontSize: '45px' }} />
+              <props.icon style={{ color: props.color, fontSize: ` ${props.color == 'yellowgreen' ? '35px' : '45px'}` }} />
             )}
           </div>
         </div>

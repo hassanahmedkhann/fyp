@@ -2,7 +2,7 @@
 export const buttonSX = {
   backgroundColor: "white",
   border: "1px solid #F04D41",
-  padding: "5px 5px",
+  padding: "5px 5px !important",
   borderRadius: "25px",
   maxWidth: "300px",
   fontSize: "18px",

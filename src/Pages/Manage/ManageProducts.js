@@ -198,7 +198,7 @@ const ManageProducts = () => {
 
                 </Grid>
                 <Grid className='text-center mt-3 w-100'>
-                    <button onClick={handleSubmit} className='account-button' style={buttonSX}>Save and add</button>
+                    <button onClick={handleSubmit} className='account-button px-3' style={buttonSX}>Save and add</button>
                 </Grid>
             </Grid>
             <Notification alert={alert} setAlert={setAlert} />

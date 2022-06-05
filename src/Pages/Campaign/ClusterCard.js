@@ -5,6 +5,7 @@ import { getRequest } from "../../Api-Interaction/api-Interaction";
 import { ButtonSX } from "../../Util";
 import Loader from "../../Utils/Loader";
 import Notification from "../../Utils/Notification";
+import CustomToast from "../../Utils/CustomToast"
 import "./Campaign.css"
 
 const ClusterCard = ({ clusterData, ...props }) => {
@@ -36,7 +37,6 @@ const ClusterCard = ({ clusterData, ...props }) => {
 
   const handleRetrieve = async () => {
 
-    console.log(clusterData)
 
     try {
 
@@ -49,7 +49,9 @@ const ClusterCard = ({ clusterData, ...props }) => {
       if (resultHandle?.success === true) {
         setAlert({ flag: true, 'status': 1, message: resultHandle?.message?.Success });
         setOpen(false);
-        props.reloadFunction()
+        setTimeout(() => {
+          props.reloadFunction()
+        }, 2000);
       }
       else {
         setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
@@ -65,6 +67,7 @@ const ClusterCard = ({ clusterData, ...props }) => {
 
   return <div className="cluster-card p-4 m-2 fadeUp">
     <Notification alert={alert} setAlert={setAlert} />
+    <CustomToast flag={alert.flag} status={alert.status} text={alert.message}/>
     <Loader open={open} />
     <div className="cluster-text">
       <h4>Cluster No. {clusterData?.clusterNumber}</h4>

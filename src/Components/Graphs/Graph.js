@@ -1,6 +1,7 @@
 import { MenuItem, Select } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import TimelineIcon from '@mui/icons-material/Timeline';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import {
   Area,
   AreaChart,
@@ -22,7 +23,7 @@ const Graph = () => {
   const [graphData, setGraphData] = useState();
   const [alert, setAlert] = useState({ flag: false, status: 1, message: '' });
   const [open, setOpen] = useState(false);
-  const years = [{ text: "This year", value: 2022 }, { text: "Last year", value: 2021 }, { text: "Year 2020", value: 2020 }, { text: "Year 2019", value: 2019 }];
+  const years = [{ text: 'This year', value: 2022 }, { text: "Last year", value: 2021 }, { text: "Year 2020", value: 2020 }, { text: "Year 2019", value: 2019 }];
   const [selected, setSelected] = useState(years[0].value);
 
 
@@ -58,23 +59,27 @@ const Graph = () => {
     setSelected(event.target.value)
   }
 
+
+
   return (
     <div className="graph d-flex justify-content-center flex-column align-items-center px-1">
       <Notification alert={alert} setAlert={setAlert} />
       <Loader open={open} />
       <div className="d-flex w-100 justify-content-between">
-        <p style={{ fontSize: '1.2rem' }} className="pt-3 ps-4 my-2 text-start w-100 px-3">Analytics for {<Select
-          labelId="demo-simple-select-label"
-          sx={selectStyle}
-          id="demo-simple-select"
-          value={selected}
-          label="Age"
-          onChange={handleChange}
-        >{years.map((year, index) => (
-          <MenuItem sx={menuItemStyle} key={index} value={year.value}>{year.text}</MenuItem>
-        ))
-          }
-        </Select>} </p>
+        <p style={{ fontSize: '1.2rem' }} className="pt-3 ps-4 my-2 text-start w-100 px-3">Analytics for : {
+          <><Select
+            labelId="demo-simple-select-label"
+            sx={selectStyle}
+            id="demo-simple-select"
+            value={selected}
+            onChange={handleChange}
+          >{years.map((year, index) => (
+            <MenuItem sx={menuItemStyle} key={index} value={year.value}>{year.text}</MenuItem>
+          ))
+            }
+          </Select>
+          </>
+        } </p>
         <span className="p-2 m-4" style={{ backgroundColor: "#F4752C", borderRadius: "40px" }}><TimelineIcon style={{ fontSize: "30px", color: 'white' }} /></span></div>
 
 

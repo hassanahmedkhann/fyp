@@ -16,6 +16,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import WarningIcon from '@mui/icons-material/Warning';
 import ErrorIcon from '@mui/icons-material/Error';
 import noData from "../../Images/empty.jpg"
+import CustomToast from "../../Utils/CustomToast";
 const Campaign = () => {
 
   const [clusterData, setClusterData] = useState()
@@ -142,16 +143,22 @@ const Campaign = () => {
     getDeletedClusters()
   }
 
+  const handleExisting = () => {
+    setDeletedFlag(false)
+    getClusters()
+  }
+
 
   return (
     <div style={{ minHeight: "100vh" }}>
       <Loader open={open} />
       <Notification setAlert={setAlert} alert={alert} />
+      <CustomToast flag={alert.flag} status={alert.status} text={alert.message}/>
       <div className="campaign container-fluid">
         <h3 className="text-center my-4 ">CLUSTER ANALYSIS</h3>
         <Grid rowGap={1} container className="mb-4">
           <Grid item xs={12} sm={6} md={4} className="d-flex justify-content-center"><Button onClick={() => setOpenModal(true)} className="account-button" style={ButtonSX}>Get New Predictions</Button></Grid>
-          <Grid item xs={12} sm={6} md={4} className="d-flex justify-content-center"><Button onClick={() => setDeletedFlag(false)} className={`account-button ${!deletedFlag && 'hold'}`} style={ButtonSX}>Existing Clusters</Button></Grid>
+          <Grid item xs={12} sm={6} md={4} className="d-flex justify-content-center"><Button onClick={handleExisting} className={`account-button ${!deletedFlag && 'hold'}`} style={ButtonSX}>Existing Clusters</Button></Grid>
           <Grid item xs={12} sm={6} md={4} className="d-flex justify-content-center"><Button onClick={handleDeleted} className={`account-button ${deletedFlag && 'hold'}`} style={ButtonSX}>Deleted Clusters</Button></Grid>
         </Grid>
         {!deletedFlag ?
@@ -166,7 +173,7 @@ const Campaign = () => {
           <div className="row row-cols-lg-3 row-cols-xl-4 row-cols-md-2 ">
             {deletedClusters?.length > 0 ? <>{deletedClusters?.map((clusterData, index) => (
               <div key={index} className="col p-0 d-flex justify-content-center">
-                <ClusterCard reloadFunction={getDeletedClusters} deleted clusterData={clusterData} index={index + 1} />
+                <ClusterCard reloadFunction={handleDeleted} deleted clusterData={clusterData} index={index + 1} />
               </div>
             ))
             }</> :

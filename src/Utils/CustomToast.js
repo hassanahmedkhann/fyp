@@ -17,7 +17,7 @@ const CustomToast = ({flag,text,status}) => {
             <div className={`${status == 1 ? 'success' : 'error'}`}></div>
             { status == 1 ? <div className='toastIcon px-2'><CheckCircleIcon sx={{fontSize: "30px" , color: "green"}}/></div> :
             <div className='toastIcon px-2'><ErrorIcon sx={{fontSize: "30px" , color: "red"}}/></div>}
-            <div className='toastText pe-3'>{text}</div>
+            <div className='toastText pe-3' style={{color: "black"}}>{text}</div>
         </div>
     )
 }
