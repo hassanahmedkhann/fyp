@@ -27,7 +27,7 @@ export const buttonSX = {
 //Button styles 2
 export const ButtonSX = {
   backgroundColor: "white",
-  border: "1px solid #F04D41",
+  border: "2px solid #F04D41 !important",
   // border: "1px solid #F4752C",
   padding: "5px 35px",
   borderRadius: "10px",
@@ -36,6 +36,7 @@ export const ButtonSX = {
   transition: "0.3s",
   color: "#F04D41",
   minWidth: "280px",
+  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px'
 }
 
 //Button styles 2
@@ -86,10 +87,12 @@ export const convertBase64 = (file) => {
 }
 
 export const selectStyle = {
-  border: "1px solid #F4752C !important",
+  // border: "1px solid #F4752C !important",
   padding: "5px 10px !important",
   color: "#F4752C",
-  marginBottom: "20px !important"
+  marginBottom: "20px !important",
+  backgroundColor: "whitesmoke",
+  boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px'
 }
 
 export const menuItemStyle = {

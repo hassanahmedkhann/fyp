@@ -50,7 +50,8 @@
   /* background-color:rgb(244, 117, 44); */
   /* color: white; */
   border-left: 10px solid #F5793B !important;
-  border-radius: 0px !important;
+  border-radius: 10px !important;
+background-color: whitesmoke;
 }
 .background-sidebar .sidebar-link{
   color: white;

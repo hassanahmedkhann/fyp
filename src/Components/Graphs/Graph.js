@@ -66,7 +66,7 @@ const Graph = () => {
       <Notification alert={alert} setAlert={setAlert} />
       <Loader open={open} />
       <div className="d-flex w-100 justify-content-between">
-        <p style={{ fontSize: '1.2rem' }} className="pt-3 ps-4 my-2 text-start w-100 px-3">Analytics for : {
+        <p style={{ fontSize: '1.2rem' }} className="pt-3 ps-4 my-2 text-start w-100 px-3">Analytics for - {
           <><Select
             labelId="demo-simple-select-label"
             sx={selectStyle}
