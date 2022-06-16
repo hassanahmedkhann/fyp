@@ -35,7 +35,7 @@
     text-align: left;
 }
 
-.login-box > img {
+.login-box > img, .forgot-box > img {
     width: 200px;
 }
 .login-link {
@@ -49,7 +49,7 @@
     color:   #2D2D2D;
     text-decoration: none;
     background-color: white;
-    border: 1px solid #F04D41;
+    border: 1px solid #F3623A;
     margin: 20px 0px;
     display: flex;
     align-items: center;
@@ -63,10 +63,11 @@ border: 1px solid transparent;
 cursor: pointer;
 /* background-image: linear-gradient(to right,#F04D41,#F5793B,#FAA640); */
 background-color: #F5793B;
+background-color: #F3623A;
 }
 
 .login-link p , .login-link span{
-    transition: 0.2s;
+    transition: 0.4s;
     margin: 0;
 }
 
@@ -134,4 +135,48 @@ background-color: #F5793B;
     font-size: 18px;
     width: 100%;
     background-color: whitesmoke;
+}
+
+
+.forgot-link{
+    text-decoration: none;
+    color: gray;
+    font-size: 15px;
+}
+
+.forgot-container{
+width: 100%;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.forgot-box{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 350px;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 20px;
+    align-items: center;
+}
+
+.forgot-box > input{
+    padding: 10px 15px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    text-align: left;
+    background-color: whitesmoke;
+}
+
+.forgot-box > button {
+    width: 100%;
+}
+
+.forgot-box > label {
+    cursor: pointer;
 }

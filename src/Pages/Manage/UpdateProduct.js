@@ -2,15 +2,16 @@ import React, { useState } from 'react'
 import Grid from '@mui/material/Grid';
 import "./ManageProducts.css"
 import { ButtonSX, buttonSX, modalStyle, BackButton, checkButton, selectStyle } from '../../Util';
-import { Avatar, Button, MenuItem, Modal, Select, Typography } from '@mui/material';
+import { Avatar, Button, Checkbox, MenuItem, Modal, Select, Typography } from '@mui/material';
 import Notification from '../../Utils/Notification';
 import Loader from '../../Utils/Loader';
-import { addNewProduct, deleteProduct, getProduct, updateProduct } from '../../Api-Interaction/api-Interaction';
+import { addNewProduct, deleteProduct, getProduct, getRequest, updateProduct } from '../../Api-Interaction/api-Interaction';
 import { useNavigate } from 'react-router-dom';
 import { Box } from '@mui/system';
 import search from "../../Images/searchvector.jpg"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import CustomToast from '../../Utils/CustomToast';
+import Searchlist from '../../Components/SearchList/Searchlist';
 const UpdateProduct = (props) => {
 
     const categories = ['Footwear', 'Casual Clothing', 'Formal Clothing', 'Jwellery', 'Accessories', 'Sports']
@@ -22,6 +23,7 @@ const UpdateProduct = (props) => {
     const [searchedProduct, setSearchedProduct] = useState(0)
     const [existFlag, setExistFlag] = useState(false)
     const [openModal, setOpenModal] = useState(false);
+    const [check, setCheck] = useState(false);
 
 
 
@@ -42,25 +44,29 @@ const UpdateProduct = (props) => {
         setFormValues({ ...formValues, [prop]: event.target.value });
     };
 
-    const handleSearch = async () => {
+    const [productsSearched, setProductsSearched] = useState()
 
-        if (searchedProduct === 0 || searchedProduct === '') return setAlert({ flag: true, 'status': 2, message: "Please enter a product ID" });
-        if (isNaN(searchedProduct)) return setAlert({ flag: true, 'status': 2, message: "Product ID needs to be a number" });
+    const handleSearch = async (key) => {
 
 
+        if (searchedProduct === 0 || searchedProduct === '') return setAlert({ flag: true, 'status': 2, message: "Can not have empty fields!" });
 
         try {
             setOpen(true)
-
-            let resultHandle = await getProduct(searchedProduct);
+            let resultHandle;
+            if (key == 1) resultHandle = await getProduct(searchedProduct);
+            if (key == 2) resultHandle = await getRequest(searchedProduct);
 
             if (resultHandle?.success === true) {
                 // console.log(resultHandle?.message)
                 setOpen(false);
-                setProductData(resultHandle?.message)
-                setAlert({ flag: true, 'status': 1, message: "Product Exists!" });
-                setExistFlag(true)
-                if (props.choice === 3) setOpenModal(true)
+                if (key == 1) {
+                    setProductData(resultHandle?.message)
+                    setAlert({ flag: true, 'status': 1, message: "Product Exists!" });
+                    setExistFlag(true)
+                    if (props.choice === 3) setOpenModal(true)
+                }
+                if (key == 2) setProductsSearched(resultHandle?.message)
             }
             else {
                 setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
@@ -101,11 +107,11 @@ const UpdateProduct = (props) => {
             unitProfit: (formValues?.unitPrice - formValues?.unitCost) || productData?.unitProfit,
             productCategory: formValues?.productCategory || productData?.productCategory,
             productImage: image.length > 0 ? image : productData?.productImage,
-            totalSales: 0,
-            productRating: 0,
-            totalProfit: 0,
-            totalEarning: 0,
-            totalCosting: 0
+            totalSales: productData?.totalSales,
+            productRating: productData?.productRating,
+            totalProfit: productData?.totalProfit,
+            totalEarning: productData?.totalEarning,
+            totalCosting: productData?.totalCosting
         }
 
         let validationFlag = false
@@ -216,19 +222,29 @@ const UpdateProduct = (props) => {
     return (
         <div className='manage-products fadeUp'>
             <Grid>
-               { !existFlag && <div className='w-100 ms-4 d-flex justify-content-start'>
+                {!existFlag && <div className='w-100 ms-4 d-flex justify-content-start'>
                     <Button style={{ marginTop: "50px" }} onClick={() => window.location.reload()} className="account-button" sx={BackButton}><ArrowBackIosIcon /> Back</Button>
                 </div>}
-                {props.choice === 1 && <h2  className={`mb-2 ms-4 text-left mt-3 ${existFlag && 'margin'}`}>Edit/Update a product</h2>}
-                {props.choice === 3 && <h2  className={`mb-2 ms-4 text-left mt-3 ${existFlag && 'margin'}`}>Search the product</h2>}
+                {props.choice === 1 && <h2 className={`mb-2 ms-4 text-left mt-3 ${existFlag && 'margin'}`}>Edit/Update a product</h2>}
+                {props.choice === 3 && <h2 className={`mb-2 ms-4 text-left mt-3 ${existFlag && 'margin'}`}>Search the product</h2>}
 
-                {!existFlag &&<> <div className='my-4'>
-                    <input required onChange={(event) => setSearchedProduct(event.target.value)} style={{ width: "fit-content" }} className="manage-products-input ms-4" placeholder="Enter product ID" type="text" />
-                    <Button onClick={handleSearch} sx={checkButton} className="mt-2 ms-2 account-button">Check for availability</Button>
-                </div>
-                <div className="d-flex justify-content-center searchProduct">
-                    <img style={{ width: "40%" , borderRadius:"38% 62% 19% 81% / 66% 65% 35% 34%" }} src={search} />
-                </div>
+                {!existFlag && <>
+                    <div className='my-4'>
+                        <div>
+                            <input required onChange={(event) => setSearchedProduct(event.target.value)} style={{ width: "fit-content" }} className="manage-products-input ms-4" placeholder="Search by product ID" type="text" />
+                            <Button onClick={() => handleSearch(1)} sx={checkButton} className="mt-2 ms-2 account-button">Check for availability</Button>
+                        </div>
+                        <div>
+                            <input required onChange={(event) => setSearchedProduct(event.target.value)} style={{ width: "fit-content" }} className="manage-products-input ms-4" placeholder="Search product Name" type="text" />
+                            <Button onClick={() => handleSearch(2)} sx={checkButton} className="mt-2 ms-2 account-button">Check for availability</Button>
+                        </div>
+                        {productsSearched && <div>
+                            <Searchlist />
+                        </div>}
+                    </div>
+                    <div className="d-flex justify-content-center searchProduct">
+                        <img style={{ width: "40%", borderRadius: "38% 62% 19% 81% / 66% 65% 35% 34%" }} src={search} />
+                    </div>
                 </>
                 }
             </Grid>
@@ -316,12 +332,12 @@ const UpdateProduct = (props) => {
 
                 </Grid>
                 <Grid className='text-center mt-3 w-100'>
-                    <button onClick={handleSubmit} className='account-button' style={buttonSX}>Save changes</button>
+                    <button onClick={handleSubmit} className='account-button p-2' style={buttonSX}>Save changes</button>
                 </Grid>
             </Grid>}
             <Notification alert={alert} setAlert={setAlert} />
             <Loader open={open} />
-            <CustomToast flag={alert.flag} status={alert.status} text={alert.message}/>
+            {/* <CustomToast flag={alert.flag} status={alert.status} text={alert.message}/> */}
         </div>
     )
 }

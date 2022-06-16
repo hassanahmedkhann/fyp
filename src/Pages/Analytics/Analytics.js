@@ -13,7 +13,7 @@ import { useState } from "react";
 import BarGraph from "../../Components/Graphs/BarGraph";
 import Notification from "../../Utils/Notification";
 import Loader from "../../Utils/Loader";
-import { getOverallAverage, getOverallProductAnalytics, getOverallProductGrowth } from "../../Api-Interaction/api-Interaction";
+import { getOverallAverage, getOverallProductAnalytics, getOverallProductGrowth, getRequest, postRequest } from "../../Api-Interaction/api-Interaction";
 import { selectStyle } from "../../Util";
 const Analytics = () => {
 
@@ -26,6 +26,7 @@ const Analytics = () => {
   const [barGraph, setBarGraph] = useState();
   const [smallGraph2, setSmallGraph2] = useState();
   const [smallGraphData, setSmallGraph] = useState();
+  const [clusterGraph, setClusterGraph] = useState();
   const types = ['Average Transactions', "Average Buy Rate", "Total Orders"]
 
 
@@ -33,6 +34,35 @@ const Analytics = () => {
 
   const handleChange = (event) => {
     setSelectedOrder(event.target.value);
+  }
+
+  const getClusterGraph = async () => {
+
+    const essentials = {
+      endPoint: '/overall2/clusters',
+    }
+
+    setOpen(true)
+
+    try {
+      setOpen(true)
+      let resultHandle = await getRequest(essentials);
+
+      if (resultHandle?.success === true) {
+        setClusterGraph(resultHandle?.message)
+        setOpen(false);
+      }
+      else {
+        setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
+        setOpen(false)
+      }
+
+    }
+    catch (err) {
+      setOpen(false)
+      setAlert({ flag: true, 'status': 2, message: "Server error!" });
+    }
+
   }
 
   const getSmallGraph = async (year) => {
@@ -111,6 +141,11 @@ const Analytics = () => {
 
   }, [selectedProduct]);
 
+  useEffect(() => {
+    getClusterGraph()
+  }, [])
+
+
   useEffect(async () => {
 
     getSmallGraph(selectedOrder)
@@ -128,10 +163,15 @@ const Analytics = () => {
 
         <div className="analytics-graph1 d-flex flex-column justify-content-space px-2 pt-4">
           <div className="d-flex justify-content-between w-100">
-            <h3 className="ms-3">Expanded View - Overall Growth</h3>
+            <h3 className="ms-3">Expanded View - Cluster Analysis</h3>
             <p className="icon-div" style={{ backgroundColor: "#F4752C" }}>
               <AutoGraphIcon style={{ fontSize: "30px", color: "white" }} />
             </p>
+          </div>
+          <LineGraph graphData={clusterGraph} />
+          <div style={{borderTop: "1px solid lightgray"}} className="d-flex justify-content-between pt-2 mt-2 w-100">
+            <h3 className="ms-3">Expanded View - Overall Growth</h3>
+         
           </div>
           <Select
             style={{ width: "fit-content" }}
@@ -148,7 +188,6 @@ const Analytics = () => {
             <MenuItem value="2020">Year 2020</MenuItem>
             <MenuItem value="2019">Year 2019</MenuItem>
           </Select>
-          <LineGraph />
         </div>
         <div className="analytics-items-container container-fluid">
           <div style={{ borderRadius: "20px" }} className="row pt-3 row-cols-1 row-cols-md-2 row-cols-lg-3">

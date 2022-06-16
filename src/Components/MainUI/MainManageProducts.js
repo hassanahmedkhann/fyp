@@ -33,6 +33,19 @@ const MainManageProducts = () => {
     justifyContent: "space-around"
   }
 
+  const ButtonStyles3 = {
+    backgroundColor: "white",
+    border: "1px solid transparent",
+    borderRadius: "10px",
+    maxWidth: "300px",
+    fontSize: "18px",
+    transition: "0.3s",
+    color: "#F04D41",
+    minWidth: "280px",
+    boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
+    margin: 0
+  }
+
 
 
   useEffect(() => {
@@ -76,23 +89,23 @@ const MainManageProducts = () => {
               setFlag={setFlag}
             />
           </div>
-          <div style={{minHeight: "100vh", zIndex: "2"}} className={`main-page fadeUp ${flag && "blur"}`}>
+          <div style={{ minHeight: "100vh", zIndex: "2" }} className={`main-page fadeUp ${flag && "blur"}`}>
             {choice === 0 && <h1 style={ButtonStyles}>Product Management</h1>}
-            { choice === 0 && <h3 className="w-100 text-center mt-4">What do you want to do ?</h3>}
-            <Grid rowSpacing={1} container className="w-100" style={ButtonStyles2}>
-              { choice === 1 || choice === 0 && <Grid item><Button onClick={() => setChoice(1)} className={`account-button`} sx={ButtonSX}>Update/Edit product</Button></Grid>}
-              { choice === 2 || choice === 0 && <Grid item><Button onClick={() => setChoice(2)} className={`account-button`} sx={ButtonSX}>Add new product</Button></Grid>}
-              { choice === 3 || choice === 0 && <Grid item><Button onClick={() => setChoice(3)} className={`account-button`} sx={ButtonSX}>Delete Product</Button></Grid>}
+            {choice === 0 && <h3 className="w-100 text-center mt-4">What do you want to do ?</h3>}
+            <Grid rowSpacing={1} rowGap={1} container className="my-4">
+              {choice === 1 || choice === 0 && <Grid item xs={12} sm={6} md={4} className="d-flex justify-content-center"><Button onClick={() => setChoice(1)} className={`account-button`} style={ButtonStyles3}>Update/Edit product</Button></Grid>}
+              {choice === 2 || choice === 0 && <Grid item xs={12} sm={6} md={4} className="d-flex justify-content-center"><Button onClick={() => setChoice(2)} className={`account-button`} style={ButtonSX}>Add new product</Button></Grid>}
+              {choice === 3 || choice === 0 && <Grid item xs={12} sm={6} md={4} className="d-flex justify-content-center"><Button onClick={() => setChoice(3)} className={`account-button`} style={ButtonSX}>Delete Product</Button></Grid>}
             </Grid>
-            {choice === 0 && 
-            <div className="w-100 d-flex justify-content-center mt-3 searchProduct">
-              <img style={{width: "45%" , zIndex: "-1" , borderRadius: "38% 62% 19% 81% / 66% 65% 35% 34% " }} src={sample}/>
-            </div>}
+            {choice === 0 &&
+              <div className="w-100 d-flex justify-content-center mt-3 searchProduct">
+                <img style={{ width: "45%", zIndex: "-1", borderRadius: "38% 62% 19% 81% / 66% 65% 35% 34% " }} src={sample} />
+              </div>}
 
             {choice === 2 ?
               <ManageProducts />
               : choice === 1 || choice === 3 ?
-              <UpdateProduct choice={choice} /> : null
+                <UpdateProduct choice={choice} /> : null
             }
 
 

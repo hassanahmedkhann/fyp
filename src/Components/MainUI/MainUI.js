@@ -14,7 +14,7 @@ const MainUI = () => {
 
   const user = JSON.parse(localStorage.getItem('user'))
 
-  const [splashFlag, setSplashFlag] = useState(true);
+  const [splashFlag, setSplashFlag] = useState(false);
 
   const [open, setOpen] = useState(false);
 
@@ -29,14 +29,20 @@ const MainUI = () => {
 
 
 
-  setTimeout(() => {
-
-    setSplashFlag(false);
-  }, 1500);
+  
 
   useEffect(async () => {
 
-    if (user?.email?.length > 0) setSplashFlag(false)
+    let count = JSON.parse(localStorage.getItem('count'))
+
+    if ( count < 1 ) setSplashFlag(true)
+
+    localStorage.setItem('count', 1)
+
+    setTimeout(() => {
+      setSplashFlag(false);
+    }, 1500);
+
 
     try {
       setOpen(true)
@@ -57,7 +63,9 @@ const MainUI = () => {
     }
     catch (err) {
       setOpen(false)
-      console.log("Error! ", err)
+      // console.log("Error! ", err)
+      setAlert({ flag: true, 'status': 2, message: "Server error!" });
+
     }
 
   }, []);

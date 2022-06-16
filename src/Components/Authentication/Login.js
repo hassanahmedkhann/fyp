@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./authstyles.css";
 import back from "../../Images/extras3.png"
 import logo from "../../Images/sampleIcon8.PNG";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -46,6 +46,7 @@ const Login = () => {
       if (resultHandle?.success === true) {
         localStorage.setItem('token', JSON.stringify(resultHandle?.message.Access_Token))
         localStorage.setItem('user', JSON.stringify(resultHandle?.message.User_Data))
+        localStorage.setItem('count', JSON.stringify(0))
         setOpen(false);
         navigate('/dashboard')
       }
@@ -57,7 +58,7 @@ const Login = () => {
     }
     catch (err) {
       setOpen(false)
-      console.log("Error! ", err)
+      setAlert({ flag: true, 'status': 2, message: "Server error!" });
     }
   }
 
@@ -85,10 +86,11 @@ const Login = () => {
           <div className="login-input"><LockIcon /><input required onChange={handleChange('password')} placeholder="Password" type={`${showPass ? 'text' : 'password'}`} />{showPass ? <Visibility onClick={() => setShowPass(!showPass)} /> : <VisibilityOff onClick={() => setShowPass(!showPass)} />}</div>
           <button type="submit" className="login-link"><p>Sign In </p><span><LoginIcon /></span></button>
         </form>
+        <Link className="forgot-link" to="/forgot-1">Forgot password ?</Link>
         {/* <p className="w-100 login-label mt-4">Password:</p> */}
-        <Notification open={open} alert={alert} setAlert={setAlert} />
+        <Notification  alert={alert} setAlert={setAlert} />
         <Loader open={open} />
-        <CustomToast flag={alert.flag} status={alert.status} text={alert.message}/>
+        {/* <CustomToast alert={alert} setAlert={setAlert} /> */}
       </div>
 
     </div>

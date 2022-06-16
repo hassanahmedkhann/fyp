@@ -86,10 +86,12 @@ const ClusterPage = () => {
                     clusterNumber: resultHandle?.message?.clusterNumber,
                     totalCustomers: resultHandle?.message?.totalCustomers,
                     customerNames: [...resultHandle?.message?.clusterData],
-                    package: resultHandle?.message.package.split(',')
+                    package: resultHandle?.message.package.split(','),
+                    quantity: resultHandle?.message.quantity.split(','),
                 })
                 const packageArray = resultHandle?.message.package.split(',')
-                handlePackage(packageArray)
+                const quantityArray = resultHandle?.message.quantity.split(',')
+                handlePackage(packageArray, quantityArray)
                 setOpen(false);
             }
             else {
@@ -106,7 +108,7 @@ const ClusterPage = () => {
 
     }, [])
 
-    const handlePackage = async (array) => {
+    const handlePackage = async (array, quantity) => {
 
         const intArray = []
         array.forEach((item) => {
@@ -123,8 +125,22 @@ const ClusterPage = () => {
             setOpen(true)
             let resultHandle = await postRequest(essentials);
             if (resultHandle?.success === true) {
-                setPackageData(resultHandle.message)
-                setOriginalAmount(resultHandle.message[resultHandle?.message?.length - 1]?.originalAmount)
+                let products = resultHandle?.message
+                let index = 0
+                const complete = []
+                products.forEach((product)=> {
+                    complete.push({
+                        "productInfo":product,
+                        "quantity": quantity[index],
+                    }) 
+                    index += 1;
+                })
+                let originalAmount = 0
+                complete.forEach(item =>{
+                    originalAmount = originalAmount + (item.productInfo.unitPrice * item.quantity)
+                })
+                setPackageData(complete)
+                setOriginalAmount(originalAmount)
                 setOpen(false);
             }
             else {
@@ -178,8 +194,8 @@ const ClusterPage = () => {
 
     const handleEmailAPI = async () => {
         let packageInfo = ''
-        packageInfo = packageInfo + packageData.slice(0,packageData.length - 1).map((item)=> item.productName)
-
+        packageInfo = packageInfo + packageData.map((item)=> " " + item?.productInfo.productName + " x " + item.quantity)
+        
         let emailBody = {
             subject: emailDraft.subject,
             body: emailDraft.body,
@@ -187,8 +203,6 @@ const ClusterPage = () => {
             originalPrice: originalAmount,
             discountedPrice: ((originalAmount) - ((originalAmount / 100) * discount)).toFixed(2)
         }
-
-
 
         try {
 
@@ -248,8 +262,8 @@ const ClusterPage = () => {
                             {showPackage && <>
                                 <p className="mt-2 mb-0">The package includes..</p>
                                 <div className="my-2 fadeIn">
-                                    {packageData.slice(0, packageData.length - 1).map((item,index) => (
-                                        <p key={index} className="m-0">{item.productName}</p>
+                                    {packageData.map((item,index) => (
+                                        <p key={index} className="m-0">{item?.productInfo.productName} x {item.quantity}</p>
                                     ))
                                     }
                                     <p className="m-0">Original cost: {originalAmount} $</p>
@@ -322,8 +336,8 @@ const ClusterPage = () => {
                         <h5 style={{padding:"10px", backgroundColor: "#F5F5F5" , width: "fit-content", borderRadius: "10px"}}>Product list </h5>
                         <div className="d-flex justify-content-center">
                             <div className="package-ul">
-                                {packageData?.slice(0, packageData?.length - 1).map((product, index) => (
-                                    <p key={index}><img src={product.productImage} className="package-img" />{product.productName}</p>
+                                {packageData?.map((product, index) => (
+                                    <p key={index}><img src={product?.productInfo.productImage} className="package-img" />{product.productInfo.productName} x {product.quantity}</p>
                                 ))
                                 }
                             </div>

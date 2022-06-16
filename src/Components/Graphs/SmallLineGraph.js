@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { buttonSX } from "../../Util";
 
 
 const SmallLineGraph = ({ text, type, graphData, graph, index, ...props }) => {
@@ -10,16 +12,15 @@ const SmallLineGraph = ({ text, type, graphData, graph, index, ...props }) => {
         {graph ? <p className="label">Month: {label}</p> :
           <p className="label">Product ID: {label}</p>}
 
-        {graph ? <p>{keyZ} {payload ? Math.round(payload[0]?.value) : null}</p> :
-          <p>{type === 'ROI' ? 'Profit' : type === 'Growth' ? 'Sales' : 'Cost'} {payload ? payload[0]?.value : null}</p>}
-
+        {graph ? <p>{keyZ} {payload ? Math.round(payload[0]?.value) + ' $' : null}</p> :
+          <p>{type === 'ROI' ? 'Profit' : type === 'Growth' ? 'Sales' : 'Cost'} {payload ? payload[0]?.value + ' $' : null}</p>}
       </div>
     )
   }
 
   const keyX = type === 'ROI' ? 'unitProfit' : type === 'Growth' ? 'totalSales' : 'unitCost'
   const keyY = graph == 1 ? 'averageEarning' : graph == 2 ? 'averageSales' : 'totalOrders'
-  const keyZ = graph === 1 ? 'Average Buy Rate' : graph === 2 ? 'Average Transactions' : 'Monthly Orders'
+  const keyZ = graph === 1 ? 'Average Profit Rate' : graph === 2 ? 'Average Transactions' : 'Monthly Orders'
   const keyA = graph === 1 ? 'Avg. Earnings' : graph === 2 ? 'Avg. Sales' : 'Orders'
   const keyB = type === 'ROI' ? 'Profits' : type === 'Growth' ? 'Sales' : 'Costing'
 

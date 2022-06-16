@@ -274,12 +274,12 @@ const Account = () => {
                     <Typography className="mt-3" variant="h5">Selected Image</Typography>
                     {/* <img src={sample} className="mt-4" style={{width: "300px", height: "300px", borderRadius: "20px"}}/> */}
                     <Avatar className="account-avatar" sx={{ height: '300px', width: '300px' }} src={image.preview.length > 0 ? image.preview : null} />
-                    <button style={buttonSX} onClick={handleImageSelection} className="account-button mt-2">Select this Image</button>
+                    <button style={buttonSX} onClick={handleImageSelection} className="account-button mt-2 p-2">Select this Image</button>
                   </Box>
                 </Modal>
               </div>
             </div>
-            <button disabled={timerFlag} style={buttonSX} onClick={handleForm} className="account-button">Save Changes</button>
+            <button disabled={timerFlag} style={buttonSX} onClick={handleForm} className="account-button p-2">Save Changes</button>
           </div>
 
 

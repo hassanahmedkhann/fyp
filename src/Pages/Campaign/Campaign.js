@@ -153,7 +153,7 @@ const Campaign = () => {
     <div style={{ minHeight: "100vh" }}>
       <Loader open={open} />
       <Notification setAlert={setAlert} alert={alert} />
-      <CustomToast flag={alert.flag} status={alert.status} text={alert.message}/>
+      {/* <CustomToast flag={alert.flag} status={alert.status} text={alert.message}/> */}
       <div className="campaign container-fluid">
         <h3 className="text-center my-4 ">CLUSTER ANALYSIS</h3>
         <Grid rowGap={1} container className="mb-4">

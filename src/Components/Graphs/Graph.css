@@ -39,7 +39,12 @@
 
 
 .tooltipContainer{
-  background-color: whitesmoke;
+  background-color: white;
   padding: 10px;
   border-radius: 20px;
+  border: 1px solid lightgray;
+}
+
+.tooltipContainer > p{
+  color: #F5793B;;
 }

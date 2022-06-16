@@ -10,6 +10,9 @@ import MainAccount from "../Components/MainUI/MainAccount"
 import MainClusterPage from "../Components/MainUI/MainClusterPage";
 import MainManageProducts from "../Components/MainUI/MainManageProducts";
 import MainContact from "../Components/MainUI/MainContact";
+import ReceiveOTP from "../Components/Authentication/ReceiveOTP";
+import SendOTP from "../Components/Authentication/SendOTP";
+import CreateNewPassword from "../Components/Authentication/CreateNewPassword";
 const Routing = () => {
   return (
     <Router>
@@ -24,6 +27,9 @@ const Routing = () => {
         <Route exact path="/cluster-page" element={<MainClusterPage/>}/>
         <Route exact path="/manage-products" element={<MainManageProducts/>}/>
         <Route exact path="/contact-team" element={<MainContact/>}/>
+        <Route exact path="/forgot-1" element={<ReceiveOTP/>}/>
+        <Route exact path="/forgot-2" element={<SendOTP/>}/>
+        <Route exact path="/forgot-3" element={<CreateNewPassword/>}/>
 
     </Routes>
 </Router>

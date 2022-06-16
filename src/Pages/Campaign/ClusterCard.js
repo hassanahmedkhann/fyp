@@ -67,7 +67,7 @@ const ClusterCard = ({ clusterData, ...props }) => {
 
   return <div className="cluster-card p-4 m-2 fadeUp">
     <Notification alert={alert} setAlert={setAlert} />
-    <CustomToast flag={alert.flag} status={alert.status} text={alert.message}/>
+    {/* <CustomToast flag={alert.flag} status={alert.status} text={alert.message}/> */}
     <Loader open={open} />
     <div className="cluster-text">
       <h4>Cluster No. {clusterData?.clusterNumber}</h4>

@@ -1,7 +1,7 @@
 async function ErrorHandling(result) {
 
     try {
-        if (result.status == 200) {
+        if (result.status === 200) {
             result = await result.json()
             if (!result) {
                 throw new Error("No stats record found ")
@@ -20,7 +20,11 @@ async function ErrorHandling(result) {
         }
 
     } catch (error) {
-        console.log(error)
+        // console.log(error)
+        return {
+            success: false,
+            data: "Server error! Please contact support."
+        }
     }
 
 }

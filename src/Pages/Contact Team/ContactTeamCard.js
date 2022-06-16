@@ -27,7 +27,7 @@ const ContactTeamCard = ({ memberInfo }) => {
             <img className='mt-4' style={imageStyle} src={memberInfo.picture} />
             <p className='mt-3'>{memberInfo.name}</p>
             <p><strong>{memberInfo.designation}</strong></p>
-            <button className='testButton mb-4'>Send Email</button>
+            <a href={`mailto: ${memberInfo.email}`} className='testButton mb-4'>Send Email</a>
         </div>
     )
 }

@@ -35,7 +35,9 @@ const Productlist = () => {
     }
     catch (err) {
       setOpen(false)
-      console.log("Error! ", err)
+      // console.log("Error! ", err)
+      setAlert({ flag: true, 'status': 2, message: "Server error!" });
+
     }
 
   }, []);

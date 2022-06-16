@@ -1,0 +1,28 @@
+.searchlist-box {
+    background-color: white;
+    width: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 5px 0px;
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.3s all;
+    cursor: pointer;
+}
+
+.searchlist-box:hover {
+    background-color: #F3623A;
+    color: white;
+    width: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 5px 0px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.searchlist-container{
+    margin-left: 25px;
+}
