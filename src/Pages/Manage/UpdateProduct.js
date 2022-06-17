@@ -46,16 +46,29 @@ const UpdateProduct = (props) => {
 
     const [productsSearched, setProductsSearched] = useState()
 
+    const handleClick = (data) => {
+        setProductData(data)
+        setAlert({ flag: true, 'status': 1, message: "Product Selected!" });
+        setExistFlag(true)
+        if (props.choice === 3) setOpenModal(true)
+    }
+
     const handleSearch = async (key) => {
 
+        console.log({ searchedProduct })
 
         if (searchedProduct === 0 || searchedProduct === '') return setAlert({ flag: true, 'status': 2, message: "Can not have empty fields!" });
 
         try {
+
+            const essentials = {
+                endPoint: `/product/list/name/${searchedProduct}`
+            }
+
             setOpen(true)
             let resultHandle;
             if (key == 1) resultHandle = await getProduct(searchedProduct);
-            if (key == 2) resultHandle = await getRequest(searchedProduct);
+            if (key == 2) resultHandle = await getRequest(essentials);
 
             if (resultHandle?.success === true) {
                 // console.log(resultHandle?.message)
@@ -66,7 +79,10 @@ const UpdateProduct = (props) => {
                     setExistFlag(true)
                     if (props.choice === 3) setOpenModal(true)
                 }
-                if (key == 2) setProductsSearched(resultHandle?.message)
+                if (key == 2) {
+                    console.log(resultHandle?.message)
+                    setProductsSearched(resultHandle?.message)
+                }
             }
             else {
                 setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
@@ -239,12 +255,12 @@ const UpdateProduct = (props) => {
                             <Button onClick={() => handleSearch(2)} sx={checkButton} className="mt-2 ms-2 account-button">Check for availability</Button>
                         </div>
                         {productsSearched && <div>
-                            <Searchlist />
+                            <Searchlist handleClick={handleClick} list={productsSearched} />
                         </div>}
                     </div>
-                    <div className="d-flex justify-content-center searchProduct">
+                    {!productsSearched && <div className="d-flex justify-content-center searchProduct">
                         <img style={{ width: "40%", borderRadius: "38% 62% 19% 81% / 66% 65% 35% 34%" }} src={search} />
-                    </div>
+                    </div>}
                 </>
                 }
             </Grid>

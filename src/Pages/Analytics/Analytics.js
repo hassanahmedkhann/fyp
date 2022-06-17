@@ -4,6 +4,7 @@ import smallGraph2 from "../../Images/smallGraph2.PNG";
 import smallGraph3 from "../../Images/smallGraph3.PNG";
 import LineGraph from "../../Components/Graphs/LineGraph"
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
+import WarningIcon from '@mui/icons-material/Warning';
 import "./Analytics.css";
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import { Line } from "recharts";
@@ -162,16 +163,22 @@ const Analytics = () => {
       <div className="analytics">
 
         <div className="analytics-graph1 d-flex flex-column justify-content-space px-2 pt-4">
-          <div className="d-flex justify-content-between w-100">
-            <h3 className="ms-3">Expanded View - Cluster Analysis</h3>
-            <p className="icon-div" style={{ backgroundColor: "#F4752C" }}>
-              <AutoGraphIcon style={{ fontSize: "30px", color: "white" }} />
-            </p>
-          </div>
-          <LineGraph graphData={clusterGraph} />
-          <div style={{borderTop: "1px solid lightgray"}} className="d-flex justify-content-between pt-2 mt-2 w-100">
+          {clusterGraph?.length ? <>
+            <div className="d-flex justify-content-between w-100">
+
+              <h3 className="ms-3">Expanded View - Cluster Analysis</h3>
+              <p className="icon-div" style={{ backgroundColor: "#F4752C" }}>
+                <AutoGraphIcon style={{ fontSize: "30px", color: "white" }} />
+              </p>
+            </div>
+
+            <strong style={{ color: "#F3623A" }} className="my-2 ms-4">Showing data from last predicted clusters!</strong>
+            <LineGraph graphData={clusterGraph} />
+          </> :
+            <h5 className="d-flex align-items-center" style={{color: "red" , fontSize: "20px"}}><WarningIcon sx={{ color: "red", fontSize: "30px" }} /> The cluster graph can not be generated as there aren't any clusters existing!</h5>
+          }
+          <div style={{ borderTop: "1px solid lightgray" }} className="d-flex justify-content-between pt-2 mt-2 w-100">
             <h3 className="ms-3">Expanded View - Overall Growth</h3>
-         
           </div>
           <Select
             style={{ width: "fit-content" }}
@@ -190,7 +197,7 @@ const Analytics = () => {
           </Select>
         </div>
         <div className="analytics-items-container container-fluid">
-          <div style={{ borderRadius: "20px" }} className="row pt-3 row-cols-1 row-cols-md-2 row-cols-lg-3">
+          <div style={{ borderRadius: "20px" }} className="analytics-parent row row-cols-1 row-cols-md-2 row-cols-lg-3">
             {smallGraphData?.map((data, index) => (
               <div key={index} className="analytics-small-items  col px-3 py-4">
                 <SmallLineGraph graph={index + 1} graphData={data} />
@@ -228,8 +235,8 @@ const Analytics = () => {
           </Select>
           <BarGraph graphData={barGraph} />
         </div>
-        <div className="analytics-items-container container-fluid">
-          <div style={{ borderRadius: "20px" }} className="row pt-3 row-cols-1 row-cols-md-2 row-cols-lg-3">
+        <div className="analytics-items-container container-fluid mt-0">
+          <div style={{ borderRadius: "20px" }} className="parent row pt-0 row-cols-1 row-cols-md-2 row-cols-lg-3">
             {smallGraph2?.map((data, index) => (
               <div key={index} className="analytics-small-items px-3 py-4">
                 <SmallLineGraph type={data[data.length - 1].type} graphData={data} src={data.src} />

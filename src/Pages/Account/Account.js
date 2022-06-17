@@ -110,6 +110,7 @@ const Account = () => {
 
   const handleForm = () => {
 
+
     //Empty Fields
     Object.keys(values).forEach((key) => {
       if (values[key] === null || values[key] === undefined || values[key] === "") {
@@ -134,11 +135,15 @@ const Account = () => {
       "companyName": values.companyName,
       "oldPassword": values.oldPassword,
       "password": values.password,
-      'profileImage': image.selected.length > 0 ? image.selected : user?.profileImage
+      'profileImage': image?.selected?.length > 0 ? image?.selected : user?.profileImage
     }
 
+    Object.keys(accountData).forEach((key)=>{
+      if (accountData[key] == null || accountData[key] == '') delete accountData[key]
+    })
 
-    // console.log(accountData)
+
+    console.log(accountData)
     handleAPI(accountData)
 
   }
@@ -146,7 +151,7 @@ const Account = () => {
   const handleAPI = async (data) => {
 
     const user = JSON.parse(localStorage.getItem('user'));
-
+    
     try {
       setOpen(true)
       let resultHandle = await updateUser(data, user._id);
@@ -159,7 +164,7 @@ const Account = () => {
         setTimeout(() => {
           setTimerFlag(false)
           navigate('/dashboard')
-        }, 2000);
+        }, 1000);
       }
       else {
         setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
