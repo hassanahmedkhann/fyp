@@ -163,7 +163,7 @@ const Campaign = () => {
         </Grid>
         {!deletedFlag ?
           <div className="row row-cols-lg-3 row-cols-xl-4 row-cols-md-2 ">
-            {clusterData?.map((clusterData, index) => (
+            {clusterData?.sort((a,b) => ( a?.clusterNumber - b?.clusterNumber)).map((clusterData, index) => (
               <div key={index} className="col p-0 d-flex justify-content-center">
                 <ClusterCard clusterData={clusterData} index={index + 1} />
               </div>

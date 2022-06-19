@@ -2,7 +2,7 @@ import { Box, Button, CircularProgress, Fade, Modal, Typography } from "@mui/mat
 import Backdrop from '@mui/material/Backdrop';
 import { getProductAnalysis } from "../../Api-Interaction/api-Interaction"
 import React, { useEffect, useState } from "react";
-import { Pie, PieChart, Tooltip } from "recharts";
+import { Cell, Pie, PieChart, Tooltip } from "recharts";
 import numeral from "numeral";
 import CancelIcon from '@mui/icons-material/Cancel';
 import { CancelOutlined } from "@mui/icons-material";
@@ -68,6 +68,7 @@ const ProductAnalysis = ({ modalState, setModalState, loadFlag }) => {
 
 
 
+    const COLORS = ['#F25839','gray']
 
 
     return <Modal
@@ -85,7 +86,7 @@ const ProductAnalysis = ({ modalState, setModalState, loadFlag }) => {
             <Box sx={style}>
                 {!open ?
                     <div>
-                        <h4 className="w-100 d-flex justify-content-end p-1"><CancelIcon onClick={handleClose} sx={{ fontSize: "35px" , color: "red" , cursor: "pointer"}}/></h4>
+                        <h4 className="w-100 d-flex justify-content-end p-1"><CancelIcon onClick={handleClose} sx={{ fontSize: "35px", color: "red", cursor: "pointer" }} /></h4>
                         <h1>Product Analysis</h1>
                         <div className="productAnalysisText d-flex">
                             <div>
@@ -104,7 +105,7 @@ const ProductAnalysis = ({ modalState, setModalState, loadFlag }) => {
                             </div>
                             <PieChart width={350} height={350}>
                                 <Tooltip />
-                                <Pie data={chartData} dataKey="sold" nameKey="name" cx="50%" cy="50%" outerRadius={100} fill="#F4752C" />
+                                <Pie data={chartData} dataKey="sold" nameKey="name" cx="50%" cy="50%" outerRadius={100} fill="#F4752C" />     
                             </PieChart>
                         </div>
                     </div>

@@ -21,19 +21,19 @@ const MainContact = () => {
     const team = [
         {
             name: "Hassan Ahmed Khan",
-            designation: "Developer",
+            designation: "Co-Founder | Origin8",
             email: "itshakhere@gmail.com",
             picture: Hassan
         },
         {
             name: "Syed Asmar Hassan",
-            designation: "Developer",
+            designation: "Co-Founder | Origin8",
             email: "asmarhasan14@gmail.com",
             picture: Asmar
         },
         {
             name: "M. Umer Furqan Ali",
-            designation: "Developer",
+            designation: "Co-Founder | Origin8",
             email: "furqana734@gmail.com",
             picture: Furqan
         }

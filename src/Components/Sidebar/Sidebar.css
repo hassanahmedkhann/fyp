@@ -85,3 +85,9 @@
 .sidebar-list::-webkit-scrollbar-thumb:hover {
   background: blue;
 } */
+
+@media (max-width: 600px) {
+  .displayNone {
+    display: none !important;
+  }
+}

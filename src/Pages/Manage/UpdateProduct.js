@@ -55,8 +55,6 @@ const UpdateProduct = (props) => {
 
     const handleSearch = async (key) => {
 
-        console.log({ searchedProduct })
-
         if (searchedProduct === 0 || searchedProduct === '') return setAlert({ flag: true, 'status': 2, message: "Can not have empty fields!" });
 
         try {
@@ -80,8 +78,8 @@ const UpdateProduct = (props) => {
                     if (props.choice === 3) setOpenModal(true)
                 }
                 if (key == 2) {
-                    console.log(resultHandle?.message)
                     setProductsSearched(resultHandle?.message)
+                    if ( !resultHandle?.message?.length ) return setAlert({ flag: true, 'status': 2, message: "Can not find any products!" });
                 }
             }
             else {
@@ -120,7 +118,7 @@ const UpdateProduct = (props) => {
             productID: formValues?.productID || productData?.productID,
             unitPrice: formValues?.unitPrice || productData?.unitPrice,
             unitCost: formValues?.unitCost || productData?.unitCost,
-            unitProfit: (formValues?.unitPrice - formValues?.unitCost) || productData?.unitProfit,
+            unitProfit: formValues?.unitProfit || productData?.unitProfit,
             productCategory: formValues?.productCategory || productData?.productCategory,
             productImage: image.length > 0 ? image : productData?.productImage,
             totalSales: productData?.totalSales,
@@ -130,19 +128,16 @@ const UpdateProduct = (props) => {
             totalCosting: productData?.totalCosting
         }
 
+   
+
         let validationFlag = false
 
-        // console.log(data)
 
-        if (data.productCost > data.productPrice) {
-            setAlert({ flag: true, 'status': 2, message: "Product cost can not be greater than product cost!" });
+        if ( parseInt(data.unitCost) > parseInt(data.unitPrice) ) {
+            setAlert({ flag: true, 'status': 2, message: "Product cost can not be greater than product price!" });
             validationFlag = true
         }
-        if (data.unitCost === 0) {
-            setAlert({ flag: true, 'status': 2, message: "Values can not be 0!" });
-            validationFlag = true
-        }
-        if (data.unitPrice === 0) {
+        if ( parseInt(data.unitCost) === 0 || parseInt(data.unitPrice) === 0 || parseInt(data.unitProfit) === 0)  {
             setAlert({ flag: true, 'status': 2, message: "Values can not be 0!" });
             validationFlag = true
         }
@@ -158,7 +153,7 @@ const UpdateProduct = (props) => {
             }
         })
 
-
+        
 
         if (validationFlag) return
 
@@ -181,7 +176,7 @@ const UpdateProduct = (props) => {
                 }, 1000);
             }
             else {
-                console.log(resultHandle)
+                // console.log(resultHandle)
                 setAlert({ flag: true, 'status': 2, message: resultHandle?.data });
                 setOpen(false)
             }
@@ -250,10 +245,10 @@ const UpdateProduct = (props) => {
                             <input required onChange={(event) => setSearchedProduct(event.target.value)} style={{ width: "fit-content" }} className="manage-products-input ms-4" placeholder="Search by product ID" type="text" />
                             <Button onClick={() => handleSearch(1)} sx={checkButton} className="mt-2 ms-2 account-button">Check for availability</Button>
                         </div>
-                        <div>
+                        {props.choice === 1 && <div>
                             <input required onChange={(event) => setSearchedProduct(event.target.value)} style={{ width: "fit-content" }} className="manage-products-input ms-4" placeholder="Search product Name" type="text" />
                             <Button onClick={() => handleSearch(2)} sx={checkButton} className="mt-2 ms-2 account-button">Check for availability</Button>
-                        </div>
+                        </div>}
                         {productsSearched && <div>
                             <Searchlist handleClick={handleClick} list={productsSearched} />
                         </div>}
@@ -310,7 +305,7 @@ const UpdateProduct = (props) => {
                     </div>
                     <div className="manage-card-container ">
                         <label className="manage-products-labels">Product Profit</label>
-                        <input disabled value={profit || oldProfit} className="manage-products-input" placeholder="Type here.." onChange={handleChange('unitProfit')} type="text" />
+                        <input value={formValues?.unitProfit.length >= 0 ? formValues?.unitProfit : productData?.unitProfit} className="manage-products-input" placeholder="Type here.." onChange={handleChange('unitProfit')} type="text" />
                     </div>
                     <div className="manage-card-container ">
                         <label className="manage-products-labels">Product Cost</label>
@@ -348,7 +343,7 @@ const UpdateProduct = (props) => {
 
                 </Grid>
                 <Grid className='text-center mt-3 w-100'>
-                    <button onClick={handleSubmit} className='account-button p-2' style={buttonSX}>Save changes</button>
+                    <button onClick={handleSubmit} className='account-button py-2 px-4' style={buttonSX}>Save changes</button>
                 </Grid>
             </Grid>}
             <Notification alert={alert} setAlert={setAlert} />

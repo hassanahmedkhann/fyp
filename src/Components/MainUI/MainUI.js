@@ -6,6 +6,7 @@ import Notification from "../../Utils/Notification";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import SplashScreen from "../SplashScreen/SplashScreen";
+import { useNavigate } from "react-router-dom"
 import "./MainUI.css";
 const MainUI = () => {
   const [flag, setFlag] = useState(false);
@@ -25,10 +26,6 @@ const MainUI = () => {
     status: 1,
     message: ""
   });
-
-
-
-
   
 
   useEffect(async () => {

@@ -8,7 +8,7 @@ import Loader from '../../Utils/Loader';
 import { addNewProduct } from '../../Api-Interaction/api-Interaction';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-
+import productDefault from "../../Images/product.jpg"
 const ManageProducts = () => {
 
     const categories = ['Footwear', 'Casual Clothing', 'Formal Clothing', 'Jwellery', 'Accessories', 'Sports']
@@ -192,13 +192,13 @@ const ManageProducts = () => {
                     </div>
                     <div style={{ flexDirection: "column" }} className="manage-card-container">
                         <label style={{ fontSize: "22px" }} className="manage-products-labels w-100 text-center my-2">Selected Image</label>
-                        <Avatar className="product-avatar" sx={{ height: '300px', width: '300px' }} src={image.length > 0 ? image : null} />
+                        <Avatar className="product-avatar" sx={{ height: '300px', width: '300px' , border:"3px solid whitesmoke"}} src={image.length > 0 ? image : productDefault} />
                     </div>
 
 
                 </Grid>
                 <Grid className='text-center mt-3 w-100'>
-                    <button onClick={handleSubmit} className='account-button p-2' style={buttonSX}>Save and add</button>
+                    <button onClick={handleSubmit} className='account-button py-2 px-4' style={buttonSX}>Save and Add</button>
                 </Grid>
             </Grid>
             <Notification alert={alert} setAlert={setAlert} />

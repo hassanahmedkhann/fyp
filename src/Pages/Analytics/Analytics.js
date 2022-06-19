@@ -163,7 +163,7 @@ const Analytics = () => {
       <div className="analytics">
 
         <div className="analytics-graph1 d-flex flex-column justify-content-space px-2 pt-4">
-          {clusterGraph?.length ? <>
+          { clusterGraph?.length > 0 ? <>
             <div className="d-flex justify-content-between w-100">
 
               <h3 className="ms-3">Expanded View - Cluster Analysis</h3>

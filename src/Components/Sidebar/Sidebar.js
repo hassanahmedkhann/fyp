@@ -58,8 +58,8 @@ const Sidebar = (props) => {
         
           {sidebarData.map((item, index) => (
             <li
-              className={`mb-2 ${props.option === index && "background-sidebar "
-                } animate-btn btn-animated-pop`}
+              className={`mb-2 ${props.option === index && "background-sidebar"
+                } ${item.name === 'Overall Analytics' && 'displayNone'} animate-btn btn-animated-pop`}
               key={index}
               onClick={() => handleClick(index)}
             >
