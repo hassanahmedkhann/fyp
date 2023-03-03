@@ -70,7 +70,7 @@ export const searchFunction = (searchKey, data) => {
   const records = []
 
   data.forEach((product) => {
-    if (product.productName.toLowerCase().includes(searchKey.toLowerCase())) {
+    if (product.title.toLowerCase().includes(searchKey.toLowerCase())) {
       records.push(product)
     }
   })

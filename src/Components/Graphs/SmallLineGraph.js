@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { buttonSX } from "../../Util";
+import { staticGraphData } from "../../Utils/constants";
 
 
 const SmallLineGraph = ({ text, type, graphData, graph, index, ...props }) => {
@@ -29,23 +30,26 @@ const SmallLineGraph = ({ text, type, graphData, graph, index, ...props }) => {
 
 
 
-  return (<>
-    <div>
-      {!graph ? <h3>{type}</h3> :
-        <h3>{keyZ}</h3>}
-
-    </div>
+  return (
     <ResponsiveContainer width="100%" height="80%">
-      <LineChart margin={{ left: 10 }} width={300} height={100} data={graphData}>
-        <YAxis label={{ value: graph ? keyA : keyB, angle: -90, margin: 5, position: 'insideBottomLeft' }} dataKey={graph ? keyY : keyX} domain={graph == 2 ? [0, 30] : graph == 1 ? [0, 100] : graph == 3 ? [0, 200] : [0, 700]} />
-        <Line type="monotone" dataKey={graph ? keyY : keyX} stroke="#FAA540" strokeWidth={2} />
-        <XAxis dataKey={graph ? 'Month' : 'productID'} />
-        <Tooltip content={<CustomTooltip />} />
+      <LineChart
+        margin={{ left: 10 }}
+        width={300}
+        height={100}
+        data={graphData}
+      >
+        <YAxis dataKey="Earnings" />
+        Earnings
+        <Line
+          type="monotone"
+          dataKey="Earnings"
+          stroke="#FAA540"
+          strokeWidth={2}
+        />
+        <Tooltip />
       </LineChart>
     </ResponsiveContainer>
-  </>
-  )
-    ;
+  );
 };
 
 export default SmallLineGraph;

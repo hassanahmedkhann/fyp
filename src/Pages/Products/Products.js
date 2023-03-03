@@ -7,7 +7,10 @@ import productHeaderImage from "../../Images/productsPageHead.PNG";
 import { Avatar, CircularProgress, Rating } from "@mui/material";
 import Notification from "../../Utils/Notification";
 import Loader from "../../Utils/Loader";
-import { getProducts, getTopProduct } from "../../Api-Interaction/api-Interaction";
+import {
+  getProducts,
+  getTopProduct,
+} from "../../Api-Interaction/api-Interaction";
 import { searchFunction } from "../../Util";
 import ProductAnalysis from "./ProductAnalysis";
 import { LoopSharp } from "@mui/icons-material";
@@ -25,14 +28,10 @@ const Products = () => {
   const [modalState, setModalState] = useState({ open: false, product: null });
   const [loadFlag, setLoadFlag] = useState(false);
 
-
-
-
   const handleModal = (product) => {
-    setModalState({ open: true, product: product })
-    setLoadFlag(!loadFlag)
-  }
-
+    setModalState({ open: true, product: product });
+    setLoadFlag(!loadFlag);
+  };
 
   useEffect(() => {
     setTopDiv(document.querySelector(".app"));
@@ -46,105 +45,94 @@ const Products = () => {
     topDiv.scrollIntoView();
   };
 
+  // useEffect(async () => {
+
+  //   try {
+  //     setOpen(true)
+  //     let resultHandle = await getTopProduct();
+
+  //     if (resultHandle?.success === true) {
+  //       setTopProduct(resultHandle?.message)
+  //       setOpen(false);
+  //     }
+  //     else {
+  //       setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
+  //       setOpen(false)
+  //     }
+
+  //   }
+  //   catch (err) {
+  //     setOpen(false)
+  //     console.log("Error! ", err)
+  //   }
+
+  // }, []);
+
   useEffect(async () => {
-
     try {
-      setOpen(true)
-      let resultHandle = await getTopProduct();
-
-      if (resultHandle?.success === true) {
-        setTopProduct(resultHandle?.message)
-        setOpen(false);
-      }
-      else {
-        setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
-        setOpen(false)
-      }
-
-    }
-    catch (err) {
-      setOpen(false)
-      console.log("Error! ", err)
-    }
-
-  }, []);
-
-
-  useEffect(async () => {
-
-    try {
-      setOpen(true)
+      setOpen(true);
       let resultHandle = await getProducts();
 
       if (resultHandle?.success === true) {
         // console.log(resultHandle?.message)
-        setProductItems(resultHandle?.message?.Products)
+        setProductItems(resultHandle?.message);
+        setOpen(false);
+      } else {
+        setAlert({ flag: true, status: 2, message: resultHandle?.data.Error });
         setOpen(false);
       }
-      else {
-        setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
-        setOpen(false)
-      }
-
+    } catch (err) {
+      setOpen(false);
+      console.log("Error! ", err);
     }
-    catch (err) {
-      setOpen(false)
-      console.log("Error! ", err)
-    }
-
   }, []);
 
-
   const handleSearch = (input) => {
-    setSearch(input)
-    const matches = searchFunction(input, productItems)
-    setSearchedProducts([...matches])
-  }
-
-
+    setSearch(input);
+    const matches = searchFunction(input, productItems);
+    setSearchedProducts([...matches]);
+  };
 
   return (
-
     <div className="products-main fadeUp">
       <Notification alert={alert} setAlert={setAlert} />
       <Loader open={open} />
       <>
-        <div style={{ paddingTop: "100px" }} className="d-flex justify-content-center">
+        <div
+          style={{ paddingTop: "100px" }}
+          className="d-flex justify-content-center"
+        >
           <h6 className="display-6" style={{ color: "#033A7D" }}>
             Product View
           </h6>
         </div>
-        <div className="my-4 w-100 d-flex justify-content-center">
-          <p className=" mt-3 w-50 text-heading text-center">
-            Top Products
-          </p>
+        <div
+          style={{ marginBottom: "-10%" }}
+          className="mt-4 w-100 d-flex justify-content-center"
+        >
+          <p className=" mt-3 w-50 text-heading text-center">Top Products</p>
         </div>
-
 
         <div className="best-product-container">
-          {topProduct ?
-            <div className="best-product">
-              <ProductBox
-                productData={topProduct?.highestSales}
-              />
-            </div> :
-            <ProductBoxSkeleton />
-          }
-          {topProduct ?
-            <div className="best-product">
-              <ProductBox
-                rating
-                productData={topProduct?.topProduct}
-              />
-            </div> :
-            <ProductBoxSkeleton />
-          }
+          {productItems?.length ? (
+            <div className="d-flex" style={{ padding: "15%" }}>
+              <div className="best-product">
+                <ProductBox productData={productItems[0]} />
+              </div>
+              <div className="best-product">
+                <ProductBox rating productData={productItems[1]} />
+              </div>
+            </div>
+          ) : (
+            <>
+              <ProductBoxSkeleton />
+              <ProductBoxSkeleton />
+            </>
+          )}
         </div>
 
         <div className="my-4 w-100 d-flex justify-content-center">
-          <h1 className="w-50 text-heading text-center">
-            All Products
-          </h1>
+          <h1 className="w-50 text-heading text-center">All Products</h1>
         </div>
         <div className="products-container">
           <div className="searchbar-container">
@@ -166,47 +154,77 @@ const Products = () => {
               <p className="product-captions">Rating</p>
               <p className="product-captions">Price</p>
               <p className="product-captions">Action</p>
-
-
             </div>
-            <ProductAnalysis setModalState={setModalState} loadFlag={loadFlag} modalState={modalState} />
+            <ProductAnalysis
+              setModalState={setModalState}
+              loadFlag={loadFlag}
+              modalState={modalState}
+            />
 
-
-            {search.length < 1 ?
-              productItems?.map((item, index) => (
-                <div key={index} className="product-items-container">
-                  <p className="product-items font-weight-light">{item?.productID}</p>
-                  {/* <p className="product-items">{item?.category.toUpperCase()}</p> */}
-                  <div className="product-items product-item-lg">
-                    <Avatar alt="Product-Image" src={item.productImage} sx={{ width: 60, height: 60 }} />
-                    <p className="ms-1">{item.productName}</p>
+            {search.length < 1
+              ? productItems?.map((item, index) => (
+                  <div key={index} className="product-items-container">
+                    <p className="product-items font-weight-light">{index}</p>
+                    {/* <p className="product-items">{item?.category.toUpperCase()}</p> */}
+                    <div className="product-items product-item-lg">
+                      <Avatar
+                        alt="Product-Image"
+                        src={item.image}
+                        sx={{ width: 60, height: 60 }}
+                      />
+                      <p className="ms-1">
+                        {item.title.toString().slice(0, 10)}
+                      </p>
+                    </div>
+                    <p className="product-items">
+                      <Rating
+                        name="read-only"
+                        value={item?.rating.rate}
+                        readOnly
+                      />
+                    </p>
+                    <p className="product-items">{item.price}</p>
+                    <p className="product-items">
+                      <button
+                        onClick={() => handleModal(item)}
+                        className="productButton"
+                      >
+                        Detailed Analysis
+                      </button>
+                    </p>
                   </div>
-                  <p className="product-items"><Rating name="read-only" value={item?.productRating} readOnly /></p>
-                  <p className="product-items">{item.unitPrice}</p>
-                  <p className="product-items"><button onClick={() => handleModal(item)} className="productButton">Detailed Analysis</button></p>
-
-
-                </div>
-              )) :
-              searchedProducts?.map((item, index) => (
-                <div key={index} className="product-items-container">
-                  <p className="product-items font-weight-light">{item?.productID}</p>
-                  {/* <p className="product-items">{item?.category.toUpperCase()}</p> */}
-                  <div className="product-items product-item-lg">
-                    <Avatar alt="Product-Image" src={item.productImage} sx={{ width: 60, height: 60 }} />
-                    <p className="ms-1">{item.productName}</p>
+                ))
+              : searchedProducts?.map((item, index) => (
+                  <div key={index} className="product-items-container">
+                    <p className="product-items font-weight-light">
+                      {item?.productID}
+                    </p>
+                    {/* <p className="product-items">{item?.category.toUpperCase()}</p> */}
+                    <div className="product-items product-item-lg">
+                      <Avatar
+                        alt="Product-Image"
+                        src={item.image}
+                        sx={{ width: 60, height: 60 }}
+                      />
+                      <p className="ms-1">
+                        {item.title.toString().slice(0, 10)}
+                      </p>
+                    </div>
+                    <p className="product-items">{item.rating.rate}</p>
+                    <p className="product-items">{item.price}</p>
+                    <p className="product-items">
+                      <button
+                        onClick={() => handleModal(item)}
+                        className="productButton"
+                      >
+                        Detailed Analysis
+                      </button>
+                    </p>
                   </div>
-                  <p className="product-items">{item.productRating}</p>
-                  <p className="product-items">{item.unitPrice}</p>
-                  <p className="product-items"><button onClick={() => handleModal(item)} className="productButton">Detailed Analysis</button></p>
-
-                </div>
-              ))}
-
+                ))}
           </div>
         </div>
       </>
-
 
       <span
         onClick={handleBackTop}

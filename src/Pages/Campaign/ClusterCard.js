@@ -6,9 +6,10 @@ import { ButtonSX } from "../../Util";
 import Loader from "../../Utils/Loader";
 import Notification from "../../Utils/Notification";
 import CustomToast from "../../Utils/CustomToast"
+import { clusters } from "../../Utils/constants";
 import "./Campaign.css"
 
-const ClusterCard = ({ clusterData, ...props }) => {
+const ClusterCard = ({ clusterData , ...props }) => {
 
   const navigate = useNavigate()
 
@@ -72,7 +73,7 @@ const ClusterCard = ({ clusterData, ...props }) => {
     <div className="cluster-text">
       <h4>Cluster No. {clusterData?.clusterNumber}</h4>
       <h5>Total members: {clusterData?.totalCustomers}</h5>
-      {props.deleted && <Button onClick={handleRetrieve} className="cluster-link" sx={linkStyle} to="/cluster-page">Retrieve Cluster</Button>}
+      {props.deleted && <Button disabled onClick={handleRetrieve} className="cluster-link" sx={linkStyle} to="/cluster-page">Retrieve Cluster</Button>}
       {!props.deleted && <Button onClick={handleDetails} className="cluster-link" sx={linkStyle} to="/cluster-page">Cluster Details</Button>}
 
 

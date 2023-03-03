@@ -6,14 +6,14 @@ import Notification from "../../Utils/Notification";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import SplashScreen from "../SplashScreen/SplashScreen";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import "./MainUI.css";
 const MainUI = () => {
   const [flag, setFlag] = useState(false);
 
   const [option, setOption] = useState(1);
 
-  const user = JSON.parse(localStorage.getItem('user'))
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const [splashFlag, setSplashFlag] = useState(false);
 
@@ -24,51 +24,43 @@ const MainUI = () => {
   const [alert, setAlert] = useState({
     flag: false,
     status: 1,
-    message: ""
+    message: "",
   });
-  
 
   useEffect(async () => {
+    let count = JSON.parse(localStorage.getItem("count"));
 
-    let count = JSON.parse(localStorage.getItem('count'))
+    if (count < 1) setSplashFlag(true);
 
-    if ( count < 1 ) setSplashFlag(true)
-
-    localStorage.setItem('count', 1)
+    localStorage.setItem("count", 1);
 
     setTimeout(() => {
       setSplashFlag(false);
     }, 1500);
 
+    // try {
+    //   setOpen(true)
+    //   let resultHandle = await getProfit();
 
-    try {
-      setOpen(true)
-      let resultHandle = await getProfit();
+    //   if (resultHandle?.success === true) {
+    //     setProfitData(resultHandle?.message)
+    //     JSON.stringify(localStorage.setItem('totalPurchases', resultHandle?.message?.Analytics?.totalSales))
+    //     setOpen(false);
 
-      if (resultHandle?.success === true) {
-        setProfitData(resultHandle?.message)
-        JSON.stringify(localStorage.setItem('totalPurchases', resultHandle?.message?.Analytics?.totalSales))
-        setOpen(false);
+    //   }
+    //   else {
+    //     setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
+    //     setOpen(false)
 
-      }
-      else {
-        setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
-        setOpen(false)
+    //   }
 
-      }
-
-    }
-    catch (err) {
-      setOpen(false)
-      // console.log("Error! ", err)
-      setAlert({ flag: true, 'status': 2, message: "Server error!" });
-
-    }
-
+    // }
+    // catch (err) {
+    //   setOpen(false)
+    //   // console.log("Error! ", err)
+    //   setAlert({ flag: true, 'status': 2, message: "Server error!" });
+    // }
   }, []);
-
-
-
 
   return (
     <>
@@ -79,8 +71,9 @@ const MainUI = () => {
           <Navbar flag={flag} setFlag={setFlag} />
           <div className="main-container">
             <div
-              className={`main-sidebar sidebar-hidden ${flag && "sidebar-show"
-                }`}
+              className={`main-sidebar sidebar-hidden ${
+                flag && "sidebar-show"
+              }`}
             >
               <Sidebar
                 option={option}

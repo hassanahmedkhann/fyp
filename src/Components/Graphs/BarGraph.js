@@ -21,13 +21,13 @@ const BarGraph = ({ graphData }) => {
         }}
       >
         <CartesianGrid stroke="#f5f5f5" />
-        <XAxis dataKey="productID" label={{ value: 'Product IDs', position: 'insideBottomRight', offset: -10 }} scale="band" />
-        <YAxis domain={[0, 2000]} dataKey='unitPrice' label={{ value: 'Price', angle: -90, position: 'insideLeft' }} />
+        {/* <XAxis dataKey="productID" label={{ value: 'Product IDs', position: 'insideBottomRight', offset: -10 }} scale="band" /> */}
+        {/* <YAxis domain={[0, 2000]} dataKey='unitPrice' label={{ value: 'Price', angle: -90, position: 'insideLeft' }} /> */}
         <Tooltip labelFormatter={value => { return `Product ID: ${value}` }} />
         <Legend />
-        <Area type="monotone" dataKey="unitProfit" fill="rgb(244, 117, 44)" stroke="#F15238" />
-        <Bar dataKey="unitCost" barSize={20} fill="#F15238" />
-        <Line type="monotone" dataKey="unitPrice" stroke="#F4752C" />
+        <Area type="monotone" dataKey="Sales" fill="rgb(244, 117, 44)" stroke="#F15238" />
+        <Bar dataKey="Earnings" barSize={20} fill="#F15238" />
+        <Line type="monotone" dataKey="Profits" stroke="#F4752C" />
       </ComposedChart>
     </ResponsiveContainer>
   );

@@ -1,66 +1,72 @@
 import React, { useEffect, useState } from "react";
-import "./Productlist.css"
+import "./Productlist.css";
 import { CircularProgress, Rating } from "@mui/material";
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import { getProducts } from "../../Api-Interaction/api-Interaction";
 import Loader from "../../Utils/Loader";
 import Notification from "../../Utils/Notification";
 const Productlist = () => {
-
   const [productItems, setProductItems] = useState([]);
   const [open, setOpen] = useState(false);
   const [alert, setAlert] = useState({ flag: false, status: 1, message: "" });
 
-
-
-
-
   useEffect(async () => {
-
     try {
-      setOpen(true)
+      setOpen(true);
       let resultHandle = await getProducts();
-
+      console.log({ resultHandle });
       if (resultHandle?.success === true) {
-        // console.log(resultHandle?.message)
-        setProductItems(resultHandle?.message?.Products)
-        localStorage.setItem('productID',JSON.stringify(resultHandle?.message?.Products?.length))
+        setProductItems(resultHandle?.message);
+        localStorage.setItem(
+          "productID",
+          JSON.stringify(resultHandle?.message?.length)
+        );
+        setOpen(false);
+      } else {
+        setAlert({ flag: true, status: 2, message: resultHandle?.data.Error });
         setOpen(false);
       }
-      else {
-        setAlert({ flag: true, 'status': 2, message: resultHandle?.data.Error });
-        setOpen(false)
-      }
-
-    }
-    catch (err) {
-      setOpen(false)
+    } catch (err) {
+      setOpen(false);
       // console.log("Error! ", err)
-      setAlert({ flag: true, 'status': 2, message: "Server error!" });
-
+      setAlert({ flag: true, status: 2, message: "Server error!" });
     }
-
   }, []);
 
-  return (<>
-    {
-      open ? <CircularProgress color="inherit" /> :
+  return (
+    <>
+      {open ? (
+        <CircularProgress color="inherit" />
+      ) : (
         <div className="productlist p-4">
           <Notification alert={alert} setAlert={setAlert} />
           <div className="d-flex justify-content-between">
-            <h4 className="mt-3">Products List (Total {productItems?.length})</h4><p className="icon-div" style={{ backgroundColor: "#F4752C" }}><FormatListBulletedIcon style={{ fontSize: "30px", color: "white" }} /></p>
+            <h4 className="mt-3">
+              Products List (Total {productItems?.length})
+            </h4>
+            <p className="icon-div" style={{ backgroundColor: "#F4752C" }}>
+              <FormatListBulletedIcon
+                style={{ fontSize: "30px", color: "white" }}
+              />
+            </p>
           </div>
           <div className="productlist-items d-flex flex-column">
-            {
-              productItems?.map((product, index) => (
-                <h5 key={index} className="my-2 productItem mx-1">{product?.productName}<Rating className="ms-4" name="read-only" value={product?.productRating} readOnly /></h5>
-              ))
-            }
+            {productItems?.map((product, index) => (
+              <h5 key={index} className="my-2 productItem mx-1">
+                {product?.title?.toString().slice(0, 10)}
+                <Rating
+                  className="ms-4"
+                  name="read-only"
+                  value={product?.rating?.rate}
+                  readOnly
+                />
+              </h5>
+            ))}
           </div>
-
         </div>
-    }
-  </>)
+      )}
+    </>
+  );
 };
 
 export default Productlist;

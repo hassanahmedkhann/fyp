@@ -8,41 +8,36 @@ import Graph from "../../Components/Graphs/Graph";
 import dash4 from "../../Images/dash11.jpg";
 import dash5 from "../../Images/dash12.jpg";
 import dash6 from "../../Images/dash13.jpg";
-
 import Productlist from "../Products/Productlist";
 import Notification from "../../Utils/Notification";
 import Loader from "../../Utils/Loader";
 
-const Dashboard = ({profitData}) => {
-
+const Dashboard = ({ profitData }) => {
   const [open, setOpen] = useState(false);
   const [alert, setAlert] = useState({
     flag: false,
     status: 1,
-    message: ""
+    message: "",
   });
-
-
-
 
   const data = [
     {
       heading: "Profit",
-      amount: profitData?.Analytics?.totalProfit,
+      amount: profitData?.Analytics?.totalProfit || 67545645,
       icon: AccountBalanceIcon,
       color: "yellowgreen",
       backImg: dash5,
     },
     {
       heading: "Purchases ( Units )",
-      amount: profitData?.Analytics.totalSales,
+      amount: profitData?.Analytics.totalSales || 545645,
       icon: PlaylistAddCheckCircleIcon,
       color: "#02CCCF",
       backImg: dash4,
     },
     {
       heading: "Earnings",
-      amount: profitData?.Analytics.totalEarning,
+      amount: profitData?.Analytics.totalEarning || 3967545645,
       icon: PaidIcon,
       color: "#F25339",
       backImg: dash6,
@@ -50,13 +45,11 @@ const Dashboard = ({profitData}) => {
     },
   ];
 
-
   return (
     <div className="dashboard fadeUp">
       <Notification alert={alert} setAlert={setAlert} />
       <Loader open={open} />
       <div className="container-fluid">
-
         <div className="row">
           {data.map((item, index) => (
             <div
@@ -67,7 +60,7 @@ const Dashboard = ({profitData}) => {
                 graph
                 backImg={item.backImg}
                 color={item.color}
-                color2={'white'}
+                color2={"white"}
                 icon={item.icon}
                 heading={item.heading}
                 amount={item.amount}
@@ -89,5 +82,3 @@ const Dashboard = ({profitData}) => {
 };
 
 export default Dashboard;
-
-
